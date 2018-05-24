@@ -1,0 +1,16 @@
+{
+  "transport": "scp",
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "deepblue.cs.camosun.bc.ca",
+  "port": "22",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "cst106",
+  "watch": [],
+  "password": "43196206",
+  "target": "/home/student/cst106/public_html/ICS199/MicksLicks/"
+}
