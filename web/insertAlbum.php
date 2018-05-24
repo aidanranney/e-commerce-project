@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>PHP Form Send</title>
+<?php
+include ('header.php');
+include ('connection.php');
+?>
 
 		<script>
 		function validation() {
@@ -36,10 +35,6 @@
 	<body>
 	</body>
 <?php
-session_start();
-
-include ('header.html');
-include ('connection.php');
 
 echo '
 <form action="" method="POST" enctype="multipart/form-data">
@@ -121,4 +116,3 @@ $EDITIONNUMBER = $_POST['EDITIONNUMBER'];
 
 include ('footer.php');
 ?>
-</html>
