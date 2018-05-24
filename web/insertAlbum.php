@@ -87,7 +87,7 @@ $EDITIONNUMBER = $_POST['EDITIONNUMBER'];
 			$type = $_FILES['albumArtwork']['type'];
 			$formats = array('image/jpeg', 'image/jpg', 'image/png'); //Add file types here. Adjust file type error if you do so
 			$error = false;
-			
+
 			if($size > (1024 * 1024)){// 1MB
 				$error = 'ERROR: Maximum size allowed is 1MB';
 			}elseif(!in_array($type, $formats)){
@@ -112,7 +112,7 @@ $EDITIONNUMBER = $_POST['EDITIONNUMBER'];
 			if($error){
 				echo $error;
 			}
-			
+
 		}else{
 			echo '<p>No file uploaded</p>';
 		}

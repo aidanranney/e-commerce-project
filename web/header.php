@@ -54,8 +54,11 @@ and open the template in the editor.
                 print 'class="active"';
               }
             ?>><a href="#">About</a></li>
-          </ul>
-          </div>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="insertAlbum.php">Add Record</li>
+            </ul>
+            </div>
         </nav>
 
 
