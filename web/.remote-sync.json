@@ -1,16 +1,30 @@
 {
+<<<<<<< HEAD
   "transport": "scp",
+=======
+>>>>>>> added php for genre dropdown menu
   "uploadOnSave": true,
   "useAtomicWrites": false,
   "deleteLocal": false,
   "hostname": "deepblue.cs.camosun.bc.ca",
   "port": "22",
+<<<<<<< HEAD
+=======
+  "target": "/home/student/cst106/public_html/ICS199/MicksLicks/shopping-cart/web/",
+>>>>>>> added php for genre dropdown menu
   "ignore": [
     ".remote-sync.json",
     ".git/**"
   ],
+<<<<<<< HEAD
   "username": "cst138",
   "watch": [],
   "password": "444998",
   "target": "/home/student/cst138/public_html/ics199/shopping-cart/web"
+=======
+  "username": "cst106",
+  "password": "43196206",
+  "watch": [],
+  "transport": "scp"
+>>>>>>> added php for genre dropdown menu
 }
