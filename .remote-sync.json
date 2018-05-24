@@ -1,0 +1,18 @@
+{
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "deepblue.cs.camosun.bc.ca",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**",
+    ".DS_Store",
+    ".gitkeep"
+  ],
+  "watch": [],
+  "transport": "scp",
+  "port": "22",
+  "target": "/home/student/cst161/public_html/shopping_cart/",
+  "username": "cst161",
+  "password": "427021"
+}
