@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>PHP Form Send</title>
+<?php
+include ('header.php');
+include ('connection.php');
+?>
+
 <script>
 function validation() {
 
@@ -45,4 +45,6 @@ if(document.getElementById('USEREMAIL').value ==''){
 
 </form>
 	</body>
+<?php include ('footer.php');
+?>
 </html>

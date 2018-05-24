@@ -1,3 +1,8 @@
+<?php
+session_start();
+ini_set('display_errors', 1);
+?>
+
 <!DOCTYPE html>
 
 <!--
@@ -57,6 +62,7 @@ and open the template in the editor.
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="insertAlbum.php">Add Record</a></li>
+              <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
               <li><a href="insertUser.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
             </ul>
             </div>
