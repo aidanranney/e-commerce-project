@@ -12,7 +12,7 @@
   "watch": [],
   "transport": "scp",
   "port": "22",
-  "target": "/home/student/cst161/public_html/shopping_cart/web",
+  "target": "/home/student/cst138/public_html/ics199/shopping_cart/web",
   "username": "cst161",
   "password": "427021"
 }
