@@ -1,16 +1,16 @@
 {
-  "transport": "scp",
+  "port": "22",
   "uploadOnSave": true,
   "useAtomicWrites": false,
   "deleteLocal": false,
   "hostname": "deepblue.cs.camosun.bc.ca",
-  "port": "22",
+  "target": "/home/student/cst106/public_html/ICS199/MicksLicks/shopping-cart/web/",
   "ignore": [
     ".remote-sync.json",
     ".git/**"
   ],
-  "username": "cst138",
+  "username": "cst106",
+  "password": "43196206",
   "watch": [],
-  "password": "444998",
-  "target": "/home/student/cst138/public_html/ics199/shopping-cart/web"
+  "transport": "scp"
 }

@@ -56,8 +56,12 @@ and open the template in the editor.
             ?>><a href="#">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
               <li><a href="insertAlbum.php">Add Record</a></li>
               <li><a href="insertUser.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+=======
+              <li><a href="insertAlbum.php">Add Record</li>
+>>>>>>> d874181708f7541769effc7db9a23bdd8d581e2b
             </ul>
             </div>
         </nav>
