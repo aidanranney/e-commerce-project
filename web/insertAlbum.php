@@ -4,6 +4,33 @@
 		<meta charset="utf-8">
 		<title>PHP Form Send</title>
 
+		<script>
+		function validation() {
+
+		// VALIDATION CODE HERE!
+
+		if(document.getElementById('artist').value ==''){
+		  alert("You must include the artists name");
+		  return false;
+		} if(document.getElementById('albumTitle').value ==''){
+		  alert("You must include an album title");
+		  return false;
+		} if(document.getElementById('genre').value ==''){
+			alert("You must include a genre");
+			return false;
+		} if(document.getElementById('PRICE').value ==''){
+			  alert("Please insert a valid price");
+			  return false;
+		} if(document.getElementById('quality').value ==''){
+			  alert("You must specify used or new quality");
+			  return false;
+		} if(document.getElementById('recordQuanitity').value ==''){
+				alert("Include how many records are being added");
+				return false;
+		}
+		}
+		</script>
+
 	</head>
 
 	<body>
