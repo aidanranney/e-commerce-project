@@ -18,12 +18,4 @@ if (!$link) {
 
 }
 
- else {
-
-    print "Connecting to database <BR>" ;
-
- }
-
-
-
 ?>
