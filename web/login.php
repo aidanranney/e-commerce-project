@@ -1,4 +1,5 @@
 <?php
+$currentpage = 'login';
 include ('header.php');
 include ('connection.php');
 ?>
@@ -27,7 +28,9 @@ include ('connection.php');
 <form action="loginconfirmation.php" method="POST" onsubmit="return validation();">
   <p> Email: <input type="text" name="useremail" id="useremail"></p>
   <p> Password: <input type="password" name="password" id="password"></p>
-  <input type="submit" value="SUBMIT">
+  <input type="submit" value="Submit">
 </form>
 
-</body>
+<?php
+include ('footer.php');
+?>

@@ -30,7 +30,6 @@ and open the template in the editor.
     </div>
 
     <body>
-
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
           <ul class="nav navbar-nav">
@@ -50,20 +49,32 @@ and open the template in the editor.
                     </ul>
             </li>
             <li <?php
-              if ($_SESSION['page'] == 'home') {
+              if ($currentpage == 'home') {
                 print 'class="active"';
               }
-            ?>><a href="#">Home</a></li>
+            ?>><a href="index.php">Home</a></li>
             <li <?php
-              if ($_SESSION['page'] == 'about') {
+              if ($currentpage == 'about') {
                 print 'class="active"';
               }
-            ?>><a href="#">About</a></li>
+            ?>><a href="about.php">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="insertAlbum.php">Add Record</a></li>
-              <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-              <li><a href="insertUser.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li <?php
+                if ($currentpage == 'addrecord') {
+                  print 'class="active"';
+                }
+              ?>><a href="insertAlbum.php">Add Record</a></li>
+              <li <?php
+                if ($currentpage == 'login') {
+                  print 'class="active"';
+                }
+              ?>><a href="login.php"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+              <li <?php
+                if ($currentpage == 'registration') {
+                  print 'class="active"';
+                }
+              ?>><a href="insertUser.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
             </ul>
             </div>
         </nav>

@@ -1,4 +1,5 @@
 <?php
+$currentpage = 'addrecord';
 include ('header.php');
 include ('connection.php');
 ?>
