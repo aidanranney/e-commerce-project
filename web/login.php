@@ -1,34 +1,14 @@
 <?php
 $currentpage = 'login';
+$title = 'Login Page';
 include ('header.php');
 include ('connection.php');
 ?>
 
-<html>
-  <head>
-  <title>Login</title>
-  <script>
-  function validation() {
-    if (document.getElementById('useremail').value == '') {
-      alert("You must include a username");
-      return false;
-    }
-    if (document.getElementById('password')).value =='') {
-      alert("You must include a password");
-      return false;
-    }
-    if (document.getElementById('password')).value.length < 4) {
-      alert("password must have at least 4 characters");
-      return false;
-    }
-  }
-  </script>
-  </head>
-<body>
-<form action="loginconfirmation.php" method="POST" onsubmit="return validation();">
-  <p> Email: <input type="text" name="useremail" id="useremail"></p>
-  <p> Password: <input type="password" name="password" id="password"></p>
-  <input type="submit" value="Submit">
+<form id="myForm" action="loginconfirm.php" method="POST">
+  <p> Email: <input type="text" name="useremail" id="useremail" required pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$"></p>
+  <p> Password: <input type="password" name="password" id="password" required minlength="4"></p>
+  <input type="submit" value="Submit"/>
 </form>
 
 <?php
