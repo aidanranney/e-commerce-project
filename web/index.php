@@ -1,4 +1,5 @@
 <?php
+$currentpage = 'home';
 include ('header.php');
 include ('connection.php');
 ?>
@@ -23,5 +24,4 @@ include ('connection.php');
  }
 
     include ('footer.php');
-
 ?>

@@ -1,4 +1,5 @@
 <?php
+$currentpage = 'registration';
 include ('header.php');
 include ('connection.php');
 ?>
