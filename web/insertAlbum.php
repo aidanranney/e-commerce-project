@@ -5,7 +5,7 @@ include ('connection.php');
 ?>
 
 		<script>
-		function validation() {
+		function validate() {
 
 		// VALIDATION CODE HERE!
 

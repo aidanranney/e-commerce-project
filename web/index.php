@@ -23,5 +23,5 @@ include ('connection.php');
 
  }
 
-    include ('footer.php');
+ include ('footer.php');
 ?>
