@@ -1,8 +1,8 @@
-<BR><BR>
+<br><br>
 
 <hr>
 
-<BR>
+<br>
 
 <?php
 

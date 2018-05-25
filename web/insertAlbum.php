@@ -1,5 +1,6 @@
 <?php
 $currentpage = 'addrecord';
+$title = "Add Record";
 include ('header.php');
 include ('connection.php');
 ?>
@@ -38,6 +39,7 @@ include ('connection.php');
 <?php
 
 echo '
+<div class="container"
 <form action="" method="POST" enctype="multipart/form-data">
 	<p>Artist:<input type="text" name="artist"/></p>
 	<p>Album Title: <input type="text" name="albumTitle" /></p>
@@ -53,7 +55,7 @@ echo '
 	<p><input type="submit" name="submit" value="Submit" /></p>
 
 </form>
-
+</div>
 
 ';
 
