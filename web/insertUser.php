@@ -1,5 +1,6 @@
 <?php
 $currentpage = 'registration';
+$title = 'Registration';
 include ('header.php');
 include ('connection.php');
 ?>
@@ -33,6 +34,7 @@ if(document.getElementById('USEREMAIL').value ==''){
 	</head>
 
 	<body>
+    <div class="container">
 <form action="setUser.php" method="POST" onsubmit="return validation();">
 	<p>Email Address:<input type="text" name="USEREMAIL" id="USEREMAIL"/></p>
 	<p>First Name: <input type="text" name="firstName" id="firstName" /></p>
@@ -45,6 +47,7 @@ if(document.getElementById('USEREMAIL').value ==''){
 	<p><input type="submit" value="Submit" /></p>
 
 </form>
+</div>
 	</body>
 <?php include ('footer.php');
 ?>

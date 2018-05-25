@@ -1,5 +1,6 @@
 <?php
 $currentpage = 'login';
+$title = "Login";
 include ('header.php');
 include ('connection.php');
 ?>

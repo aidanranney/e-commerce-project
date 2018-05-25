@@ -1,11 +1,13 @@
 <?php
 $currentpage = 'home';
+$title = 'Home Page';
 include ('header.php');
 include ('connection.php');
 ?>
 
 
 <?php
+print "<div class='container'>";
  $result = mysqli_query($link,'select * from RECORD');
 
  if ($result)   {
@@ -22,6 +24,7 @@ include ('connection.php');
      }
 
  }
+ print "</div>";  
 
  include ('footer.php');
 ?>
