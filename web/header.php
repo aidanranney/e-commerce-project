@@ -25,7 +25,7 @@ and open the template in the editor.
     <div class="container-fluid">
       <div class="jumbotron">
         <h1>Mick's Licks</h1>
-        <p>Used records</p>
+        <p>Buy used and new records on the internet, from my garage.</p>
       </div>
     </div>
 
