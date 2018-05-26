@@ -5,7 +5,6 @@ include ('header.php');
 include ('connection.php');
 ?>
 
-
 <?php
 print "<div class='container'>";
  $result = mysqli_query($link,'select * from RECORD');
@@ -16,19 +15,20 @@ print "<div class='container'>";
          <div class='col-sm-3'>
             <article class='col-item'>
             	<div class='photo'>
-        			<div class='options-cart-round'>
-        			</div>
         			<a href=''#''> <img src='../images/records.jpg' class='img-responsive' alt='Product Image' /> </a>
         		</div>
         		<div class='info'>
         			<div class='row'>
-        				<div class='price-details col-md-6'>
-        					<p class='details'>"
+        				<div class='price-details col-md-9'>
+        					<div class='details'>"
         						. $row['quality'] . "
-        					</p>
-        					<h4>" . $row['albumTitle'] . "</h4>
-                  <p class='details'><b>" . $row['artist'] . "</b></p>
+        					</div>
+        					<div style='font-size:16pt;'>" . $row['albumTitle'] . "</div>
+                  <b>" . $row['artist'] . "</b>
+                  <br>
         					<span class='price-new'>" . "$" . $row['PRICE'] . "</span>
+                  <br>
+                  <br>
         				</div>
         			</div>
         		</div>
