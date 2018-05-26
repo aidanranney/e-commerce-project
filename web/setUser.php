@@ -2,7 +2,7 @@
 
 session_start();
 
-include ('header.html');
+include ('header.php');
 include ('connection.php');
 
 $USEREMAIL = mysqli_real_escape_string($link, $_REQUEST['USEREMAIL']);

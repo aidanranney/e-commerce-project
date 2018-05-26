@@ -2,20 +2,13 @@
 session_start();
 ini_set('display_errors', 1);
 ?>
-
 <!DOCTYPE html>
-
 <!--
-
 To change this license header, choose License Headers in Project Properties.
-
 To change this template file, choose Tools | Templates
-
 and open the template in the editor.
-
 -->
 <html>
-
     <head>
         <title><?php print $title ?></title>
         <meta charset="UTF-8">
@@ -25,7 +18,7 @@ and open the template in the editor.
     <div class="container-fluid">
       <div class="jumbotron">
         <h1>Mick's Licks</h1>
-        <p>Used records</p>
+        <p>Buy used and new records on the internet, from my garage.</p>
       </div>
     </div>
 
