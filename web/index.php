@@ -37,7 +37,7 @@ if (isset($_GET['genre'])) {
          </div>";
       }
   }
-} else   {
+} else  {
   $result = mysqli_query($link,"select * from RECORD");
   if ($result)   {
       while ($row = mysqli_fetch_array($result)) {
