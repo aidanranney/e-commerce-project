@@ -31,11 +31,9 @@ if(document.getElementById('USEREMAIL').value ==''){
 }
 }
 </script>
-	</head>
 
-	<body>
-    <div class="container">
-<form action="setUser.php" method="POST" onsubmit="return validation();">
+<div class="container">
+<form action="setUser.php" method="POST" onsubmit="return validation()">
 	<p>Email Address:<input type="text" name="USEREMAIL" id="USEREMAIL"/></p>
 	<p>First Name: <input type="text" name="firstName" id="firstName" /></p>
   <p>Last Name:<input type="text" name="lastName" id="lastName"/></p>
@@ -44,11 +42,11 @@ if(document.getElementById('USEREMAIL').value ==''){
   <p>Mailing Address: <input type="text" name="MAILADDRESS" id="MAILADDRESS" /></p>
   <p>Shipping Address:<input type="text" name="SHIPADDRESS" id="SHIPADDRESS"/></p>
   <p>Phone Number: <input type="text" name="phoneNumber" id="phoneNumber" /></p>
-	<p><input type="submit" value="Submit" /></p>
+	<p><input type="submit" name="submit" value="Submit" /></p>
 
 </form>
 </div>
-	</body>
+
 <?php include ('footer.php');
 ?>
 </html>
