@@ -60,7 +60,7 @@ and open the template in the editor.
                 if ($currentpage == 'addrecord') {
                   print 'class="active"';
                 }
-              ?>><a href="insertAlbum.php">Add Record</a></li>
+              ?>><a href="addrecord.php">Add Record</a></li>
               <li <?php
                 if ($currentpage == 'login') {
                   print 'class="active"';
@@ -70,7 +70,7 @@ and open the template in the editor.
                 if ($currentpage == 'registration') {
                   print 'class="active"';
                 }
-              ?>><a href="insertUser.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              ?>><a href="register.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
             </ul>
             </div>
         </nav>

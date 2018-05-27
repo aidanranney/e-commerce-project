@@ -1,7 +1,6 @@
 <?php
-
-session_start();
-
+$currentpage = 'registration';
+$title = 'Registration';
 include ('header.php');
 include ('connection.php');
 
