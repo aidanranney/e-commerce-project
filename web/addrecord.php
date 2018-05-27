@@ -35,7 +35,7 @@ include ('connection.php');
 
 echo '
 <div class="container"
-<form action="insertAlbumConfirm.php" method="POST" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data">
 	<p>Artist:<input type="text" name="artist"/></p>
 	<p>Album Title: <input type="text" name="albumTitle" /></p>
   <p>Genre:<input type="text" name="genre"/></p>
