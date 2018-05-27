@@ -35,9 +35,12 @@ and open the template in the editor.
                         $categories = mysqli_query($link,'select genre from GENRE');
                         if ($categories)   {
                           while ($result = mysqli_fetch_array($categories)) {
-                          echo "<li><a href='#'>" . $result['genre'] . "</a></li>"; //do stuff with bootstrap dropdown categories here
+                          $id = $result['genre'];
+                          echo "<li id=" . $id . "><a href='index.php?genre=$id'>" . $id . "</a></li>";
+                          //do stuff with bootstrap dropdown categories here
                           }
                         }
+
                       ?>
                     </ul>
             </li>
@@ -71,6 +74,5 @@ and open the template in the editor.
             </ul>
             </div>
         </nav>
-
 
     <!-- Collect the nav links, forms, and other content for toggling -->
