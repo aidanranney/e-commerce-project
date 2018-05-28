@@ -5,7 +5,7 @@ include ('header.php');
 include ('connection.php');
 ?>
 <div class="container">
-<h2>All About Mick's Licks</h2>
+<h4>All About Mick's Licks</h4>
 </div>
 
 <?php

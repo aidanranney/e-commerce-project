@@ -3,16 +3,14 @@
   "useAtomicWrites": false,
   "deleteLocal": false,
   "hostname": "deepblue.cs.camosun.bc.ca",
+  "port": "22",
+  "target": "/home/student/cst106/public_html/ICS199/MicksLicks/shopping-cart/",
   "ignore": [
     ".remote-sync.json",
-    ".git/**",
-    ".DS_Store",
-    ".gitkeep"
+    ".git/**"
   ],
+  "username": "cst106",
+  "password": "43196206",
   "watch": [],
-  "transport": "scp",
-  "port": "22",
-  "target": "/home/student/cst138/public_html/ics199/shopping_cart/web",
-  "username": "cst161",
-  "password": "427021"
+  "transport": "scp"
 }
