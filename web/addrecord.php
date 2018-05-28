@@ -33,7 +33,7 @@ function validate() {
 </script>
 
 <div class="container">
-<form action=addrecord.php method="POST" enctype="multipart/form-data" onsubmit="return validate()">
+<form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
 	<p>Artist:<input type="text" name="artist" id="artist"></p>
 	<p>Album Title: <input type="text" name="albumTitle" id="albumTitle"></p>
   <p>Genre:<input type="text" name="genre" id="genre"></p>
@@ -76,6 +76,8 @@ if (isset($_POST['submit'])) {
 			//VALIDATION of image data.
 			$size = $_FILES['albumArtwork']['size'];
 			$type = $_FILES['albumArtwork']['type'];
+			$tmp_name = $_FILES['albumArtwork']['tmp_name'];
+			$uploadFile =  "../images/" . $_FILES['albumArtwork']['name'];
 			$formats = array('image/jpeg', 'image/jpg', 'image/png'); //Add file types here. Adjust file type error if you do so
 			$error = false;
 
@@ -84,10 +86,8 @@ if (isset($_POST['submit'])) {
 			} elseif (!in_array($type, $formats)) {
 				$error = 'ERROR: File type must be JPG, JPEG, or PNG';
 			} else { //UPLOAD image to image folder and then add to data base.
-				$tmp_name = $_FILES['albumArtwork']['tmp_name']; //System create temp file name for transfer.
-				$uploadFile = "../images/" . $_FILES['albumArtwork']['name']; //Destination
 
-				// if genre doesn't already exist, update genre
+				// if genre doesn't already exist, insert genre
 				$genreQuery = "SELECT * from GENRE WHERE genre='$genre'";
 				$result = mysqli_query($link, $genreQuery);
 				$row_cnt = $result->num_rows;
@@ -106,7 +106,7 @@ if (isset($_POST['submit'])) {
 				if (mysqli_query($link, $query)) {
 					echo "<p>Record added successfully.</p>";
 					if (move_uploaded_file($tmp_name, $uploadFile)) {
-						echo "<img src='$uploadFile' height='200' width='200'>";
+						echo "The file has been uploaded.";
 					} else {
 						echo "<p>ERROR: Image upload fail</p>";
 						//If this occurs remove added record?
