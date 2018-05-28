@@ -22,7 +22,7 @@ and open the template in the editor.
       </div>
     </div>
 
-    <body>
+    <body style="padding: 5px">
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
           <ul class="nav navbar-nav">

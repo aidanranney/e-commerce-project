@@ -4,7 +4,7 @@
   "deleteLocal": false,
   "hostname": "deepblue.cs.camosun.bc.ca",
   "port": "22",
-  "target": "/home/student/cst161/shopping-cart",
+  "target": "/home/student/cst161/public_html/shopping-cart",
   "ignore": [
     ".remote-sync.json",
     ".git/**",
