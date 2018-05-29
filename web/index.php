@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_array($result)) {
         <div class='col-sm-3'>
            <article class='col-item'>
             <div class='photo'>
-       			<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
+       			<a href=''#''> <img class='thumbnail zoom' src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
        	    </div>
        		<div class='info'>
        				<div class='price-details col-md-10'>
