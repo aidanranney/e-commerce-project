@@ -37,7 +37,7 @@ if(document.getElementById('USEREMAIL').value ==''){
 	<p>Email Address:<input type="text" name="USEREMAIL" id="USEREMAIL"/></p>
 	<p>First Name: <input type="text" name="firstName" id="firstName" /></p>
   <p>Last Name:<input type="text" name="lastName" id="lastName"/></p>
-  <p>Date of Birth: <input type="date" name="DOB" id="DOB" /></p>
+  <p>Date of Birth: <input type="date" name="DOB" id="DOB" title="Format: YYYY-MM-DD"/></p>
   <p>Password<input type="text" name="password" id="password"/></p>
   <p>Mailing Address: <input type="text" name="MAILADDRESS" id="MAILADDRESS" /></p>
   <p>Shipping Address:<input type="text" name="SHIPADDRESS" id="SHIPADDRESS"/></p>

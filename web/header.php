@@ -60,7 +60,14 @@ and open the template in the editor.
                 if ($currentpage == 'addrecord') {
                   print 'class="active"';
                 }
-              ?>><a href="addrecord.php">Add Record</a></li>
+              ?>><a href="addrecord.php" <?php
+              if (!isset($_SESSION['admin'])) {
+                echo "style='display:none;'";
+              } else {
+                  if ($_SESSION['admin']!='Y') {
+                    echo "style='display:none;'";
+                  }
+              } ?>>Add Record</a></li>
               <li <?php
                 if ($currentpage == 'login') {
                   print 'class="active"';
