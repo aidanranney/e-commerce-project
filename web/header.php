@@ -1,6 +1,7 @@
 <?php
 session_start();
 ini_set('display_errors', 1);
+include ('connection.php');
 ?>
 <!DOCTYPE html>
 <!--
@@ -31,25 +32,25 @@ and open the template in the editor.
                   <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <?php
-                        include ('connection.php');
                         $categories = mysqli_query($link,'select genre from GENRE');
                         echo "<li id='All'><a href='index.php'>All</a></li>";
                         if ($categories)   {
                           while ($result = mysqli_fetch_array($categories)) {
                           $id = $result['genre'];
                           echo "<li id=" . $id . "><a href='index.php?genre=$id'>" . $id . "</a></li>";
-                          //do stuff with bootstrap dropdown categories here
                           }
                         }
 
                       ?>
                     </ul>
             </li>
+
             <li <?php
               if ($currentpage == 'home') {
                 print 'class="active"';
               }
             ?>><a href="index.php">Home</a></li>
+
             <li <?php
               if ($currentpage == 'about') {
                 print 'class="active"';
@@ -57,7 +58,9 @@ and open the template in the editor.
             ?>><a href="about.php">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li <?php
+
+
+            <li <?php
                 if ($currentpage == 'addrecord') {
                   print 'class="active"';
                 }
@@ -65,20 +68,37 @@ and open the template in the editor.
               if (!isset($_SESSION['admin'])) {
                 echo "style='display:none;'";
               } else {
-                  if ($_SESSION['admin']!='Y') {
-                    echo "style='display:none;'";
-                  }
+                if ($_SESSION['admin']!='Y') {
+                  echo "style='display:none;'";
+                }
               } ?>>Add Record</a></li>
-              <li <?php
-                if ($currentpage == 'login') {
-                  print 'class="active"';
-                }
-              ?>><a href="login.php"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-              <li <?php
-                if ($currentpage == 'registration') {
-                  print 'class="active"';
-                }
-              ?>><a href="register.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+
+            <li <?php
+              if ($currentpage == 'login') {
+                echo 'class="active"';
+              }
+              if (isset($_SESSION['useremail'])) {
+                echo "style='display:none;'";
+              }
+            ?>><a href="login.php"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+
+            <li <?php
+              if ($currentpage == 'registration') {
+                echo 'class="active"';
+              }
+              if (isset($_SESSION['useremail'])) {
+                echo "style='display:none;'";
+              }
+            ?>><a href="register.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+
+            <?php
+              if (isset($_SESSION['useremail'])) {
+                echo "<li><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart</a></li>";
+              }
+              if (isset($_SESSION['useremail'])) {
+                echo "<li><a href='logout.php'>Logout</a></li>";
+              }
+            ?>
             </ul>
             </div>
         </nav>
