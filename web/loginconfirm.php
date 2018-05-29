@@ -21,4 +21,5 @@ if (mysqli_num_rows($row) == 1) {
 	echo "<p>Invalid login credentials. Please <a href='login.php'>try again</a></p>";
 }
 include ('footer.php');
+
 ?>
