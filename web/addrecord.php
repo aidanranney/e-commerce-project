@@ -101,20 +101,24 @@ if (isset($_POST['submit'])) {
 				}
 
 				// insert record data
-				$query = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, recordQuantity, EDITIONNUMBER, albumArtwork) VALUES
-				('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$recordQuantity', '$EDITIONNUMBER', '$uploadFile')";
-				$delQuery = "DELETE FROM RECORD WHERE itemNumber = MAX(itemNumber)";
-					if (move_uploaded_file($tmp_name, $uploadFile)) {
-						echo "The file has been uploaded.";
-						if (mysqli_query($link, $query)) {
+					$query = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, recordQuantity, EDITIONNUMBER, albumArtwork) VALUES
+					('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$recordQuantity', '$EDITIONNUMBER', '$uploadFile')";
+					$duplicateQuery = "SELECT * FROM RECORD WHERE albumTitle LIKE $albumTitle";
+					$row = @mysqli_query($link, $duplicateQuery)
+					if (mysqli_num_rows($row) == 1) {
+						echo "Error: Record already exists.";
+					} else {
+						if (move_uploaded_file($tmp_name, $uploadFile)) {
+							echo "The file has been uploaded.";
+							if (mysqli_query($link, $query)) {
 							echo "<p>Record added successfully.</p>";
-						} else {
-							echo "Error: Could not execute $query." . mysqli_error($link);
+							} else {
+								echo "Error: Could not execute $query." . mysqli_error($link);
+							}
+						}  else {
+							echo "<p>ERROR: Image upload fail</p>";
+							//If this occurs remove added record?
 						}
-					}  else {
-						echo "<p>ERROR: Image upload fail</p>";
-						//If this occurs remove added record?
-						mysqli_query($link, $delQuery);
 					}
 
 
