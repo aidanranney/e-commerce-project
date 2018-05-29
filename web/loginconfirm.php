@@ -17,7 +17,6 @@ if (mysqli_num_rows($row) == 1) {
 	$_SESSION['useremail']=$useremail;
 	$r = mysqli_fetch_array($admin);
 	$_SESSION['admin']= $r['admin'];
-	echo $_SESSION['admin'];
 } else {
 	echo "<p>Invalid login credentials. Please <a href='login.php'>try again</a></p>";
 }
