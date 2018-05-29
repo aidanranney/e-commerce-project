@@ -33,6 +33,7 @@ and open the template in the editor.
                       <?php
                         include ('connection.php');
                         $categories = mysqli_query($link,'select genre from GENRE');
+                        echo "<li id='All'><a href='index.php'>All</a></li>";
                         if ($categories)   {
                           while ($result = mysqli_fetch_array($categories)) {
                           $id = $result['genre'];
