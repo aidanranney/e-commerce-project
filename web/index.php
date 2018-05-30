@@ -25,8 +25,8 @@ while ($row = mysqli_fetch_array($result)) {
         <div class='col-sm-3'>
            <article class='col-item'>
             <div class='albumArtwork'>
-       			<img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/>
-            <div class='cart-button'>
+       			<img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200>
+            <div class='item-buttons'>
               <div class='animated fadeInDown'>
                 <button id='itemDescription' class='btn btn-info' title='Product description'>
                 <span class='glyphicon glyphicon-plus'></span></button>
