@@ -43,10 +43,8 @@ function validate() {
   <p>Record Quantity:<input type="text" name="recordQuantity" id="recordQuantity"></p>
   <p>Edition Number: <input type="text" name="EDITIONNUMBER" /></p>
   <p>Image Upload:<input type="file" name="albumArtwork"/></p>
-	<p>Additional Comments: <textarea name"comments" > text here...
-		</textarea></p>
+	<p>Additional Comments: <textarea name="comments" > text here...</textarea></p>
 	<p><input type="submit" name="submit" value="Submit" /></p>
-
 </form>
 </div>
 
@@ -101,14 +99,20 @@ if (isset($_POST['submit'])) {
 				}
 
 				// insert record data
-					$query = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, recordQuantity, EDITIONNUMBER, albumArtwork) VALUES
-					('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$recordQuantity', '$EDITIONNUMBER', '$uploadFile')";
-					$duplicateQuery = "SELECT * FROM RECORD WHERE albumTitle LIKE $albumTitle";
-					$row = @mysqli_query($link, $duplicateQuery)
-					if (mysqli_num_rows($row) == 1) {
-						echo "Error: Record already exists.";
-					} else {
-						if (move_uploaded_file($tmp_name, $uploadFile)) {
+					$query = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, recordQuantity, EDITIONNUMBER, albumArtwork, description) VALUES
+					('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$recordQuantity', '$EDITIONNUMBER', '$uploadFile', '$description')";
+					$albumQuery = "SELECT * FROM RECORD WHERE albumTitle='$albumTitle'" or die (mysqli_error());;
+					$albumResult = mysqli_query($link, $albumQuery);
+					$albumCount = $albumResult->num_rows;
+					if ($albumCount == 0) {
+						if (mysqli_query($link, $query) {
+							echo "<p>Record added successfully.</p>";
+						} else {
+							echo "Error: Could not execute $query." . mysqli_error($link);
+					}
+				} else {
+							echo "<p>That record already exists</p>";
+						}($tmp_name, $uploadFile)) {
 							echo "The file has been uploaded.";
 							if (mysqli_query($link, $query)) {
 							echo "<p>Record added successfully.</p>";
