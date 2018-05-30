@@ -25,12 +25,12 @@ while ($row = mysqli_fetch_array($result)) {
         <div class='col-sm-3'>
            <article class='col-item'>
             <div class='zoom'>
-       			<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
+       			<a href=''cart.php''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
             <div class='cart-button'>
               <div class='animated fadeInDown'>
                 <a href='#summary' class='btn btn-info' title='Product description'>
                 <span class='glyphicon glyphicon-plus'></span></a>
-            <a href='#' class='btn btn-info' title='Add to cart'>
+            <a href='cart.php' class='btn btn-info' title='Add to cart'>
               <span class='glyphicon glyphicon-shopping-cart'></span></a>
               </div>
               </div>
