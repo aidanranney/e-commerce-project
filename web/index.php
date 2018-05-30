@@ -24,14 +24,14 @@ while ($row = mysqli_fetch_array($result)) {
         echo "
         <div class='col-sm-3'>
            <article class='col-item'>
-            <div class='zoom'>
-       			<a href=''cart.php''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
+            <div class='albumArtwork'>
+       			<img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/>
             <div class='cart-button'>
               <div class='animated fadeInDown'>
-                <a href='#summary' class='btn btn-info' title='Product description'>
-                <span class='glyphicon glyphicon-plus'></span></a>
-            <a href='cart.php' class='btn btn-info' title='Add to cart'>
-              <span class='glyphicon glyphicon-shopping-cart'></span></a>
+                <button id='itemDescription' class='btn btn-info' title='Product description'>
+                <span class='glyphicon glyphicon-plus'></span></button>
+                <button id='shoppingCart' class='btn btn-info' title='Add to cart'>
+              <span class='glyphicon glyphicon-shopping-cart'></span></button>
               </div>
               </div>
             </div>
