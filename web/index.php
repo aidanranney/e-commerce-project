@@ -15,11 +15,13 @@ if (isset($_GET['genre'])) {
   $query = "select * from RECORD";
   $result = mysqli_query($link,"select * from RECORD");
 }
+
 if (isset($genre))   {
   echo "<h4>$genre Records</h4>";
 } else {
   echo "<h4>All Records</h4>";
 }
+echo "<br>";
 while ($row = mysqli_fetch_array($result)) {
         echo "
         <div class='col-sm-3'>
@@ -33,8 +35,16 @@ while ($row = mysqli_fetch_array($result)) {
             <a href='#' class='btn btn-info' title='Add to cart'>
               <span class='glyphicon glyphicon-shopping-cart'></span></a>
               </div>
-              </div>
-            </div>
+              <div id='summary' class='overlay'>
+                  <div class='popup'>
+                  <h4>Item description</h4>
+                  <a class='close' href='#'>x</a>
+                    <div class='content'> "
+                      . $row['description'] . "
+                      </div>
+                    </div>
+                </div>
+                </div>
        		<div class='info'>
        				<div class='price-details col-md-10'>
        					<div class='details'>"

@@ -56,7 +56,7 @@ function validate() {
   <p><b>Edition Number:</b> <input type="number" name="EDITIONNUMBER" /></p>
   <p><b>Image Upload:</b><input type="file" name="albumArtwork"/></p>
 	<p><b>Additional Comments:</b>
-		<p><textarea name"comments" > text here...
+		<p><textarea name="comments"> text here...
 		</textarea></p>
 	<p><input type="submit" name="submit" value="Submit" /></p>
 </form>
@@ -117,13 +117,11 @@ if (isset($_POST['submit'])) {
 				$albumResult = mysqli_query($link, $albumQuery);
 				$album_count = $albumResult->num_rows;
 				if ($album_count == 0){
-						$albumQuery2 = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork) VALUES
-						('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile')" or die(mysqli_error());
-
-						if(mysqli_query($link, $albumQuery2)) {
+						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork, description) VALUES
+						('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile', '$description')" or die(mysqli_error());
+						if(mysqli_query($link, $albumInsert)) {
 							echo "<p>Record added</p>";
 						}
-
 						if (move_uploaded_file($tmp_name, $uploadFile)) {
 							echo "The file has been uploaded.";
 						} else {
