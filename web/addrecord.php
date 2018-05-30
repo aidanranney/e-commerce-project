@@ -58,6 +58,7 @@ if (isset($_POST['submit'])) {
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
 	$recordQuantity = $_POST['recordQuantity'];
 	$EDITIONNUMBER = $_POST['EDITIONNUMBER'];
+	$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
 
 	$error_code = $_FILES['albumArtwork']['error'];
 	if($error_code) {
@@ -105,32 +106,24 @@ if (isset($_POST['submit'])) {
 					$albumResult = mysqli_query($link, $albumQuery);
 					$albumCount = $albumResult->num_rows;
 					if ($albumCount == 0) {
-						if (mysqli_query($link, $query) {
-							echo "<p>Record added successfully.</p>";
-						} else {
-							echo "Error: Could not execute $query." . mysqli_error($link);
-					}
-				} else {
-							echo "<p>That record already exists</p>";
-						}($tmp_name, $uploadFile)) {
+						if (move_uploaded_file($tmp_name, $uploadFile)) {
 							echo "The file has been uploaded.";
-							if (mysqli_query($link, $query)) {
-							echo "<p>Record added successfully.</p>";
+							if (mysqli_query($link, $query) {
+								echo "<p>Record added successfully.</p>";
 							} else {
 								echo "Error: Could not execute $query." . mysqli_error($link);
 							}
-						}  else {
+						} else {
 							echo "<p>ERROR: Image upload fail</p>";
-							//If this occurs remove added record?
 						}
-					}
-
+					} else {
+							echo "<p>That record already exists</p>";
+						}
 
 				if($error) {
 					echo $error;
 				}
-
-				}
+			}
 		}//End of no error codes
 		else {
 			echo '<p>No file uploaded</p>';

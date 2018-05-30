@@ -30,7 +30,6 @@ while ($row = mysqli_fetch_array($result)) {
               <div class='animated fadeInDown'>
                 <a href='#summary' class='btn btn-info' title='Product description'>
                 <span class='glyphicon glyphicon-plus'></span></a>
-
             <a href='#' class='btn btn-info' title='Add to cart'>
               <span class='glyphicon glyphicon-shopping-cart'></span></a>
               </div>
