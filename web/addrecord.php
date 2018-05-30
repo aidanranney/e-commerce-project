@@ -44,7 +44,7 @@ function validate() {
 	  <br><input type="checkbox" name="genre" value="Jazz" id="genre"/> Jazz
 	  <br><input type="checkbox" name="genre" value="Funk" id="genre"/> Funk
 	  <br><input type="checkbox" name="genre" value="Disco" id="genre"/> Disco
-		<br><input type="text" name="genre" id="genre" placeholder="Create new genre"></p>
+		<br><input type="text" name="genreText" id="genreText" placeholder="Create new genre"></p>
 	</ul>
   <p><b>Price:</b> <input type="number" step="0.01" name="PRICE" id="price"></p>
   <p><b>Release Date:</b><input type="date" name="RELEASEDATE" id="releaseDate" title="Format: YYYY-MM-DD"></p>
@@ -67,6 +67,7 @@ if (isset($_POST['submit'])) {
 	$artist = mysqli_real_escape_string($link, $_REQUEST['artist']);
 	$albumTitle = mysqli_real_escape_string($link, $_REQUEST['albumTitle']);
 	$genre = mysqli_real_escape_string($link, $_REQUEST['genre']);
+	$genreText = mysqli_real_escape_string($link, $_REQUEST['genreText']);
 	$PRICE = $_POST['PRICE'];
 	$RELEASEDATE = $_POST['RELEASEDATE'];
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
@@ -100,15 +101,17 @@ if (isset($_POST['submit'])) {
 			} else { //UPLOAD image to image folder and then add to data base.
 
 				// if genre doesn't already exist, insert genre
-				$genreQuery = "SELECT * from GENRE WHERE genre='$genre'";
-				$result = mysqli_query($link, $genreQuery);
-				$row_cnt = $result->num_rows;
-				if ($row_cnt == 0) {
-					$newquery = "INSERT INTO GENRE (genre) VALUES ('$genre')";
-					if(mysqli_query($link, $newquery)) {
-						echo "<p>New genre added</p>";
-					} else {
-						echo "Error: Could not execute $newquery. " . mysqli_error($link);
+				if ($_POST['genreText'] != '') {
+					$genreQuery = "SELECT * from GENRE WHERE genre='$genreText'";
+					$result = mysqli_query($link, $genreQuery);
+					$row_cnt = $result->num_rows;
+					if ($row_cnt == 0) {
+						$newquery = "INSERT INTO GENRE (genre) VALUES ('$genreText')";
+						if(mysqli_query($link, $newquery)) {
+							echo "<p>New genre added</p>";
+						} else {
+							echo "Error: Could not execute $newquery. " . mysqli_error($link);
+						}
 					}
 				}
 
