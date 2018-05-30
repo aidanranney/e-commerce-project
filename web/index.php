@@ -29,7 +29,7 @@ while ($row = mysqli_fetch_array($result)) {
        	    </div>
             <div class='cart-button'>
             <a href='#' class='btn btn-info'>
-              <span class='glyphicon glyphicon-shopping-cart'></span> Shopping Cart</a>            
+              <span class='glyphicon glyphicon-shopping-cart'></span> Shopping Cart</a>
               </div>
        		<div class='info'>
        				<div class='price-details col-md-10'>
