@@ -59,7 +59,6 @@ function validate() {
 		<p><textarea name"comments" > text here...
 		</textarea></p>
 	<p><input type="submit" name="submit" value="Submit" /></p>
-
 </form>
 </div>
 
@@ -72,6 +71,7 @@ if (isset($_POST['submit'])) {
 	$RELEASEDATE = $_POST['RELEASEDATE'];
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
 	$EDITIONNUMBER = $_POST['EDITIONNUMBER'];
+	$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
 
 	$error_code = $_FILES['albumArtwork']['error'];
 	if($error_code) {
@@ -138,8 +138,7 @@ if (isset($_POST['submit'])) {
 				if($error) {
 					echo $error;
 				}
-
-				}
+			}
 		}//End of no error codes
 		else {
 			echo '<p>No file uploaded</p>';

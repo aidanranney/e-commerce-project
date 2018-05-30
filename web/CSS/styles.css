@@ -1,8 +1,18 @@
-.col-item .zoom {
+.zoom {
     transition: transform .2s;
     margin: 0 auto;
 }
 
-.col-item .zoom:hover {
+.zoom:hover {
   transform: scale(1.15);
+}
+
+.cart-button {
+  display: none;
+}
+
+.zoom:hover .cart-button {
+  display:inline-block;
+  position:relative;
+  animated: fadeInDown;
 }
