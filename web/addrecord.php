@@ -33,17 +33,17 @@ function validate() {
 <form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
 	<p><b>Artist:</b><input type="text" name="artist" id="artist"></p>
 	<p><b>Album Title:</b> <input type="text" name="albumTitle" id="albumTitle"></p>
-<b>Genre:</b>
+<b>Genre:
 	<ul>
-	  <input type="checkbox" name="genre" value="Rock" id="genre"/> Rock
-	  <br><input type="checkbox" name="genre" value="Pop" id="genre"/> Pop
-	  <br><input type="checkbox" name="genre" value="Reggae" id="genre"/> Reggae
-	  <br><input type="checkbox" name="genre" value="R&B" id="genre"/> R&B
-	  <br><input type="checkbox" name="genre" value="Rap" id="genre"/> Rap
-	  <br><input type="checkbox" name="genre" value="Metal" id="genre"/> Metal
-	  <br><input type="checkbox" name="genre" value="Jazz" id="genre"/> Jazz
-	  <br><input type="checkbox" name="genre" value="Funk" id="genre"/> Funk
-	  <br><input type="checkbox" name="genre" value="Disco" id="genre"/> Disco
+		<?php
+		$categories = mysqli_query($link,'select genre from GENRE');
+		if ($categories)   {
+			while ($result = mysqli_fetch_array($categories)) {
+			$id = $result['genre'];
+			echo "<input type=\"checkbox\" name=$id value=$id id=$id/>$id</br>";
+			}
+		}
+		?>
 		<br><input type="text" name="genreText" id="genreText" placeholder="Create new genre"></p>
 	</ul>
   <p><b>Price:</b> <input type="number" step="0.01" name="PRICE" id="price"></p>
