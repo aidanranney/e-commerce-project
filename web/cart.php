@@ -23,7 +23,8 @@ General visual and layout improvements.
 
 Note background-colors are only to help identify different elements.
 */
-echo "<h1>Your Cart</h1>
+echo "<div class=container>
+<h1>Your Cart</h1>
 	<table width='600' align='left' style='display:inline;background-color:lightblue'>
 		<tr>
 			<th width='300'>Item</th>
@@ -71,7 +72,7 @@ if (isset($_SESSION['useremail'])) {
 		$itemWord = "item";
 	}
 	echo "<div align='right' width='100' style='display:inline-block;background-color:grey'>
-				<h4>Summery ($items $itemWord)</h4>
+				<h4>Summary ($items $itemWord)</h4>
 				<p align='left'>Subtotal $$subtotal</p>
 				<p>Est. Shipping $$ship</p>
 				<p>Taxes $$tax</p>
@@ -82,6 +83,7 @@ if (isset($_SESSION['useremail'])) {
 } else {
 	echo "You are not logged in";
 }
+echo "</div>";
 
 
 

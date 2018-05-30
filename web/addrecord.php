@@ -11,7 +11,7 @@ function validate() {
 // VALIDATION CODE HERE!
 
 	if(document.getElementById('artist').value ==''){
-		alert("You must include the artists name");
+		alert("You must include the artist's name");
 		return false;
 	} if(document.getElementById('albumTitle').value ==''){
 		alert("You must include an album title");
@@ -56,7 +56,7 @@ function validate() {
   <p><b>Edition Number:</b> <input type="number" name="EDITIONNUMBER" /></p>
   <p><b>Image Upload:</b><input type="file" name="albumArtwork"/></p>
 	<p><b>Additional Comments:</b>
-		<p><textarea name"comments" > text here...
+		<p><textarea name"comments"> text here...
 		</textarea></p>
 	<p><input type="submit" name="submit" value="Submit" /></p>
 </form>
@@ -66,13 +66,13 @@ function validate() {
 if (isset($_POST['submit'])) {
 	$artist = mysqli_real_escape_string($link, $_REQUEST['artist']);
 	$albumTitle = mysqli_real_escape_string($link, $_REQUEST['albumTitle']);
-	$genre = mysqli_real_escape_string($link, $_REQUEST['genre']);
-	$genreText = mysqli_real_escape_string($link, $_REQUEST['genreText']);
+	//$genre = mysqli_real_escape_string($link, $_REQUEST['genre']);
+	$genreText = $_POST['genreText'];
 	$PRICE = $_POST['PRICE'];
 	$RELEASEDATE = $_POST['RELEASEDATE'];
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
 	$EDITIONNUMBER = $_POST['EDITIONNUMBER'];
-	$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
+	//$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
 
 	$error_code = $_FILES['albumArtwork']['error'];
 	if($error_code) {
@@ -100,26 +100,24 @@ if (isset($_POST['submit'])) {
 				$error = 'ERROR: File type must be JPG, JPEG, or PNG';
 			} else { //UPLOAD image to image folder and then add to data base.
 
-				// if genre doesn't already exist, insert genre
-				if ($_POST['genreText'] != '') {
-					$genreQuery = "SELECT * from GENRE WHERE genre='$genreText'";
-					$result = mysqli_query($link, $genreQuery);
-					$row_cnt = $result->num_rows;
-					if ($row_cnt == 0) {
-						$newquery = "INSERT INTO GENRE (genre) VALUES ('$genreText')";
-						if(mysqli_query($link, $newquery)) {
-							echo "<p>New genre added</p>";
-						} else {
-							echo "Error: Could not execute $newquery. " . mysqli_error($link);
-						}
+			if ($genreText != '') {
+				$genreQuery = "SELECT * from GENRE WHERE genre='$genreText'";
+				$result = mysqli_query($link, $genreQuery);
+				$row_cnt = $result->num_rows;
+				if ($row_cnt == 0) {
+					$newquery = "INSERT INTO GENRE (genre) VALUES ('$genreText')";
+					if(mysqli_query($link, $newquery)) {
+						echo "<p>New genre added</p>";
+					} else {
+						echo "Error: Could not execute $newquery. " . mysqli_error($link);
 					}
 				}
-
+			}
 				// insert record data
 				$albumQuery = "SELECT * FROM RECORD WHERE albumTitle='$albumTitle'" or die (mysqli_error());
 				$albumResult = mysqli_query($link, $albumQuery);
 				$album_count = $albumResult->num_rows;
-				if ($album_count == 0){
+				if ($album_count == 0) {
 						$albumQuery2 = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork) VALUES
 						('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile')" or die(mysqli_error());
 
