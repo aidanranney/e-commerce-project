@@ -97,8 +97,6 @@ and open the template in the editor.
             <?php
               if (isset($_SESSION['useremail'])) {
                 echo "<li><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart</a></li>";
-              }
-              if (isset($_SESSION['useremail'])) {
                 echo "<li><a href='logout.php'>Logout</a></li>";
               }
             ?>
