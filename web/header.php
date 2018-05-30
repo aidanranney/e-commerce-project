@@ -15,12 +15,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<<<<<<< HEAD
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <link rel="stylesheet" href="CSS/styles.css">
-=======
-        <link rel="stylesheet" href="/CSS/styles.css">
->>>>>>> e50419f853e0d7e3e8dc629166c91f21883620dc
+        <script src='JS/scripts.js'></script>
     </head>
     <div class="container-fluid">
       <div class="jumbotron">

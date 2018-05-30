@@ -15,23 +15,23 @@ if (isset($_GET['genre'])) {
   $query = "select * from RECORD";
   $result = mysqli_query($link,"select * from RECORD");
 }
+
 if (isset($genre))   {
   echo "<h4>$genre Records</h4>";
 } else {
   echo "<h4>All Records</h4>";
 }
+echo "<br>";
 while ($row = mysqli_fetch_array($result)) {
         echo "
         <div class='col-sm-3'>
            <article class='col-item'>
-            <div class='zoom'>
-       			<a href=''cart.php''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
-            <div class='cart-button'>
+            <div class='albumArtwork'>
+       		 <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/>
+            <div class='item-buttons'>
               <div class='animated fadeInDown'>
-                <a href='#summary' class='btn btn-info' title='Product description'>
-                <span class='glyphicon glyphicon-plus'></span></a>
-            <a href='cart.php' class='btn btn-info' title='Add to cart'>
-              <span class='glyphicon glyphicon-shopping-cart'></span></a>
+                <button id='itemDescription' class='btn btn-info' title='Product description'><span class='glyphicon glyphicon-plus'></span></button>
+                <button id='shoppingCart' class='btn btn-info' title='Add to cart'><span class='glyphicon glyphicon-shopping-cart'></span></button>
               </div>
               </div>
             </div>
@@ -40,7 +40,8 @@ while ($row = mysqli_fetch_array($result)) {
        					<div class='details'>"
        						. $row['quality'] . "
        					</div>
-       					<div style='font-size:16pt'>" . $row['albumTitle'] . "</div>
+       					<div style='font-size:16pt'>" . $row['albumTitle'] . "
+                </div>
                  <b>" . $row['artist'] . "</b>
                  <br>
        					<span class='price-new'>" . "$" . $row['PRICE'] . "</span>
@@ -48,6 +49,13 @@ while ($row = mysqli_fetch_array($result)) {
                  <br>
        				</div>
        		</div>
+          <div id='modal' class='modal'>
+            <h4><u>Item description</u></h4>
+            <span class='close'>x</span>
+              <div class='content'> "
+                  . $row['description'] . "
+              </div>
+          </div>
        	</article>
         </div>";
 }
