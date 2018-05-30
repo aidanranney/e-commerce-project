@@ -24,7 +24,12 @@ while ($row = mysqli_fetch_array($result)) {
         echo "
         <div class='col-sm-3'>
            <article class='col-item'>
-            <div class='photo'>
+            <div class='zoom'>
+              <div class='options-cart-round'>
+                <button class='btn btn-default' title='Add to cart'>
+                  <span class='fa fa-shopping-cart'></span>
+                </button>
+              </div>
        			<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200/> </a>
        	    </div>
        		<div class='info'>
