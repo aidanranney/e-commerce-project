@@ -36,11 +36,12 @@ function validate() {
 <b>Genre:
 	<ul>
 		<?php
-		$categories = mysqli_query($link,'select genre from GENRE');
+		$categories = mysqli_query($link,'select * from GENRE');
 		if ($categories)   {
 			while ($result = mysqli_fetch_array($categories)) {
-			$id = $result['genre'];
-			echo "<input type=\"checkbox\" name=$id value=$id id=$id/>$id</br>";
+				$genreID = $result['genreID'];
+				$genreName = $result['genre'];
+				echo "<input type='checkbox' name='genre[]' value='$genreID' id='$genreID'/>$genreName</br>";
 			}
 		}
 		?>
@@ -117,11 +118,19 @@ if (isset($_POST['submit'])) {
 				$albumQuery = "SELECT * FROM RECORD WHERE albumTitle='$albumTitle'" or die (mysqli_error());
 				$albumResult = mysqli_query($link, $albumQuery);
 				$album_count = $albumResult->num_rows;
-				if ($album_count == 0){
-						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork, description) VALUES
-						('$artist', '$albumTitle', '$genre', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile', '$description')" or die(mysqli_error());
+				if ($album_count == 0) {
+						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork) VALUES
+						('$artist', '$albumTitle', '$genreText', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile')" or die(mysqli_error());
 						if(mysqli_query($link, $albumInsert)) {
 							echo "<p>Record added</p>";
+							$result = mysqli_query($link, "SELECT MAX(itemNumber) FROM RECORD");
+							$row = mysqli_fetch_array($result);
+							$record = $row[0];
+							if (isset($_POST['genre'])) {
+								foreach (array_values($_POST['genre']) as $genre) {
+									mysqli_query($link,"INSERT INTO RECORD_CATEGORY VALUES ($record, $genre)");
+								}
+							}
 						}
 						if (move_uploaded_file($tmp_name, $uploadFile)) {
 							echo "The file has been uploaded.";
