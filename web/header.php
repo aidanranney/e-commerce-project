@@ -40,8 +40,8 @@ and open the template in the editor.
                         echo "<li id='All'><a href='index.php'>All</a></li>";
                         if ($categories)   {
                           while ($result = mysqli_fetch_array($categories)) {
-                          $genre = $result['genre'];
-                          echo "<li id=" . $genre . "><a href='index.php?genre=$genre'>" . $genre . "</a></li>";
+                          $id = $result['genre'];
+                          echo "<li id=" . $id . "><a href='index.php?genre=$id'>" . $id . "</a></li>";
                           }
                         }
 
@@ -97,10 +97,15 @@ and open the template in the editor.
 
             <?php
               if (isset($_SESSION['useremail'])) {
-                echo "<li><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart</a></li>";
-                echo "<li><a href='logout.php'>Logout</a></li>";
+                echo "<li ";
+                if ($currentpage == 'cart') {
+                  echo 'class="active"';
+                }
+                echo " ><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart</a></li>";
+                echo "<li><a href='logout.php'>Logout</a>";
               }
             ?>
+            </li>
             </ul>
             </div>
         </nav>
