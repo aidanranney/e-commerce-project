@@ -22,6 +22,7 @@ if (isset($genre))   {
 } else {
   echo "<h4>All Records</h4>";
 }
+echo "<br>";
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
