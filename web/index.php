@@ -44,6 +44,7 @@ if (mysqli_num_rows($result) > 0) {
                           $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                           VALUES (1, '$item', '$email')";
                           mysqli_query($link, $addItem);
+                          echo "<meta http-quiv='refresh' content='0; url=#'>";
                       } else {
                         echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
                       }
