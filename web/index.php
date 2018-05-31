@@ -35,7 +35,7 @@ if (mysqli_num_rows($result) > 0) {
                   <button id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
                   <span class='glyphicon glyphicon-plus'></span></button>
                   ";
-                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='toolip' title='Add to cart'>
+                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart'></span></a>";
                       if (isset($_GET['itemNumber'])) {
                         if (isset($_SESSION['useremail'])) {
