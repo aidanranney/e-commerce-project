@@ -45,7 +45,7 @@ if (mysqli_num_rows($result) > 0) {
                           VALUES (1, '$item', '$email')";
                           mysqli_query($link, $addItem);
                       } else {
-                        echo "<meta http-equiv='refresh' content='0; url=login.php'>";
+                        echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
                       }
                     }
               echo "</div>
