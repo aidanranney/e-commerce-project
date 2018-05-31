@@ -1,3 +1,15 @@
+body {
+  padding: 10px;
+}
+
+tr, p {
+  display:inline;
+}
+
+.photo {
+  display:inline;
+}
+
 .albumArtwork {
     transition: transform .2s;
     margin: 0 auto;
@@ -20,6 +32,7 @@
 
 .jumbotron {
   padding: 20px;
+  margin-top: 20px;
 }
 
 #mynav {
@@ -27,6 +40,7 @@
 }
 
 #mynav, .nav-wrapper {
+  position:sticky;
   height:52px;
 >>>>>>> navbar now fixes to top on scroll
 }
