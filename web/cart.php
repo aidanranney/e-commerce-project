@@ -33,6 +33,10 @@ echo "<div class=container>
 		</tr>";
 
 if (isset($_SESSION['useremail'])) {
+	if (isset($_GET['itemNumber'])) {
+		$itemNumber = $_GET['itemNumber'];
+		;
+	}
 	$email = $_SESSION['useremail'];
 	$subtotal = 0;
 	$total = 0;
