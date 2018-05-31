@@ -56,9 +56,8 @@ function validate() {
 	</ul>
   <p><b>Edition Number:</b> <input type="number" name="EDITIONNUMBER" /></p>
   <p><b>Image Upload:</b><input type="file" name="albumArtwork"/></p>
-	<p><b>Additional Comments:</b>
-		<p><textarea name="comments"> text here...
-		</textarea></p>
+	<p><b>Record Description:</b>
+		<p><textarea name="description" id="description" placeholder="record description here..." style="width:300px; height:100px"></textarea></p>
 	<p><input type="submit" name="submit" value="Submit" /></p>
 </form>
 </div>
@@ -73,6 +72,7 @@ if (isset($_POST['submit'])) {
 	$RELEASEDATE = $_POST['RELEASEDATE'];
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
 	$EDITIONNUMBER = $_POST['EDITIONNUMBER'];
+	$description = htmlspecialchars($_POST['description']);
 	//$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
 
 	$error_code = $_FILES['albumArtwork']['error'];
@@ -114,35 +114,46 @@ if (isset($_POST['submit'])) {
 					}
 				}
 			}
-				// insert record data
-				$albumQuery = "SELECT * FROM RECORD WHERE albumTitle='$albumTitle'" or die (mysqli_error());
-				$albumResult = mysqli_query($link, $albumQuery);
-				$album_count = $albumResult->num_rows;
-				if ($album_count == 0) {
-						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, genre, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork) VALUES
-						('$artist', '$albumTitle', '$genreText', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile')" or die(mysqli_error());
+
+						//add record
+						$albumQuery = "SELECT * FROM RECORD WHERE albumTitle='$albumTitle'" or die (mysqli_error());
+						$albumResult = mysqli_query($link, $albumQuery);
+						$album_count = $albumResult->num_rows;
+						if ($album_count == 0) {
+						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork, description) VALUES
+						('$artist', '$albumTitle', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile', '$description')" or die(mysqli_error());
 						if(mysqli_query($link, $albumInsert)) {
 							echo "<p>Record added</p>";
+
+							//add data to RECORD_CATEGORY
 							$result = mysqli_query($link, "SELECT MAX(itemNumber) FROM RECORD");
 							$row = mysqli_fetch_array($result);
 							$record = $row[0];
+							if (isset($genreText)) {
+								$newGenre = mysqli_query($link,"SELECT genreID from GENRE where genre = '$genreText'");
+								$row = mysqli_fetch_array($newGenre);
+								$newGenreID = $row[0];
+								mysqli_query($link,"INSERT INTO RECORD_CATEGORY VALUES ($record, $newGenreID)");
+							}
 							if (isset($_POST['genre'])) {
 								foreach (array_values($_POST['genre']) as $genre) {
 									mysqli_query($link,"INSERT INTO RECORD_CATEGORY VALUES ($record, $genre)");
 								}
 							}
 						}
+						else {
+							echo "<p>Record not added successfully</p>";
+						}
+
+						//image file upload check
 						if (move_uploaded_file($tmp_name, $uploadFile)) {
-							echo "The file has been uploaded.";
+							echo "The image file has been uploaded.";
 						} else {
 							echo "<p>ERROR: Image upload fail</p>";
-							//If this occurs remove added record?
 						}
-					} else {
-					echo "<p>That record already exists</p>";
-					}
-
-
+				} else {
+				echo "<p>That record already exists</p>";
+				}
 				if($error) {
 					echo $error;
 				}
