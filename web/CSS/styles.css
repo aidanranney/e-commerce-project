@@ -18,14 +18,19 @@
   right: 40%;
 }
 
-.myheader {
-  padding-top: 70px;
-}
-
 .jumbotron {
   padding: 20px;
 }
 
-.navbar {
+#mynav {
   background: rgba(0,0,0,.85);
+}
+
+#mynav, .nav-wrapper {
+  height:52px;
+>>>>>>> navbar now fixes to top on scroll
+}
+
+#mynav, .nav-wrapper {
+  height:52px;
 }
