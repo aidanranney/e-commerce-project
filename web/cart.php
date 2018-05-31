@@ -28,12 +28,14 @@ echo "<div class=container>
 
 if (isset($_SESSION['useremail'])) {
 	$email = $_SESSION['useremail'];
+	$item = $_GET['itemNumber'];
 	$subtotal = 0;
 	$total = 0;
 	$ship = 5.00;
 	$tax = 0;
 	$items = 0;
-	$query = "SELECT sc.RECORD_itemNumber, sc.quanitityOrdered, r.artist, r.albumTitle, r.PRICE, r.albumArtwork
+	$addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL) VALUES (1, . '$item')";
+	$query = "SELECT sc.RECORD_itemNumber, sc.quantityOrdered, r.artist, r.albumTitle, r.PRICE, r.albumArtwork
 			FROM SHOPPING_CART sc, RECORD r
 			WHERE  sc.RECORD_itemNumber=r.itemNumber
 			AND sc.USER_ACCOUNT_USEREMAIL = '$email'";
@@ -60,7 +62,7 @@ if (isset($_SESSION['useremail'])) {
 			</table>";
 	$tax = round($subtotal * 0.08, 2);
 	$total = $subtotal +  $ship + $tax;
-	if($items > 1){//Just for look and feel of summery div
+	if($items > 1){//Just for look and feel of summary div
 		$itemWord = "items";
 	}else{
 		$itemWord = "item";
