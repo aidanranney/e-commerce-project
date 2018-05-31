@@ -34,16 +34,19 @@ if (mysqli_num_rows($result) > 0) {
                   <button id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
                   <span class='glyphicon glyphicon-plus'></span></button>
                   ";
-                  if (isset($_SESSION['useremail'])) {
                     echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='toolip' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart'></span></a>";
-                    $email = $_SESSION['useremail'];
                       if (isset($_GET['itemNumber'])) {
-                        $item = $_GET['itemNumber'];
-                        $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL) VALUES (1, '$item', '$email')";
-                        mysqli_query($link, $addItem);
+                        if (isset($_SESSION['useremail'])) {
+                          $email = $_SESSION['useremail'];
+                          $item = $_GET['itemNumber'];
+                          $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
+                          VALUES (1, '$item', '$email')";
+                          mysqli_query($link, $addItem);
+                      } else {
+                        echo "<meta http-equiv='refresh' content='0; url=login.php'>";
                       }
-                  }
+                    }
               echo "</div>
                 </div>
               </div>

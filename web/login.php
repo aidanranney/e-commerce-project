@@ -11,6 +11,9 @@ include ('connection.php');
   <input type="submit" value="Submit"/>
 </form>
 </div>
+<br>
+<br>
+<a href="register.php">Not registered yet? Click here to create an account.</a>
 
 <?php
 include ('footer.php');
