@@ -27,8 +27,9 @@ and open the template in the editor.
       </div>
     </div>
 
+    <div class="nav-wrapper">
     <body style="padding: 5px">
-        <nav class="navbar navbar-inverse navbar-fixed-top sticky"role="navigation">
+        <nav class="navbar navbar-inverse" id="mynav" role="navigation">
           <div class="container-fluid">
           <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -118,5 +119,6 @@ and open the template in the editor.
             </ul>
             </div>
         </nav>
+      </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

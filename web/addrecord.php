@@ -29,7 +29,7 @@ function validate() {
 }
 </script>
 
-<div class="container">
+<div class="container eachPage">
 <form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
 	<p><b>Artist:</b><input type="text" name="artist" id="artist"></p>
 	<p><b>Album Title:</b> <input type="text" name="albumTitle" id="albumTitle"></p>
