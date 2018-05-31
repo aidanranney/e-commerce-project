@@ -1,13 +1,19 @@
-// Get the album description modal
+// Get the album description modal div
 var modal = document.getElementById('modal');
 // Get the button that opens the modal
-var button = document.getElementById('itemDescription');
+var itemDescription = document.getElementById('itemDescription');
+// Get the button that opens the shopping cart
+var shoppingCart = document.getElementById('shoppingCart');
 // Get the <span> element that closes the modal
 var close = document.getElementsByClassName('close')[0];
 
 // When the user clicks on the button, open the modal
-button.onclick = function() {
-    modal.style.display = "block";
+itemDescription.onclick = function() {
+    modal.style.display = "none";
+};
+
+shoppingCart.onclick = function() {
+  window.location = 'cart.php';
 };
 
 // When the user clicks on <span> (x), close the modal

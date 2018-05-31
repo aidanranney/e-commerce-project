@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_array($result)) {
        			<img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200>
             <div class='item-buttons'>
               <div class='animated fadeInDown'>
-                <button id='itemDescription' class='btn btn-info' title='Product description'>
+                <button type='button' id='itemDescription' class='btn btn-info' data-toggle='modal' data-target='#description' title='Product description'>
                 <span class='glyphicon glyphicon-plus'></span></button>
                 <button id='shoppingCart' class='btn btn-info' title='Add to cart'>
               <span class='glyphicon glyphicon-shopping-cart'></span></button>
@@ -48,6 +48,22 @@ while ($row = mysqli_fetch_array($result)) {
                  <br>
        				</div>
        		</div>
+          <div id='description' class='modal fade' role='dialog'>
+            <div class='modal-dialog'>
+              <div class='modal-content'>
+                <div class='modal-header'>
+                  <button type='button' class='close' data-dismiss='modal'>x</button>
+                  <h4 class='modal-title'>Album description</h4>
+                  </div>
+                  <div class='modal-body'>
+                    " . $row['description'] . "
+                    </div>
+                    <div class='modal-footer'>
+                      <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                    </div>
+              </div>
+            </div>
+            </div>
        	</article>
         </div>";
 }
