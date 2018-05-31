@@ -39,8 +39,8 @@ and open the template in the editor.
                         echo "<li id='All'><a href='index.php'>All</a></li>";
                         if ($categories)   {
                           while ($result = mysqli_fetch_array($categories)) {
-                          $id = $result['genre'];
-                          echo "<li id=" . $id . "><a href='index.php?genre=$id'>" . $id . "</a></li>";
+                          $genre = $result['genre'];
+                          echo "<li id=" . $genre . "><a href='index.php?genre=$genre'>" . $genre . "</a></li>";
                           }
                         }
 
