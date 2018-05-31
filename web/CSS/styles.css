@@ -17,3 +17,15 @@
   top: 15%;
   right: 40%;
 }
+
+.myheader {
+  padding-top: 70px;
+}
+
+.jumbotron {
+  padding: 20px;
+}
+
+.navbar {
+  background: rgba(0,0,0,.8);
+}
