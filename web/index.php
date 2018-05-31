@@ -33,8 +33,8 @@ if (mysqli_num_rows($result) > 0) {
                 <div class='animated fadeInDown'>
                   <button id='itemDescription' class='btn btn-info' title='Product description'>
                   <span class='glyphicon glyphicon-plus'></span></button>
-                  <button id='shoppingCart' class='btn btn-info' title='Add to cart'>
-                <span class='glyphicon glyphicon-shopping-cart'></span></button>
+                  <a href='cart.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' title='Add to cart'>
+                <span class='glyphicon glyphicon-shopping-cart'></span></a>
                 </div>
                 </div>
               </div>

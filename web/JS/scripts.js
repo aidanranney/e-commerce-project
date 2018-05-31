@@ -1,12 +1,15 @@
 // Get the album description modal
 var modal = document.getElementById('modal');
 // Get the button that opens the modal
-var button = document.getElementById('itemDescription');
+var itemDescription = document.getElementById('itemDescription');
 // Get the <span> element that closes the modal
 var close = document.getElementsByClassName('close')[0];
 
+// Get the add to cart button
+var shoppingCart = document.getElementById('shoppingCart');
+
 // When the user clicks on the button, open the modal
-button.onclick = function() {
+itemDescription.onclick = function() {
     modal.style.display = "block";
 };
 
