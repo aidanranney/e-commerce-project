@@ -7,6 +7,9 @@ var shoppingCart = document.getElementById('shoppingCart');
 // Get the <span> element that closes the modal
 var close = document.getElementsByClassName('close')[0];
 
+// Get the add to cart button
+var shoppingCart = document.getElementById('shoppingCart');
+
 // When the user clicks on the button, open the modal
 itemDescription.onclick = function() {
     modal.style.display = "none";
