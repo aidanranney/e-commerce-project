@@ -36,14 +36,14 @@ if (mysqli_num_rows($result) > 0) {
                   ";
                   if (isset($_SESSION['useremail'])) {
                     echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='toolip' title='Add to cart'>
-                <span class='glyphicon glyphicon-shopping-cart'></span></a>";
-                $email = $_SESSION['useremail'];
-                if (isset($_GET['itemNumber'])) {
-                  $item = $_GET['itemNumber'];
-                  $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL) VALUES (1, '$item', '$email')";
-                  mysqli_query($link, $addItem);
-                }
-              }
+                    <span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                    $email = $_SESSION['useremail'];
+                      if (isset($_GET['itemNumber'])) {
+                        $item = $_GET['itemNumber'];
+                        $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL) VALUES (1, '$item', '$email')";
+                        mysqli_query($link, $addItem);
+                      }
+                  }
               echo "</div>
                 </div>
               </div>

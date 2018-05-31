@@ -36,7 +36,7 @@ and open the template in the editor.
                   <span class="caret"></span></a>
                     <ul class="dropdown-menu">
 
-//List record categories from database
+<!--List record categories from database-->
                       <?php
                         $categories = mysqli_query($link,'select genre from GENRE');
                         echo "<li id='All'><a href='index.php'>All</a></li>";
@@ -97,7 +97,7 @@ and open the template in the editor.
               }
             ?>><a href="register.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 
-//Create shopping cart icon, and list the number of current items inside of it.
+<!--Create shopping cart icon, and list the number of current items inside of it.-->
             <?php
               $numItems=0;
               if (isset($_SESSION['useremail'])) {
