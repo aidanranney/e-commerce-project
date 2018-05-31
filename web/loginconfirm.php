@@ -5,8 +5,10 @@ include ('header.php');
 include ('connection.php');
 $useremail = $_POST['useremail'];
 $password = $_POST['password'];
+$salted = "456y45rghtrhfgr23441ldk3".$password."32490ffsll33";
+$hashed = hash('sha1', $salted);
 //create query
-$query = "SELECT * from USER_ACCOUNT WHERE USEREMAIL='$useremail' AND password='$password'";
+$query = "SELECT * from USER_ACCOUNT WHERE USEREMAIL='$useremail' AND password='$hashed'";
 $adminquery = "SELECT admin from USER_ACCOUNT WHERE USEREMAIL='$useremail' AND password='$password'";
 //run query. the @ symbol suppresses errors
 $row = @mysqli_query($link, $query);
