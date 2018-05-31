@@ -31,6 +31,7 @@ echo "<div class=container>
 	$ship = 5.00;
 	$tax = 0;
 	$items = 0;
+	$email = $_SESSION['useremail'];
 	$query = "SELECT sc.RECORD_itemNumber, sc.quantityOrdered, r.artist, r.albumTitle, r.PRICE, r.albumArtwork
 			FROM SHOPPING_CART sc, RECORD r
 			WHERE  sc.RECORD_itemNumber=r.itemNumber
@@ -72,9 +73,6 @@ echo "<div class=container>
 				<p>Total $$total</p>
 				<input type='submit' name='checkout' value='checkout' >
 		<div>";
-} else {
-	echo "You are not logged in";
-}
 echo "</div>";
 
 

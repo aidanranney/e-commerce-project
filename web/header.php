@@ -21,6 +21,7 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src='JS/scripts.js'></script>
     </head>
+    <body>
     <div class="container-fluid myheader">
       <div class="jumbotron">
         <h1>Mick's Licks</h1>
@@ -29,7 +30,6 @@ and open the template in the editor.
     </div>
 
     <div class="nav-wrapper">
-    <body style="padding: 5px">
         <nav class="navbar navbar-inverse" id="mynav" role="navigation">
           <div class="container-fluid">
           <ul class="nav navbar-nav">
@@ -123,3 +123,4 @@ and open the template in the editor.
       </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
+<br>
