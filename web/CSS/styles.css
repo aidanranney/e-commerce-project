@@ -1,6 +1,15 @@
 body {
   padding: 10px;
 }
+
+tr, p {
+  display:inline;
+}
+
+.photo {
+  display:inline;
+}
+
 .albumArtwork {
     transition: transform .2s;
     margin: 0 auto;
