@@ -22,10 +22,6 @@
   padding: 20px;
 }
 
-<<<<<<< HEAD
-.navbar {
-  background: rgba(0,0,0,.85);
-=======
 #mynav {
   background: rgba(0,0,0,.85);
 }
@@ -33,4 +29,8 @@
 #mynav, .nav-wrapper {
   height:52px;
 >>>>>>> navbar now fixes to top on scroll
+}
+
+#mynav, .nav-wrapper {
+  height:52px;
 }
