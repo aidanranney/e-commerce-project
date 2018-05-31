@@ -9,7 +9,7 @@ $salted = "456y45rghtrhfgr23441ldk3".$password."32490ffsll33";
 $hashed = hash('sha1', $salted);
 //create query
 $query = "SELECT * from USER_ACCOUNT WHERE USEREMAIL='$useremail' AND password='$hashed'";
-$adminquery = "SELECT admin from USER_ACCOUNT WHERE USEREMAIL='$useremail' AND password='$password'";
+$adminquery = "SELECT admin from USER_ACCOUNT WHERE USEREMAIL='$useremail' AND password='$hashed'";
 //run query. the @ symbol suppresses errors
 $row = @mysqli_query($link, $query);
 $admin = @mysqli_query($link, $adminquery);
