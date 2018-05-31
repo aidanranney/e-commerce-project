@@ -20,7 +20,7 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src='JS/scripts.js'></script>
     </head>
-    <div class="container-fluid">
+    <div class="container-fluid myheader">
       <div class="jumbotron">
         <h1>Mick's Licks</h1>
         <p>Buy used and new records on the internet, from my garage.</p>
@@ -28,7 +28,7 @@ and open the template in the editor.
     </div>
 
     <body style="padding: 5px">
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse navbar-fixed-top sticky"role="navigation">
           <div class="container-fluid">
           <ul class="nav navbar-nav">
             <li class="dropdown">
