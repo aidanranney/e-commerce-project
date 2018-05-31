@@ -48,3 +48,7 @@ tr, p {
 #mynav, .nav-wrapper {
   height:52px;
 }
+
+#cartTableLeft {
+  width: 70%;
+}
