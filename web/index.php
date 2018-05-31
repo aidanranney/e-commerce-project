@@ -33,9 +33,12 @@ if (mysqli_num_rows($result) > 0) {
                 <div class='animated fadeInDown'>
                   <button id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
                   <span class='glyphicon glyphicon-plus'></span></button>
-                  <a href='cart.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='toolip' title='Add to cart'>
-                <span class='glyphicon glyphicon-shopping-cart'></span></a>
-                </div>
+                  ";
+                  if (isset($_SESSION['useremail'])) {
+                    echo "<a href='cart.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='toolip' title='Add to cart'>
+                <span class='glyphicon glyphicon-shopping-cart'></span></a>";
+              }
+              echo "</div>
                 </div>
               </div>
          		<div class='info'>

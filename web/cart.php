@@ -5,12 +5,6 @@ include ('header.php');
 include ('connection.php');
 ?>
 
-
-
-
-
-
-
 <?php
 /*
 Todo list:
