@@ -42,6 +42,7 @@ if(document.getElementById('USEREMAIL').value ==''){
 </script>
 
 <div class="container">
+<<<<<<< HEAD
 <form action="register.php" method="POST" onsubmit="return validation()">
 	<p><label>Email Address:</label> <input type="email" name="USEREMAIL" id="USEREMAIL" placeholder="youremail@youremail.com"/></p>
 	<p><label>First Name:</label> <input type="text" name="firstName" id="firstName" /></p>
@@ -94,6 +95,16 @@ if(document.getElementById('USEREMAIL').value ==''){
     </select></p>
   <p><label>Postal Code:</label> <input type="text" name="postal_code" id="postal_code"/></p>
   <p><label>Phone Number:</label> <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="555-555-5555" /></p>
+=======
+<form action="setUser.php" method="POST" onsubmit="return validation()">
+	<p>Email Address:<input type="text" name="USEREMAIL" id="USEREMAIL"/></p>
+	<p>First Name: <input type="text" name="firstName" id="firstName" /></p>
+  <p>Last Name:<input type="text" name="lastName" id="lastName"/></p>
+  <p>Date of Birth: <input type="date" name="DOB" id="DOB" title="Format: YYYY-MM-DD"/></p>
+  <p>Password<input type="text" name="password" id="password"/></p>
+  <p>Mailing Address: <input type="text" name="MAILADDRESS" id="MAILADDRESS" /></p>
+  <p>Phone Number: <input type="text" name="phoneNumber" id="phoneNumber" /></p>
+>>>>>>> saving my changes
 	<p><input type="submit" name="submit" value="Submit" /></p>
 
 </form>
