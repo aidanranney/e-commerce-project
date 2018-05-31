@@ -26,24 +26,15 @@ echo "<div class=container>
 			<th>Quantity</th>
 		</tr>";
 
-if (isset($_SESSION['useremail'])) {
-	if (isset($_GET['itemNumber'])) {
-		$itemNumber = $_GET['itemNumber'];
-		;
-	}
-	$email = $_SESSION['useremail'];
-	$item = $_GET['itemNumber'];
 	$subtotal = 0;
 	$total = 0;
 	$ship = 5.00;
 	$tax = 0;
 	$items = 0;
-	$addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL) VALUES (1, '$item', '$email')";
 	$query = "SELECT sc.RECORD_itemNumber, sc.quantityOrdered, r.artist, r.albumTitle, r.PRICE, r.albumArtwork
 			FROM SHOPPING_CART sc, RECORD r
 			WHERE  sc.RECORD_itemNumber=r.itemNumber
 			AND sc.USER_ACCOUNT_USEREMAIL = '$email'";
-	mysqli_query($link, $addItem);
 	$result = mysqli_query($link, $query);
 	while ($row = mysqli_fetch_array($result)) {
 		echo "<tr>

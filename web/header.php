@@ -35,6 +35,8 @@ and open the template in the editor.
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genres
                   <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+
+//List record categories from database
                       <?php
                         $categories = mysqli_query($link,'select genre from GENRE');
                         echo "<li id='All'><a href='index.php'>All</a></li>";
@@ -95,13 +97,20 @@ and open the template in the editor.
               }
             ?>><a href="register.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 
+//Create shopping cart icon, and list the number of current items inside of it.
             <?php
+              $numItems=0;
               if (isset($_SESSION['useremail'])) {
                 echo "<li ";
                 if ($currentpage == 'cart') {
                                 echo 'class="active"';
                               }
-                echo " ><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart</a></li>";
+                echo " ><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart (";
+                $cartItems = mysqli_query($link, 'SELECT quantityOrdered from SHOPPING_CART');
+                while ($itemAmount=mysqli_fetch_array($cartItems)) {
+                  $numItems += $itemAmount['quantityOrdered'];
+                }
+                echo $numItems . ")</a></li>";
                 echo "<li><a href='logout.php'>Logout</a></li>";
               }
             ?>
