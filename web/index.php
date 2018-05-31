@@ -22,6 +22,7 @@ if (isset($genre))   {
 } else {
   echo "<h4>All Records</h4>";
 }
+echo "<br>";
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
@@ -34,7 +35,7 @@ if (mysqli_num_rows($result) > 0) {
                   <button id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
                   <span class='glyphicon glyphicon-plus'></span></button>
                   ";
-                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='toolip' title='Add to cart'>
+                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart'></span></a>";
                       if (isset($_GET['itemNumber'])) {
                         if (isset($_SESSION['useremail'])) {
@@ -44,7 +45,7 @@ if (mysqli_num_rows($result) > 0) {
                           VALUES (1, '$item', '$email')";
                           mysqli_query($link, $addItem);
                       } else {
-                        echo "<meta http-equiv='refresh' content='0; url=login.php'>";
+                        echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
                       }
                     }
               echo "</div>

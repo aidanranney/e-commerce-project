@@ -5,32 +5,8 @@ include ('header.php');
 include ('connection.php');
 ?>
 
-<script>
-function validate() {
-
-// VALIDATION CODE HERE!
-
-	if(document.getElementById('artist').value ==''){
-		alert("You must include the artist's name");
-		return false;
-	} if(document.getElementById('albumTitle').value ==''){
-		alert("You must include an album title");
-		return false;
-	} if(document.getElementById('genre').value ==''){
-		alert("You must include a genre");
-		return false;
-	} if(document.getElementById('price').value ==''){
-			alert("Please insert a valid price");
-			return false;
-	} if(document.getElementById('quality').value ==''){
-			alert("You must specify used or new quality");
-			return false;
-}
-}
-</script>
-
 <div class="container">
-<form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
+<form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validateRecord()">
 	<p><b>Artist:</b><input type="text" name="artist" id="artist"></p>
 	<p><b>Album Title:</b> <input type="text" name="albumTitle" id="albumTitle"></p>
 <b>Genre:
