@@ -36,20 +36,36 @@ if (mysqli_num_rows($result) > 0) {
                   <span class='glyphicon glyphicon-plus'></span></button>
                   ";
                     echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart'></span></a>";
+                    <span class='glyphicon glyphicon-shopping-cart'></span></a></div>";
                       if (isset($_GET['itemNumber'])) {
                         if (isset($_SESSION['useremail'])) {
                           $email = $_SESSION['useremail'];
                           $item = $_GET['itemNumber'];
-                          $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
-                          VALUES (1, '$item', '$email')";
-                          mysqli_query($link, $addItem);
-                          echo "<meta http-quiv='refresh' content='0; url=#'>";
-                      } else {
-                        echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
+                          $cartquery = "SELECT quantityOrdered FROM SHOPPING_CART
+                                      WHERE USER_ACCOUNT_USEREMAIL = '$email'
+                                      AND RECORD_itemNumber = $item";
+                          $cart = mysqli_query($link, $cartquery);
+                          $row_cnt = $cart->num_rows;
+                          if ($row_cnt == 0) {
+                            $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
+                            VALUES (1, '$item', '$email')";
+                            mysqli_query($link, $addItem);
+                            echo "<p class='alert alert-success'>Record Added!</p>";
+                            echo "<meta http-quiv='refresh' content='0; url=#'>";
+                          } else {
+                            $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = quantityOrdered + 1 WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+                            if (mysqli_query($link, $incrementItem)) {
+                              echo "<p class='alert alert-success'>Record Added!</p>";
+                            } else {
+                              echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
+                            }
+                          }
+
+                        } else {
+                            echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
+                        }
                       }
-                    }
-              echo "</div>
+              echo "
                 </div>
               </div>
          		<div class='info'>
