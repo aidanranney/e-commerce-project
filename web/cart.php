@@ -17,14 +17,23 @@ General visual and layout improvements.
 
 Note background-colors are only to help identify different elements.
 */
-echo "<div class=container>
-<h1>Your Cart</h1>
-	<table width='600' align='left' style='display:inline;background-color:lightblue'>
-		<tr>
-			<th width='300'>Item</th>
-			<th>Price</th>
-			<th>Quantity</th>
-		</tr>";
+
+
+echo
+				"<div class=container>
+					<h1>Your Cart</h1>";
+
+//here's the code for tables to display properly
+
+echo
+				"<div id=cartTableLeft>
+					<div class='col-xs-6'>
+					<table class=table-responsive>
+					<tr>
+						<th class=col-lg-6>Item</th>
+						<th class=col-lg-4>Price</th>
+						<th class=col-lg-2>Quantity</th>
+					</tr>";
 
 	$subtotal = 0;
 	$total = 0;
@@ -43,24 +52,25 @@ echo "<div class=container>
 									<div class='photo'>
 										<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=100 width=100></a>
 									</div>
-									<p style='display:inline;font-size:16pt;'>" . $row['artist'] . "</p>
-									<p style='display:inline;'>" . $row['albumTitle'] . "</p>
-									<input type='submit' name='remove' value='Remove Item' action='Remove this item'>
+									<p style='font-size:16pt'>" . $row['artist'] . "</p>
+									<p>" . $row['albumTitle'] . "</p>
 								</td>
 								<td>
 									<p>$" . $row['PRICE'] . "</p>
 								</td>
 								<td>
-									<input type='number' name='quantity' value='" . $row['quantityOrdered'] . "' max='9' size='1'>
+									<input type='number' name='quantity' value='" . $row['quantityOrdered'] . "' min='0' size='1'>
+									<br></br>
+									<input type='submit' name='remove' value='Remove Item' action='Remove this item'>
 								</td>
 							</tr>";
 		$subtotal += $row['PRICE'] * $row['quantityOrdered'];
 		$items += 1; //count number of items in cart. Should it be by total of quantity or types of items?
 	}
 	echo "<tr>
-		<td><p align='right'>Subtotal: <spam style='font-weight:bold;'>$$subtotal</span></p></td>
+		<td></td><td></td><td><p align='right'>Subtotal: <spam style='font-weight:bold;'>$$subtotal</span></p></td>
 		<tr>
-			</table>";
+			</table></div>";
 	$tax = round($subtotal * 0.08, 2);
 	$total = $subtotal +  $ship + $tax;
 	if($items > 1){//Just for look and feel of summary div
@@ -68,15 +78,19 @@ echo "<div class=container>
 	}else{
 		$itemWord = "item";
 	}
-	echo "<div align='right' width='100' style='display:inline-block;background-color:grey'>
-				<h4>Summary ($items $itemWord)</h4>
-				<p align='left'>Subtotal $$subtotal</p>
-				<p>Est. Shipping $$ship</p>
-				<p>Taxes $$tax</p>
-				<br>
-				<p>Total $$total</p>
-				<input type='submit' name='checkout' value='checkout' >
-		<div>";
+
+	echo "<div class='col-xs-6'>
+					<div id=cartTableRight>
+					<table class=table>
+					<tr>
+						<th class=col-lg-6>Summary</th>
+					</tr><p align='left'>Subtotal $$subtotal</p></tr>
+					</tr><p>Est. Shipping $$ship</p></tr>
+					<tr><p>Taxes $$tax</p></tr>
+					<br></br>
+					<tr><p>Total $$total</p></tr>
+					<tr><input type='submit' name='checkout' value='checkout'></tr>
+					</div></div>";
 echo "</div>";
 
 
