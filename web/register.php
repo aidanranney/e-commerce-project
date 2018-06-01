@@ -41,63 +41,149 @@ if(document.getElementById('USEREMAIL').value ==''){
 }
 </script>
 
+<fieldset>
 <div class="container">
-<form action="register.php" method="POST" onsubmit="return validation()">
-	<p><label>Email Address:</label> <input type="email" name="USEREMAIL" id="USEREMAIL" placeholder="youremail@youremail.com"/></p>
-	<p><label>First Name:</label> <input type="text" name="firstName" id="firstName" /></p>
-  <p><label>Last Name:</label> <input type="text" name="lastName" id="lastName"/></p>
-  <p><label>Date of Birth:</label> <input type="date" name="DOB" id="DOB" title="Format: YYYY-MM-DD"/></p>
-  <p><label>Password:</label> <input type="password" name="password" id="password" placeholder="Min. 4 Characters"/></p>
-  <p><label>Repeat Password:</label> <input type="password" name="password2" id="password2" placeholder="Repeat your password" />
-  <p><label>Address:</label> <input type="text" name="address" id="address"/></p>
-  <p><label>City:</label> <input type="text" name="city" id="city"/></p>
-  <p><label>Province:</label>   <select name="province" id="province">
-    <option value="BC" selected="BC">
-      British Columbia
-      </option>
-    <option value="AB">
-      Alberta
-      </option>
-    <option value="SK">
-      Saskatchewan
-      </option>
-    <option value="MB">
-      Alberta
-      </option>
-    <option value="ON">
-      Ontario
-      </option>
-    <option value="QC">
-      Quebec
-      </option>
-    <option value="NB">
-      New Brunswick
-      </option>
-    <option value="PE">
-      Prince Edward Island
-      </option>
-    <option value="NS">
-      Nova Scotia
-      </option>
-    <option value="NL">
-      Newfoundland and Labrador
-      </option>
-    <option value="YT">
-      Yukon
-      </option>
-    <option value="NT">
-      Northwest Territories
-      </option>
-    <option value="NU">
-      Nunavut
-      </option>
-    </select></p>
-  <p><label>Postal Code:</label> <input type="text" name="postal_code" id="postal_code"/></p>
-  <p><label>Phone Number:</label> <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="555-555-5555" /></p>
-	<p><input type="submit" name="submit" value="Submit" /></p>
+<form class="well form-horizontal" action="register.php" method="POST" onsubmit="return validation()">
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">E-Mail</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+    <input name="USEREMAIL" placeholder="E-Mail Address" class="form-control"  type="text">
+      </div>
+    </div>
+  </div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">First Name</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input  name="firstName" placeholder="First Name" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Last Name</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input  name="lastName" placeholder="Last Name" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Date of Birth</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  <input name="DOB" placeholder="Format: YYYY-MM-DD" class="form-control"  type="date">
+    </div>
+  </div>
+</div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">Password</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input name="password" placeholder="Password" class="form-control"  type="password">
+      </div>
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label class="col-md-4 control-label">Repeat Password</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input name="password2" placeholder="Repeat password" class="form-control"  type="password">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">Address</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+    <input name="address" placeholder="Address" class="form-control"  type="text">
+      </div>
+    </div>
+  </div></>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">City</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+    <input name="city" placeholder="city" class="form-control"  type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <label class="col-md-4 control-label">Province</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="province" class="form-control selectpicker" >
+      <option value=" " >Please select your Province</option>
+      <option>British Columbia</option>
+      <option>Alberta</option>
+      <option>Saskatchewan</option>
+      <option>Manitoba</option>
+      <option>Ontario</option>
+      <option>Quebec</option>
+      <option>New Brunswick</option>
+      <option>Prince Edward Island</option>
+      <option>Nova Scotia</option>
+      <option>Newfoundland and Labrador</option>
+      <option>Yukon</option>
+      <option>Northwest Territories</option>
+      <option>Nunavut</option>
+      <option>New Brunswick</option>
+      <option>Prince Edward Island</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Postal Code</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input name="postal_code" placeholder="Postal Code" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">Phone Number</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+    <input name="phoneNumber" placeholder="(250)555-5555" class="form-control" type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label"></label>
+    <div class="col-md-4">
+      <button type="submit" name="submit" value="submit" class="btn btn-warning" >Register <span class="glyphicon glyphicon-check"></span></button>
+    </div>
+  </div>
+
+  <a href="login.php">Already registered? Click here to login.</a>
 
 </form>
 </div>
+</fieldset>
 
 <?php
 $flag = FALSE;
