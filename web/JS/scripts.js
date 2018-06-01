@@ -13,6 +13,10 @@ $(document).ready(function(){
       $('#mynav').removeClass('navbar-fixed-top');
     }
     });
+
+    setTimeout(function(){
+      $('.alert-danger').remove();
+    }, 2000);
 });
 
 function validateRecord() {

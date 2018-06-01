@@ -22,6 +22,27 @@
   padding: 20px;
 }
 
+.checkout-btn {
+  align:right;
+  margin-top:5px;
+  margin-right:-8px;
+  padding: 5px;
+  border-top: 1px solid white;
+}
+
+.tableDataRight {
+  text-align: right;
+}
+
+.summaryTable td {
+  border-top: none;
+}
+
+.btn {
+  border: none;
+  padding: 10px;
+}
+
 #mynav {
   background: rgba(0,0,0,.85);
 }
@@ -35,11 +56,20 @@
   margin-bottom: 20px;
 }
 
-#cartTableLeft {
-  width: 60%;
+#cartTableLeftDiv {
+  width: 70%;
+  padding-right: 20px;
 }
 
-#cartTableRight {
+#cartTableRightDiv {
   background-color:grey;
-  width: 10%;
+  height: auto;
+  width: 250px;
+  margin-right: 0px;
+  margin-left: auto;
+}
+
+#summaryTitle {
+  padding: 10px 10px;
+  text-align: right;
 }
