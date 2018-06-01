@@ -5,10 +5,6 @@ include ('header.php');
 include ('connection.php');
 ?>
 
-
-<div class="container">
-<form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validateRecord()">
-
 <script>
 function validate() {
 
@@ -33,37 +29,133 @@ function validate() {
 }
 </script>
 
-<div class="container eachPage">
-<form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
+<div class="container">
+	<form class="well form-horizontal" action="addrecord.php" method="POST" onsubmit="return validation()">
 
-	<p><b>Artist:</b><input type="text" name="artist" id="artist"></p>
-	<p><b>Album Title:</b> <input type="text" name="albumTitle" id="albumTitle"></p>
-<b>Genre:
-	<ul>
+	  <div class="form-group">
+	    <label class="col-md-4 control-label">Artist</label>
+	      <div class="col-md-4 inputGroupContainer">
+	      <div class="input-group">
+	          <span class="input-group-addon"><i class="glyphicon glyphicon-headphones"></i></span>
+	    <input name="artist" placeholder="Record Artist" class="form-control"  type="text" id="artist">
+	      </div>
+	    </div>
+	  </div>
+
+      		<div class="form-group">
+		 <label class="col-md-4 control-label">Album Title</label>
+			 <div class="col-md-4 inputGroupContainer">
+			 <div class="input-group">
+					 <span class="input-group-addon"><i class="glyphicon glyphicon-cd"></i></span>
+		 <input name="albumTitle" placeholder="Album Title" class="form-control"  type="text" id="albumTitle">
+			 </div>
+		 </div>
+	 </div>
+
 		<?php
-		$categories = mysqli_query($link,'select * from GENRE');
+	$categories = mysqli_query($link,'select * from GENRE');
 		if ($categories)   {
 			while ($result = mysqli_fetch_array($categories)) {
 				$genreID = $result['genreID'];
 				$genreName = $result['genre'];
-				echo "<input type='checkbox' name='genre[]' value='$genreID' id='$genreID'/>$genreName</br>";
+				echo"<div class='form-group'>
+						<label class='col-md-4 control-label'></label>
+						<div class='col-md-4 inputGroupContainer'>
+						<div class='input-group'>
+							<span class=input-group-addon'><i class'glyphicon glyphicon-list'></i></span>
+				<input type='checkbox' name='genre[]' value='$genreID' id='$genreID'/>$genreName</br>
+				</div>
+				</div>
+				</div>";
 			}
 		}
 		?>
-		<br><input type="text" name="genreText" id="genreText" placeholder="Create new genre"></p>
-	</ul>
-  <p><b>Price:</b> <input type="number" step="0.01" name="PRICE" id="price"></p>
-  <p><b>Release Date:</b><input type="date" name="RELEASEDATE" id="releaseDate" title="Format: YYYY-MM-DD"></p>
-<b>Quality:</b>
-	<ul>
-		<input type="radio" name="quality" value="New" id="quality"/> New
-	  <br><input type="radio" name="quality" value="Used" id="quality"/> Used
-	</ul>
-  <p><b>Edition Number:</b> <input type="number" name="EDITIONNUMBER" min='1'></p>
-  <p><b>Image Upload:</b><input type="file" name="albumArtwork"/></p>
-	<p><b>Record Description:</b>
-		<p><textarea name="description" id="description" placeholder="record description here..." style="width:300px; height:100px"></textarea></p>
-	<p><input type="submit" name="submit" value="Submit" /></p>
+
+        		<div class="form-group">
+		  <label class="col-md-4 control-label">New Genre</label>
+		    <div class="col-md-4 inputGroupContainer">
+		    <div class="input-group">
+		        <span class="input-group-addon"><i class="glyphicon glyphicon-music"></i></span>
+		  <input name="genreText" placeholder="New Genre" class="form-control"  type="text" id="genreText">
+		    </div>
+		  </div>
+		</div>
+
+        	<div class="form-group">
+	  <label class="col-md-4 control-label">Price</label>
+	    <div class="col-md-4 inputGroupContainer">
+	    <div class="input-group">
+	        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+	  <input name="PRICE" placeholder="Price" class="form-control"  type="number" step="0.01" id="price">
+	    </div>
+	  </div>
+	</div>
+
+    <div class="form-group">
+	  <label class="col-md-4 control-label">Release Date</label>
+	    <div class="col-md-4 inputGroupContainer">
+	    <div class="input-group">
+	        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+	  <input name="RELEASEDATE" placeholder="Format: YYYY-MM-DD" class="form-control"  type="date" id="releaseDate">
+	    </div>
+	  </div>
+	</div>
+
+    	<div class="form-group">
+											 <label class="col-md-4 control-label">Record Quality</label>
+											 <div class="col-md-4">
+													 <div class="radio">
+															 <label>
+																	 <input type="radio" name="quality" value="New" id="quality"/> New
+															 </label>
+													 </div>
+													 <div class="radio">
+															 <label>
+																	 <input type="radio" name="quality" value="Used" id="quality"/> Used
+															 </label>
+													 </div>
+											 </div>
+									 </div>
+
+                                     	<div class="form-group">
+				<label class="col-md-4 control-label">Edition Number</label>
+						<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+								 <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+								 	  <input name="EDITIONNUMBER" placeholder="Edition Number" class="form-control"  type="number" min='1'>
+					  </div>
+						</div>
+			</div>
+
+
+            	<div class="form-group">
+				<label class="col-md-4 control-label">Image Upload</label>
+						<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+								 <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+										<input name="albumArtwork" class="form-control" type="file">
+						</div>
+						</div>
+			</div>
+
+            	<div class="form-group">
+  <label class="col-md-4 control-label">Record Description</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+        	<textarea class="form-control" name="description" placeholder="Record Description" id="description" style="width:300px; height:100px"></textarea>
+  	</div>
+  	</div>
+	</div>
+
+
+<div class="form-group">
+	<label class="col-md-4 control-label"></label>
+	<div class="col-md-4">
+		<button type="submit" name="submit" value="submit" class="btn btn-warning">Add Record <span class="glyphicon glyphicon-check"></span></button>
+	</div>
+</div>
+
 </form>
 </div>
 
