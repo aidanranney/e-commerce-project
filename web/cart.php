@@ -38,6 +38,11 @@ if (isset($_SESSION['useremail'])) {
 
 	}
 }
+
+
+if (!empty($_POST['itemId'])){
+	echo "<h1>itemId</h1>";
+}
 ?>
 
 <!-- left side cart table headers-->
@@ -140,6 +145,7 @@ if (isset($_SESSION['useremail'])) {
 									</tr>
 									<tr style='text-align:right;'>
 									<td style='border-top: none;'></td>
+									<td style='border-top: none; '><input type='submit' name='update' value='Update Cart' class='btn btn-info' onclick="getCartData()"></td></td>
 									<td style='border-top: none;'><input type='submit' name='checkout' value='Checkout' class='btn btn-success checkout-btn'></td>
 									</tr>
 							</table>
