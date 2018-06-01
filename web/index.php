@@ -29,7 +29,7 @@ if (mysqli_num_rows($result) > 0) {
           <div class='col-sm-3'>
              <article class='col-item'>
               <div class='albumArtwork'>
-         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' height=200 width=200>
+         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
               <div class='item-buttons'>
                 <div class='animated fadeInDown'>
                   <button id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
