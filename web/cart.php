@@ -45,6 +45,7 @@ echo
 			FROM SHOPPING_CART sc, RECORD r
 			WHERE  sc.RECORD_itemNumber=r.itemNumber
 			AND sc.USER_ACCOUNT_USEREMAIL = '$email'";
+
 	$result = mysqli_query($link, $query);
 	while ($row = mysqli_fetch_array($result)) {
 		echo "<tr>
@@ -52,8 +53,9 @@ echo
 									<div class='photo'>
 										<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' height=100 width=100></a>
 									</div>
-									<p style='font-size:16pt'>" . $row['artist'] . "</p>
+									<p>" . $row['artist'] . "</p>
 									<p>" . $row['albumTitle'] . "</p>
+									<input type='submit' name='remove' value='Remove'' action=''>
 								</td>
 								<td>
 									<p>$" . $row['PRICE'] . "</p>
