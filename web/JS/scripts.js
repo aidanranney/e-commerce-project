@@ -16,6 +16,7 @@ $(document).ready(function(){
 
     setTimeout(function(){
       $('.alert-danger').remove();
+      $('.alert-success').remove();
     }, 2000);
 });
 

@@ -94,7 +94,7 @@ if (!empty($_POST['itemId'])){
 											<br></br>
 											<form action='cart.php' method='post'>
 												<input type='hidden' name='itemNumber' value='" . $row['RECORD_itemNumber'] . "'>
-												<input type='hidden' name='itemNumber[]' value='" . $row['RECORD_itemNumber'] . "'>
+												<input type='hidden' name='quantity' value='" . $row['RECORD_itemNumber'] . "'>
 												<input class='btn btn-primary' type='submit' value='Update Order'>
 											</form>
 										</td>
