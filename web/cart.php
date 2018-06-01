@@ -81,16 +81,19 @@ echo
 
 	echo "<div class='col-xs-6'>
 					<div id=cartTableRight>
-					<table class=table>
-					<tr>
-						<th class=col-lg-6>Summary</th>
-					</tr><p align='left'>Subtotal $$subtotal</p></tr>
-					</tr><p>Est. Shipping $$ship</p></tr>
-					<tr><p>Taxes $$tax</p></tr>
-					<br></br>
-					<tr><p>Total $$total</p></tr>
-					<tr><input type='submit' name='checkout' value='checkout'></tr>
-					</div></div>";
+						<table class=table>
+						<tr>
+							<th class=col-lg-6>Summary</th>
+						</tr><p align='left'>Subtotal $$subtotal</p></tr>
+						</tr><p>Est. Shipping $$ship</p></tr>
+						<tr><p>Taxes $$tax</p></tr>
+						<br></br>
+						<tr><p>Total $$total</p></tr>
+						<tr><input type='submit' name='checkout' value='checkout'></tr>
+					</div>
+				</div>";
+
+//end of main container
 echo "</div>";
 
 

@@ -103,14 +103,17 @@ and open the template in the editor.
             <?php
               $numItems=0;
               if (isset($_SESSION['useremail'])) {
+                $email = $_SESSION['useremail'];
                 echo "<li ";
                 if ($currentpage == 'cart') {
                                 echo 'class="active"';
                               }
                 echo " ><a href='cart.php'><span class='glyphicon glyphicon-shopping-cart'></span>Cart (";
-                $cartItems = mysqli_query($link, 'SELECT quantityOrdered from SHOPPING_CART');
-                while ($itemAmount=mysqli_fetch_array($cartItems)) {
-                  $numItems += $itemAmount['quantityOrdered'];
+                $cartItems = mysqli_query($link, "SELECT quantityOrdered from SHOPPING_CART WHERE USER_ACCOUNT_USEREMAIL = '$email'");
+                if ($cartItems) {
+                  while ($itemAmount=mysqli_fetch_array($cartItems)) {
+                    $numItems += $itemAmount['quantityOrdered'];
+                  }
                 }
                 echo $numItems . ")</a></li>";
                 echo "<li><a href='logout.php'>Logout</a></li>";
