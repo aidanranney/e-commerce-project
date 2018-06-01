@@ -34,6 +34,9 @@ if (isset($_SESSION['useremail'])) {
 			echo "<p class='alert alert-danger'>Removal of item failed!</p>";
 		}
 	}
+	if(!empty($_POST['update'])) {
+
+	}
 }
 ?>
 
@@ -69,6 +72,10 @@ if (isset($_SESSION['useremail'])) {
 				}
 				echo "<tr>
 										<td>
+										<form action='cart.php' method='post'>
+											<input type ='hidden' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
+											<input class='btn btn-danger remove-btn' type='submit' value='Remove Item'>
+										</form>
 											<div class='photo'>
 												<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=100 width=100></a>
 											</div>
@@ -76,18 +83,19 @@ if (isset($_SESSION['useremail'])) {
 										</td>
 										<td>
 										<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
-												$pricePerItem
 										</td>
 										<td>
 											<input type='number' name='quantity' value='" . $row['quantityOrdered'] . "' min='0' size='1'>
 											<br></br>
 											<form action='cart.php' method='post'>
-												<input type ='hidden' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
-												<input class='btn btn-danger' type='submit' value='Remove Item'>
+												<input type='hidden' name='itemNumber' value='" . $row['RECORD_itemNumber'] . "'>
+												<input type='hidden' name='itemNumber[]' value='" . $row['RECORD_itemNumber'] . "'>
+												<input class='btn btn-primary' type='submit' value='Update Order'>
 											</form>
 										</td>
 									</tr>";
-						$subtotal += $row['PRICE'] * $row['quantityOrdered'];
+
+									$subtotal += $row['PRICE'] * $row['quantityOrdered'];
 
 						// $items += 1; //count number of items in cart. Should it be by total of quantity or types of items?
 						// if($items > 1){
@@ -95,13 +103,14 @@ if (isset($_SESSION['useremail'])) {
 						// }else{
 						// 	$itemWord = "item";
 						// }
-						
+
 					}
 					echo "<tr>
-								<td></td><td></td><td><h4 align='right'>Subtotal: <spam style='font-weight:bold;'>$$subtotal</span></h4></td>
+								<td></td><td></td><td><p align='right'>Subtotal: <strong>$$subtotal</strong></p></td>
 								<tr>
 								</table>
-				</div>"; // end of left side table
+				</div>";
+				// end of left side table
 
 				$tax = round($subtotal * 0.08, 2);
 				$total = $subtotal + $ship + $tax;
@@ -122,8 +131,8 @@ if (isset($_SESSION['useremail'])) {
 									<td style='text-align:right; border-top: none;'>$<?php echo $ship ?></td>
 									</tr>
 									<tr>
-									<td style='border-top: none;'><strong>Taxes:</strong></td>
-									<td style='text-align:right; border-top: none;'>$<?php echo $tax ?></td>
+									<td style='border-top: none; padding-bottom: 20px'><strong>Taxes:</strong></td>
+									<td style='text-align:right; border-top: none; padding-bottom: 20px'>$<?php echo $tax ?></td>
 									</tr>
 									<tr>
 									<td style='border-top: 1px solid black;'><strong>Total:</strong></td>

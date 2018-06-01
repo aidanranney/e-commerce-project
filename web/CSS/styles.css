@@ -43,6 +43,13 @@
   padding: 10px;
 }
 
+.remove-btn {
+  background-color: #ff8787;
+  float:right;
+  position: relative;
+  right: 100px;
+}
+
 #mynav {
   background: rgba(0,0,0,.85);
 }
@@ -62,7 +69,7 @@
 }
 
 #cartTableRightDiv {
-  background-color:grey;
+  background-color: #949695;
   height: auto;
   width: 250px;
   margin-right: 0px;
