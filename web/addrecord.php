@@ -5,10 +5,10 @@ include ('header.php');
 include ('connection.php');
 ?>
 
-<<<<<<< HEAD
+
 <div class="container">
 <form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validateRecord()">
-=======
+
 <script>
 function validate() {
 
@@ -35,7 +35,7 @@ function validate() {
 
 <div class="container eachPage">
 <form action="addrecord.php" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
->>>>>>> navbar now fixes to top on scroll
+
 	<p><b>Artist:</b><input type="text" name="artist" id="artist"></p>
 	<p><b>Album Title:</b> <input type="text" name="albumTitle" id="albumTitle"></p>
 <b>Genre:
@@ -59,7 +59,7 @@ function validate() {
 		<input type="radio" name="quality" value="New" id="quality"/> New
 	  <br><input type="radio" name="quality" value="Used" id="quality"/> Used
 	</ul>
-  <p><b>Edition Number:</b> <input type="number" name="EDITIONNUMBER" /></p>
+  <p><b>Edition Number:</b> <input type="number" name="EDITIONNUMBER" min='1'></p>
   <p><b>Image Upload:</b><input type="file" name="albumArtwork"/></p>
 	<p><b>Record Description:</b>
 		<p><textarea name="description" id="description" placeholder="record description here..." style="width:300px; height:100px"></textarea></p>
