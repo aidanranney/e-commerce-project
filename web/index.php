@@ -45,17 +45,22 @@ if (mysqli_num_rows($result) > 0) {
                                       WHERE USER_ACCOUNT_USEREMAIL = '$email'
                                       AND RECORD_itemNumber = $item";
                           $cart = mysqli_query($link, $cartquery);
+                          $cartrow = mysqli_fetch_array($cart);
                           $row_cnt = $cart->num_rows;
                           if ($row_cnt == 0) {
                             $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                             VALUES (1, '$item', '$email')";
-                            mysqli_query($link, $addItem);
-                            echo "<p class='alert alert-success'>Record Added!</p>";
-                            echo "<meta http-quiv='refresh' content='0; url=#'>";
-                          } else {
-                            $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = quantityOrdered + 1 WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
-                            if (mysqli_query($link, $incrementItem)) {
+                            if (mysqli_query($link, $addItem)) {
                               echo "<p class='alert alert-success'>Record Added!</p>";
+                            } else {
+                              echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
+                            }
+                          } else {
+                            $quantity = intval($cartrow['quantityOrdered']);
+                            $quantity += 1;
+                            $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = ($quantity) WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+                            if (mysqli_query($link, $incrementItem)) {
+                              echo "<p class='alert alert-success'>Record Incremented!</p>";
                             } else {
                               echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
                             }
