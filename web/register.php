@@ -179,6 +179,13 @@ if(document.getElementById('USEREMAIL').value ==''){
     </div>
   </div>
 
+  <!-- if item in GET request, pass it to POST -->
+  <?php if (isset($_GET['itemNumber'])) {
+    $itemNumber = $_GET['itemNumber'];
+    echo "<input type=hidden name=itemNumber value='" . $itemNumber . "'>";
+  }
+  ?>
+
   <a href="login.php">Already registered? Click here to login.</a>
 
 </form>
@@ -220,16 +227,34 @@ $hashed = hash('sha1', $salted);
         ('$USEREMAIL', '$firstName', '$lastName', '$DOB', '$hashed', '$address', '$city', '$province', '$postal_code', '$phoneNumber')";
 
           if(mysqli_query($link, $userQuery)){
-          echo "User account created. <script>setTimeout(function() {
-        		window.location='index.php';
-        	}, 2000)</script>";
-        } else {
-          echo "Error: Could not execute $userQuery." . mysqli_error($link);
-        }
+          echo "User account created.";
+          $_SESSION['useremail']=$USEREMAIL;
 
-      } else {
-      echo "That user account is already in use.";
+          // if user tried to add a record before registering, add record and redirect to new cart.
+          if (isset($_POST['itemNumber'])) {
+            $item = $_POST['itemNumber'];
+            $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
+            VALUES (1, '$item', '$USEREMAIL')";
+              if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
+                echo "<p class='alert alert-success'>Record Added to your new cart!</p>";
+              } else {
+                echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
+              }
+            echo "<script>setTimeout(function() {
+          		window.location='cart.php';
+          	  }, 2000)</script>";
+          } else {
+            echo "<script>setTimeout(function() {
+        		window.location='index.php';
+        	  }, 2000)</script>";
+          }
+
+    } else {
+      echo "Error: Could not execute $userQuery." . mysqli_error($link);
     }
+} else {
+echo "That user account is already in use.";
+  }
 } else {
   echo "Your passwords do not match!";
 }
@@ -237,4 +262,3 @@ $hashed = hash('sha1', $salted);
 
 include ('footer.php');
 ?>
-</html>
