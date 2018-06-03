@@ -15,8 +15,8 @@ $(document).ready(function(){
     });
 
     setTimeout(function(){
-      $('.alert-danger').remove();
-      $('.alert-success').remove();
+      $('.alert-danger').fadeOut();
+      $('.alert-success').fadeOut();
     }, 2000);
 });
 
