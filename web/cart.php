@@ -25,7 +25,7 @@ if (isset($_SESSION['useremail'])) {
 	$email = $_SESSION['useremail'];
 
 	// Remove single item code
-	if(!empty($_POST['remove'])){
+	if (!empty($_POST['remove'])) {
 		$removedItem = $_POST['remove'];
 		$removeQuery = "DELETE FROM SHOPPING_CART
 										WHERE RECORD_itemNumber = " .  $removedItem . "
@@ -96,19 +96,22 @@ if (isset($_SESSION['useremail'])) {
 		$items = 0;
 		if (isset($_SESSION['useremail'])) {
 			$numRows = 0;
+			$itemIndex = 0;
 			$query = "SELECT sc.RECORD_itemNumber, sc.quantityOrdered, r.artist, r.albumTitle, r.PRICE, r.albumArtwork
 					FROM SHOPPING_CART sc, RECORD r
 					WHERE  sc.RECORD_itemNumber=r.itemNumber
 					AND sc.USER_ACCOUNT_USEREMAIL = '$email'";
 			echo "<form id='update' action='cart.php' method='post'></form>";
-			echo "<form id='remove' action='cart.php' method='post'></form>";
 			echo "<form id='removeAll' action='cart.php' method='post'></form>";
 			$result = mysqli_query($link, $query);
 			while ($row = mysqli_fetch_array($result)) {
 				$numRows++;
 				echo "<tr>
 										<td>
-											<input class='btn btn-danger remove-btn' type='submit' form='remove' value='Remove Item'>
+											<form action='cart.php' method='post'>
+											<input type='hidden' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
+											<input class='btn btn-danger remove-btn' type='submit' value='Remove Item'>
+											</form>
 											<div class='photo'>
 												<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=100 width=100></a>
 											</div>
@@ -121,20 +124,10 @@ if (isset($_SESSION['useremail'])) {
 												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='0' size='1'>
 										</td>
 										<input type='hidden' form='update' name='itemNumbers[]' value='" . $row['RECORD_itemNumber'] . "'>
-										<input type='hidden' form='remove' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
 										<input type='hidden' form='removeAll' name='removeAll[]' value='" . $row['RECORD_itemNumber'] . "'>
 							</tr>";
-
+									$itemIndex++;
 									$subtotal += $row['PRICE'] * $row['quantityOrdered'];
-
-						// $items += 1; //count number of items in cart. Should it be by total of quantity or types of items?
-						// if($items > 1){
-						// 	$itemWord = "items";
-						// }else{
-						// 	$itemWord = "item";
-						// }
-
-
 					}
 					echo "<tr>
 								<td>";
