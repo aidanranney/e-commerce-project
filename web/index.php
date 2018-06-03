@@ -7,6 +7,8 @@ include ('connection.php');
 
 <div class='container-fluid'>
 <?php
+
+// Check for genre request
 if (isset($_GET['genre'])) {
   $genre = $_GET['genre'];
   $query = "select * from RECORD where itemNumber IN
@@ -17,12 +19,16 @@ if (isset($_GET['genre'])) {
   $query = "select * from RECORD";
   $result = mysqli_query($link, $query);
 }
+
+// Set page title
 if (isset($genre))   {
   echo "<h4>$genre Records</h4>";
 } else {
   echo "<h4>All Records</h4>";
 }
 echo "<br>";
+
+// Populate home page with records
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
@@ -48,7 +54,7 @@ if (mysqli_num_rows($result) > 0) {
                           $cartrow = mysqli_fetch_array($cart);
                           $row_cnt = $cart->num_rows;
 
-                          //if no rows returned, insert into cart. if a row is returned, update quantity ordered
+                          //If no rows returned, insert into cart. if a row is returned, update quantity ordered
                           if ($row_cnt == 0) {
                             $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                             VALUES (1, '$item', '$email')";
@@ -59,8 +65,8 @@ if (mysqli_num_rows($result) > 0) {
                             }
                           } else {
                             $quantity = intval($cartrow['quantityOrdered']);
-                            $quantity += 1;
-                            $incrementItem = "UPDATE SHOPPING_CART SET `quantityOrdered` = ($quantity) WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+                            $quantity++;
+                            $incrementItem = "UPDATE SHOPPING_CART SET `quantityOrdered` = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
                             if ((mysqli_query($link, $incrementItem)) or die("Error: ".mysqli_error($link))) {
                               echo "<p class='alert alert-success'>Record Incremented!</p>";
                             } else {

@@ -40,7 +40,13 @@ if (isset($_GET['itemNumber'])) {
       <button type="submit" class="btn btn-warning"> Login <span class="glyphicon glyphicon-check"></span></button>
     </div>
   </div>
-<a href="register.php">Not registered yet? Click here to create an account.</a>
+<a <?php if (isset($_GET['itemNumber'])) {
+  echo "href='register.php?itemNumber=" . $_GET['itemNumber'] . "'";
+  } else {
+  echo "href='register.php'";
+  }
+  ?>
+  >Not registered yet? Click here to create an account.</a>
 </form>
 </div>
 
