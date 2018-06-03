@@ -23,26 +23,58 @@ Note background-colors are only to help identify different elements.
 <?php
 if (isset($_SESSION['useremail'])) {
 	$email = $_SESSION['useremail'];
+
+	// Remove single item code
 	if(!empty($_POST['remove'])){
 		$removedItem = $_POST['remove'];
 		$removeQuery = "DELETE FROM SHOPPING_CART
-										WHERE RECORD_itemNumber =" .  $removedItem . "
+										WHERE RECORD_itemNumber = " .  $removedItem . "
 										AND USER_ACCOUNT_USEREMAIL = '$email'";
 		if(mysqli_query($link, $removeQuery) or die("Error: ".mysqli_error($link))){
 			echo "<p class='alert alert-danger'>Item removed from cart!</p>";
-		}else{//Remove - Update Cart Items -- This may look better if inline with your cart but floating to the right
-			echo "<p class='alert alert-danger'>Removal of item failed!</p>";
+		}else {
+			echo "<p class='alert alert-danger'>There was a problem removing your items!</p>";
 		}
 	}
-	if(!empty($_POST['update'])) {
 
+	// Remove all items code
+	if(!empty($_POST['removeAll'])) {
+		$itemNumbers = $_POST['removeAll'];
+		foreach ($itemNumbers as $itemNumber) {
+			$removeQuery = "DELETE FROM SHOPPING_CART
+											WHERE RECORD_itemNumber = " .  $itemNumber . "
+											AND USER_ACCOUNT_USEREMAIL = '$email'";
+			if(mysqli_query($link, $removeQuery) or die("Error: ".mysqli_error($link))){
+			} else {
+				$error = true;
+			}
+		}
+		if (isset($error)) {
+			echo "<p class='alert alert-danger'>There was a problem removing your items</p>";
+		} else {
+			echo "<p class='alert alert-danger'>Items removed!</p>";
+		}
+	}
+
+	// Update item(s) code
+	if(!empty($_POST['quantities'])) {
+		$itemNumbers = $_POST['itemNumbers'];
+		$quantities = $_POST['quantities'];
+		foreach (array_combine($itemNumbers, $quantities) as $itemNumber => $quantity) {
+			$updateQuery = "UPDATE SHOPPING_CART SET quantityOrdered = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $itemNumber";
+			if(mysqli_query($link, $updateQuery) or die("Error: ".mysqli_error($link))) {
+			} else {
+				$error = true;
+			}
+		}
+		if (isset($error)) {
+			echo "<p class='alert alert-danger'>There was a problem updating your items</p>";
+		} else {
+			echo "<p class='alert alert-success'>Items updated!</p>";
+		}
 	}
 }
 
-
-if (!empty($_POST['itemId'])){
-	echo "<h1>itemId</h1>";
-}
 ?>
 
 <!-- left side cart table headers-->
@@ -63,24 +95,20 @@ if (!empty($_POST['itemId'])){
 		$tax = 0;
 		$items = 0;
 		if (isset($_SESSION['useremail'])) {
+			$numRows = 0;
 			$query = "SELECT sc.RECORD_itemNumber, sc.quantityOrdered, r.artist, r.albumTitle, r.PRICE, r.albumArtwork
 					FROM SHOPPING_CART sc, RECORD r
 					WHERE  sc.RECORD_itemNumber=r.itemNumber
 					AND sc.USER_ACCOUNT_USEREMAIL = '$email'";
-
+			echo "<form id='update' action='cart.php' method='post'></form>";
+			echo "<form id='remove' action='cart.php' method='post'></form>";
+			echo "<form id='removeAll' action='cart.php' method='post'></form>";
 			$result = mysqli_query($link, $query);
 			while ($row = mysqli_fetch_array($result)) {
-				if($row['quantityOrdered'] > 1){
-					$pricePerItem = "<p>($" . $row['PRICE'] . " ea.)</p>";
-				}else{
-					$pricePerItem = "";
-				}
+				$numRows++;
 				echo "<tr>
 										<td>
-										<form action='cart.php' method='post'>
-											<input type ='hidden' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
-											<input class='btn btn-danger remove-btn' type='submit' value='Remove Item'>
-										</form>
+											<input class='btn btn-danger remove-btn' type='submit' form='remove' value='Remove Item'>
 											<div class='photo'>
 												<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=100 width=100></a>
 											</div>
@@ -90,15 +118,12 @@ if (!empty($_POST['itemId'])){
 										<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
 										</td>
 										<td>
-											<input type='number' name='quantity' value='" . $row['quantityOrdered'] . "' min='0' size='1'>
-											<br></br>
-											<form action='cart.php' method='post'>
-												<input type='hidden' name='itemNumber' value='" . $row['RECORD_itemNumber'] . "'>
-												<input type='hidden' name='quantity' value='" . $row['RECORD_itemNumber'] . "'>
-												<input class='btn btn-primary' type='submit' value='Update Order'>
-											</form>
+												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='0' size='1'>
 										</td>
-									</tr>";
+										<input type='hidden' form='update' name='itemNumbers[]' value='" . $row['RECORD_itemNumber'] . "'>
+										<input type='hidden' form='remove' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
+										<input type='hidden' form='removeAll' name='removeAll[]' value='" . $row['RECORD_itemNumber'] . "'>
+							</tr>";
 
 									$subtotal += $row['PRICE'] * $row['quantityOrdered'];
 
@@ -109,9 +134,22 @@ if (!empty($_POST['itemId'])){
 						// 	$itemWord = "item";
 						// }
 
+
 					}
 					echo "<tr>
-								<td></td><td></td><td><p align='right'>Subtotal: <strong>$$subtotal</strong></p></td>
+								<td>";
+									if ($numRows > 0) {
+										echo "<input class='btn btn-danger remove-btn' type='submit' form='removeAll' value='Remove All' style='margin-right:100px;'>";
+									}
+					echo "</td>
+								<td>
+								</td>
+									<td>";
+									if ($numRows > 0) {
+										echo "<input class='btn btn-primary' form='update' type='submit' value='Update Order' style='float:right;'>";
+									}
+					echo "<p align='right'>   Subtotal: <strong>$$subtotal</strong></p>
+								</td>
 								<tr>
 								</table>
 				</div>";
@@ -145,8 +183,8 @@ if (!empty($_POST['itemId'])){
 									</tr>
 									<tr style='text-align:right;'>
 									<td style='border-top: none;'></td>
-									<td style='border-top: none; '><input type='submit' name='update' value='Update Cart' class='btn btn-info' onclick="getCartData()"></td></td>
-									<td style='border-top: none;'><input type='submit' name='checkout' value='Checkout' class='btn btn-success checkout-btn'></td>
+									<!-- <td style='border-top: none; '><input type='submit' name='update' value='Update Cart' class='btn btn-info' onclick="getCartData()"></td></td> -->
+									<td style='border-top: none;'><input type='submit' name='checkout' value='Checkout' class='btn btn-success '></td>
 									</tr>
 							</table>
 						</div>

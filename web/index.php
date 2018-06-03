@@ -47,10 +47,12 @@ if (mysqli_num_rows($result) > 0) {
                           $cart = mysqli_query($link, $cartquery);
                           $cartrow = mysqli_fetch_array($cart);
                           $row_cnt = $cart->num_rows;
+
+                          //if no rows returned, insert into cart. if a row is returned, update quantity ordered
                           if ($row_cnt == 0) {
                             $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                             VALUES (1, '$item', '$email')";
-                            if (mysqli_query($link, $addItem)) {
+                            if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
                               echo "<p class='alert alert-success'>Record Added!</p>";
                             } else {
                               echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
@@ -58,8 +60,8 @@ if (mysqli_num_rows($result) > 0) {
                           } else {
                             $quantity = intval($cartrow['quantityOrdered']);
                             $quantity += 1;
-                            $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = ($quantity) WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
-                            if (mysqli_query($link, $incrementItem)) {
+                            $incrementItem = "UPDATE SHOPPING_CART SET `quantityOrdered` = ($quantity) WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+                            if ((mysqli_query($link, $incrementItem)) or die("Error: ".mysqli_error($link))) {
                               echo "<p class='alert alert-success'>Record Incremented!</p>";
                             } else {
                               echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
