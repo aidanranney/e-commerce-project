@@ -56,7 +56,6 @@ if (mysqli_num_rows($result) > 0) {
 
                           //If no rows returned, insert into cart. if a row is returned, update quantity ordered
                           if ($row_cnt == 0) {
-                            echo "this statment";
                             $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                             VALUES (1, '$item', '$email')";
                             if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
