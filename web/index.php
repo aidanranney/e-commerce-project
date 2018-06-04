@@ -1,8 +1,42 @@
 <?php
+session_start();
 $currentpage = 'home';
 $title = 'Home Page';
-include ('header.php');
 include ('connection.php');
+
+if (isset($_GET['itemNumber'])) {
+  if (isset($_SESSION['useremail'])) {
+    $email = $_SESSION['useremail'];
+    $item = $_GET['itemNumber'];
+    $cartquery = "SELECT quantityOrdered FROM SHOPPING_CART
+                WHERE USER_ACCOUNT_USEREMAIL = '$email'
+                AND RECORD_itemNumber = $item";
+    $cart = mysqli_query($link, $cartquery);
+    $cartrow = mysqli_fetch_array($cart);
+    $row_cnt = $cart->num_rows;
+
+    //If no rows returned, insert into cart. if a row is returned, update quantity ordered
+    if ($row_cnt == 0) {
+      $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
+      VALUES (1, '$item', '$email')";
+      if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
+      } else {
+        $cartError = true;
+      }
+    } else {
+      $quantity = intval($cartrow['quantityOrdered']);
+      $quantity++;
+      $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+      if ((mysqli_query($link, $incrementItem)) or die("Error: ".mysqli_error($link))) {
+      } else {
+        $cartError = true;
+      }
+    }
+  } else {
+    echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
+  }
+}
+include ('header.php');
 ?>
 
 <div class='container-fluid'>
@@ -49,39 +83,39 @@ if (mysqli_num_rows($result) > 0) {
                   ";
                     echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>";
-                      if (isset($_GET['itemNumber']) && $_GET['itemNumber'] == $row['itemNumber']) {
-                        if (isset($_SESSION['useremail'])) {
-                          $email = $_SESSION['useremail'];
-                          $item = $_GET['itemNumber'];
-                          $cartquery = "SELECT quantityOrdered FROM SHOPPING_CART
-                                      WHERE USER_ACCOUNT_USEREMAIL = '$email'
-                                      AND RECORD_itemNumber = $item";
-                          $cart = mysqli_query($link, $cartquery);
-                          $cartrow = mysqli_fetch_array($cart);
-                          $row_cnt = $cart->num_rows;
-
-                          //If no rows returned, insert into cart. if a row is returned, update quantity ordered
-                          if ($row_cnt == 0) {
-                            $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
-                            VALUES (1, '$item', '$email')";
-                            if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
-                            } else {
-                              $cartError = true;
-                            }
-                          } else {
-                            $quantity = intval($cartrow['quantityOrdered']);
-                            $quantity++;
-                            $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
-                            if ((mysqli_query($link, $incrementItem)) or die("Error: ".mysqli_error($link))) {
-                            } else {
-                              $cartError = true;
-                            }
-                          }
-
-                        } else {
-                            echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
-                        }
-                      }
+                      // if (isset($_GET['itemNumber']) && $_GET['itemNumber'] == $row['itemNumber']) {
+                      //   if (isset($_SESSION['useremail'])) {
+                          // $email = $_SESSION['useremail'];
+                          // $item = $_GET['itemNumber'];
+                          // $cartquery = "SELECT quantityOrdered FROM SHOPPING_CART
+                          //             WHERE USER_ACCOUNT_USEREMAIL = '$email'
+                          //             AND RECORD_itemNumber = $item";
+                          // $cart = mysqli_query($link, $cartquery);
+                          // $cartrow = mysqli_fetch_array($cart);
+                          // $row_cnt = $cart->num_rows;
+                          //
+                          // //If no rows returned, insert into cart. if a row is returned, update quantity ordered
+                          // if ($row_cnt == 0) {
+                          //   $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
+                          //   VALUES (1, '$item', '$email')";
+                          //   if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
+                          //   } else {
+                          //     $cartError = true;
+                          //   }
+                          // } else {
+                          //   $quantity = intval($cartrow['quantityOrdered']);
+                          //   $quantity++;
+                          //   $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+                          //   if ((mysqli_query($link, $incrementItem)) or die("Error: ".mysqli_error($link))) {
+                          //   } else {
+                          //     $cartError = true;
+                          //   }
+                          // }
+                      //     echo "<meta http-equiv='refresh' content='0; url=index.php?itemNumber=" . $_GET['itemNumber'] . "'>";
+                      //   } else {
+                      //     echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
+                      //   }
+                      // }
               echo "
                 </div>
               </div>

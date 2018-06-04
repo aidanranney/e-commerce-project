@@ -1,8 +1,9 @@
 <?php
+session_start();
 $currentpage = 'logout';
 $title = 'Login Page';
-include ('header.php');
 include ('connection.php');
+include ('header.php');
 
 session_destroy();
 header("location:index.php");

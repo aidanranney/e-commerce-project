@@ -1,8 +1,9 @@
 <?php
+session_start();
 $currentpage = 'login';
 $title = 'Login Page';
-include ('header.php');
 include ('connection.php');
+include ('header.php');
 ?>
 <div class="container">
 <?php

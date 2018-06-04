@@ -1,8 +1,9 @@
 <?php
+session_start();
 $currentpage = 'addrecord';
 $title = "Add Record";
-include ('header.php');
 include ('connection.php');
+include ('header.php');
 ?>
 
 <script>
