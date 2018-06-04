@@ -19,7 +19,7 @@ include ('connection.php');
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-    <input name="USEREMAIL" placeholder="E-Mail Address" class="form-control"  type="text" id="USEREMAIL">
+    <input name="USEREMAIL" placeholder="E-Mail Address" class="form-control"  type="text" id="USEREMAIL" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$">
       </div>
     </div>
   </div>
@@ -160,74 +160,3 @@ include ('connection.php');
 </form>
 </div>
 </fieldset>
-
-<?php
-$flag = FALSE;
-
-if (isset($_POST['submit'])) {
-	$USEREMAIL = mysqli_real_escape_string($link, $_REQUEST['USEREMAIL']);
-	$firstName = mysqli_real_escape_string($link, $_REQUEST['firstName']);
-	$lastName = mysqli_real_escape_string($link, $_REQUEST['lastName']);
-	$DOB = $_POST['DOB'];
-	$password = mysqli_real_escape_string($link, $_REQUEST['password']);
-  $password2 = $_POST['password2'];
-	$address = mysqli_real_escape_string($link, $_REQUEST['address']);
-  $city = mysqli_real_escape_string($link, $_REQUEST['city']);
-  $province = mysqli_real_escape_string($link, $_REQUEST['province']);
-  $postal_code = mysqli_real_escape_string($link, $_REQUEST['postal_code']);
-	$phoneNumber = mysqli_real_escape_string($link, $_REQUEST['phoneNumber']);
-
-  if ($password == $password2){
-    $flag = TRUE;
-  }
-
-$salted = "456y45rghtrhfgr23441ldk3".$password."32490ffsll33";
-//created giberish values on either side of the password to further
-//secure the hashed password
-$hashed = hash('sha1', $salted);
-//password is hashed and salted for insertion into the database
-
-  if ($flag == TRUE) {
-    $emailQuery = "SELECT * FROM USER_ACCOUNT WHERE USEREMAIL='$USEREMAIL'" or die (mysqli_error());
-    $emailResult = mysqli_query($link, $emailQuery);
-    $email_count = $emailResult->num_rows;
-    if ($email_count == 0) {
-        $userQuery = "INSERT INTO USER_ACCOUNT (USEREMAIL, firstName, lastName, DOB, password, address, city, province, postal_code, phoneNumber) VALUES
-        ('$USEREMAIL', '$firstName', '$lastName', '$DOB', '$hashed', '$address', '$city', '$province', '$postal_code', '$phoneNumber')";
-
-          if(mysqli_query($link, $userQuery)){
-          echo "User account created.";
-          $_SESSION['useremail']=$USEREMAIL;
-
-          // if user tried to add a record before registering, add record and redirect to new cart.
-          if (isset($_POST['itemNumber'])) {
-            $item = $_POST['itemNumber'];
-            $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
-            VALUES (1, '$item', '$USEREMAIL')";
-              if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
-                echo "<p class='alert alert-success'>Record Added to your new cart!</p>";
-              } else {
-                echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
-              }
-            echo "<script>setTimeout(function() {
-          		window.location='cart.php';
-          	  }, 2000)</script>";
-          } else {
-            echo "<script>setTimeout(function() {
-        		window.location='index.php';
-        	  }, 2000)</script>";
-          }
-
-    } else {
-      echo "Error: Could not execute $userQuery." . mysqli_error($link);
-    }
-} else {
-echo "That user account is already in use.";
-  }
-} else {
-  echo "Your passwords do not match!";
-}
-}
-
-include ('footer.php');
-?>
