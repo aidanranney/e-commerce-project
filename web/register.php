@@ -5,52 +5,21 @@ include ('header.php');
 include ('connection.php');
 ?>
 
-<script>
-function validation() {
-
-// VALIDATION CODE HERE!
-
-if(document.getElementById('USEREMAIL').value ==''){
-  alert("You must include a valid Email Address");
-  return false;
-} if(document.getElementById('firstName').value ==''){
-  alert("Please include your first name");
-  return false;
-} if(document.getElementById('lastName').value ==''){
-	alert("Please include your first name");
-	return false;
-} if(document.getElementById('DOB').value < 1998-01-01){
-  alert("You must be at least 18 years old");
-  return false;
-} if(document.getElementById('password').value.length < 4){
-  alert("Password must have at least 4 characters");
-  return false;
-} if(document.getElementById('address').value ==''){
-	alert("Please include your address");
-	return false;
-} if(document.getElementById('city').value ==''){
-	alert("Please include your city");
-	return false;
-}if(document.getElementById('province').value ==''){
-	alert("Please include your province");
-	return false;
-}if(document.getElementById('postal_code').value ==''){
-  	alert("Please include your postal code");
-  	return false;
-  }
-}
-</script>
-
+<html>
+  <head>
+    <title>Register</title>
+    <script type="text/javascript" src='JS/scripts.js'></script>
+  </head>
 <fieldset>
 <div class="container">
-<form class="well form-horizontal" action="register.php" method="POST" onsubmit="return validation()">
+<form class="well form-horizontal" action="register.php" method="POST" onsubmit="return registrationValidation()">
 
   <div class="form-group">
     <label class="col-md-4 control-label">E-Mail</label>
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-    <input name="USEREMAIL" placeholder="E-Mail Address" class="form-control"  type="text">
+    <input name="USEREMAIL" placeholder="E-Mail Address" class="form-control"  type="text" id="USEREMAIL">
       </div>
     </div>
   </div>
@@ -60,7 +29,7 @@ if(document.getElementById('USEREMAIL').value ==''){
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input  name="firstName" placeholder="First Name" class="form-control"  type="text">
+    <input  name="firstName" placeholder="First Name" class="form-control"  type="text" id="firstName">
     </div>
   </div>
 </div>
@@ -70,7 +39,7 @@ if(document.getElementById('USEREMAIL').value ==''){
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input  name="lastName" placeholder="Last Name" class="form-control"  type="text">
+    <input  name="lastName" placeholder="Last Name" class="form-control"  type="text" id="lastName">
     </div>
   </div>
 </div>
@@ -80,7 +49,7 @@ if(document.getElementById('USEREMAIL').value ==''){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-  <input name="DOB" placeholder="Format: YYYY-MM-DD" class="form-control"  type="date">
+  <input name="DOB" placeholder="Format: YYYY-MM-DD" class="form-control"  type="date" id="DOB">
     </div>
   </div>
 </div>
@@ -90,7 +59,7 @@ if(document.getElementById('USEREMAIL').value ==''){
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-    <input name="password" placeholder="Password" class="form-control"  type="password">
+    <input name="password" placeholder="Password" class="form-control"  type="password" id="password">
       </div>
     </div>
   </div>
@@ -100,7 +69,7 @@ if(document.getElementById('USEREMAIL').value ==''){
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-    <input name="password2" placeholder="Repeat password" class="form-control"  type="password">
+    <input name="password2" placeholder="Repeat password" class="form-control"  type="password" id="password2">
       </div>
     </div>
   </div>
@@ -110,7 +79,7 @@ if(document.getElementById('USEREMAIL').value ==''){
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-    <input name="address" placeholder="Address" class="form-control"  type="text">
+    <input name="address" placeholder="Address" class="form-control"  type="text" id="address">
       </div>
     </div>
   </div></>
@@ -120,7 +89,7 @@ if(document.getElementById('USEREMAIL').value ==''){
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-    <input name="city" placeholder="city" class="form-control"  type="text">
+    <input name="city" placeholder="city" class="form-control"  type="text" id="city">
       </div>
     </div>
   </div>
@@ -157,7 +126,7 @@ if(document.getElementById('USEREMAIL').value ==''){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="postal_code" placeholder="Postal Code" class="form-control"  type="text">
+  <input name="postal_code" placeholder="Postal Code" class="form-control"  type="text" id="postal_code">
     </div>
   </div>
 </div>
