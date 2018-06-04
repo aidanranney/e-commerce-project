@@ -77,14 +77,3 @@ if(document.getElementById('USEREMAIL').value ==''){
 function validateCart() {
 
 }
-
-function getCartData(){
-  var itemNum = document.getElementsByName('remove');
-  var itemQuant = document.getElementsByName('quantity');
-  console.log(itemNum[0].value);
-  console.log(itemQuant[0].value);
-  /*$.post('cart.php', {itemId:itemNum,itemQuantity:itemQuant},//posts itemId and itemQuantity
-  function(data){
-    $('#result').html(data);
-  });*/
-}
