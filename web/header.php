@@ -38,7 +38,7 @@ and open the template in the editor.
 
 <!--List record categories from database-->
                       <?php
-                        $categories = mysqli_query($link,'select genre from GENRE');
+                        $categories = mysqli_query($link,'select genre from GENRE') or die("Error: ".mysqli_error($link));
                         echo "<li id='All'><a href='index.php'>All</a></li>";
                         if ($categories)   {
                           while ($result = mysqli_fetch_array($categories)) {
