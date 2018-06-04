@@ -113,7 +113,7 @@ if (isset($_SESSION['useremail'])) {
 											<input class='btn btn-danger remove-btn' type='submit' value='Remove Item'>
 											</form>
 											<div class='photo'>
-												<a href=''#''> <img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=100 width=100></a>
+												<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=100 width=100>
 											</div>
 											<p style='font-size:14pt'>" . $row['artist'] . " - " . $row['albumTitle'] . "</p>
 										</td>
@@ -177,7 +177,7 @@ if (isset($_SESSION['useremail'])) {
 									<tr style='text-align:right;'>
 									<td style='border-top: none;'></td>
 									<!-- <td style='border-top: none; '><input type='submit' name='update' value='Update Cart' class='btn btn-info' onclick="getCartData()"></td></td> -->
-									<td style='border-top: none;'><input type='submit' name='checkout' value='Checkout' class='btn btn-success '></td>
+									<td style='border-top: none;'><a href='#'><input type='submit' name='checkout' value='Checkout' class='btn btn-success '></a></td>
 									</tr>
 							</table>
 						</div>

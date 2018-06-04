@@ -20,6 +20,12 @@ if (isset($_GET['genre'])) {
   $result = mysqli_query($link, $query);
 }
 
+if (isset($_GET['addtocart']) && !isset($cartError)) {
+  echo "<p class='alert alert-success'>Record Added!</p>";
+} elseif (isset($cartError)) {
+  echo "<p class='alert alert-danger'>Something went wrong...</p>";
+}
+
 // Set page title
 if (isset($genre))   {
   echo "<h4>$genre Records</h4>";
@@ -38,11 +44,11 @@ if (mysqli_num_rows($result) > 0) {
          			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
               <div class='item-buttons'>
                 <div class='animated fadeInDown'>
-                  <button id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
-                  <span class='glyphicon glyphicon-plus'></span></button>
+                  <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
+                  <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a></button>
                   ";
-                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart'></span></a></div>";
+                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
+                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>";
                       if (isset($_GET['itemNumber']) && $_GET['itemNumber'] == $row['itemNumber']) {
                         if (isset($_SESSION['useremail'])) {
                           $email = $_SESSION['useremail'];
@@ -59,18 +65,16 @@ if (mysqli_num_rows($result) > 0) {
                             $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                             VALUES (1, '$item', '$email')";
                             if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
-                              echo "<p class='alert alert-success'>Record Added!</p>";
                             } else {
-                              echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
+                              $cartError = true;
                             }
                           } else {
                             $quantity = intval($cartrow['quantityOrdered']);
                             $quantity++;
-                            $incrementItem = "UPDATE SHOPPING_CART SET `quantityOrdered` = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
+                            $incrementItem = "UPDATE SHOPPING_CART SET quantityOrdered = $quantity WHERE USER_ACCOUNT_USEREMAIL = '$email' AND RECORD_itemNumber = $item";
                             if ((mysqli_query($link, $incrementItem)) or die("Error: ".mysqli_error($link))) {
-                              echo "<p class='alert alert-success'>Record Incremented!</p>";
                             } else {
-                              echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
+                              $cartError = true;
                             }
                           }
 
