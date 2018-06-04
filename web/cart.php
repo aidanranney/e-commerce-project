@@ -6,18 +6,6 @@ include ('connection.php');
 include ('header.php');
 ?>
 
-<!--
-Todo list:
-
-Remove item from cart
-Update cart quantity of items - mostly likely will have to be an update button.
-Basic checkout page.
-
-General visual and layout improvements.
-
-Note background-colors are only to help identify different elements.
--->
-
 <div class=container>
 <h1>Your Cart</h1>
 
