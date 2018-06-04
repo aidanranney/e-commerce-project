@@ -33,6 +33,7 @@ if (isset($_GET['itemNumber'])) {
       }
     }
   } else {
+    $login = true;
     echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
   }
 }
@@ -54,9 +55,10 @@ if (isset($_GET['genre'])) {
   $result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 }
 
-if (isset($_GET['addtocart']) && !isset($cartError)) {
+if (isset($_GET['addtocart']) && !isset($cartError) && !isset($login)) {
   echo "<p class='alert alert-success'>Record Added!</p>";
-} elseif (isset($cartError)) {
+}
+elseif (isset($cartError)) {
   echo "<p class='alert alert-danger'>Something went wrong...</p>";
 }
 
@@ -72,7 +74,7 @@ echo "<br>";
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
-          <div class='col-sm-3'>
+          <div class='col-xs-3'>
              <article class='col-item'>
               <div class='albumArtwork'>
          			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
@@ -87,7 +89,7 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
               </div>
          		<div class='info'>
-         				<div class='price-details col-md-10'>
+         				<div class='price-details col-xs-10'>
          					<div class='details'>"
          						. $row['quality'] . "
          					</div>
