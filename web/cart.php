@@ -127,7 +127,7 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 										<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
 										</td>
 										<td>
-												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' size='1'>
+												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' max='100' size='1'>
 										</td>
 										<input type='hidden' form='update' name='itemNumbers[]' value='" . $row['RECORD_itemNumber'] . "'>
 										<input type='hidden' form='removeAll' name='removeAll[]' value='" . $row['RECORD_itemNumber'] . "'>
