@@ -115,8 +115,6 @@ include ('header.php');
       <option>Yukon</option>
       <option>Northwest Territories</option>
       <option>Nunavut</option>
-      <option>New Brunswick</option>
-      <option>Prince Edward Island</option>
     </select>
   </div>
 </div>
