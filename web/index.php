@@ -82,26 +82,24 @@ if (mysqli_num_rows($result) > 0) {
                 <div class='animated fadeInDown'>
                   <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
                   <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a></button>
-                  ";
-                    echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>";
-              echo "
+                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
+                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>
                 </div>
               </div>
-         		<div class='info'>
-         				<div class='price-details col-xs-10'>
-         					<div class='details'>"
-         						. $row['quality'] . "
-         					</div>
+       		<div class='info'>
+       				<div class='price-details col-xs-10'>
+       					<div class='details'>"
+       						. $row['quality'] . "
+       					</div>
          					<div style='font-size:16pt'>" . $row['albumTitle'] . "</div>
                    <b>" . $row['artist'] . "</b>
                    <br>
          					<span class='price-new'>" . "$" . $row['PRICE'] . "</span>
                    <br>
                    <br>
-         				</div>
-         		</div>
-         	</article>
+         				  </div>
+       		      </div>
+         	    </article>
           </div>";
   }
 } else {

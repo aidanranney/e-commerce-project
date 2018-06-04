@@ -112,7 +112,6 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 			echo "<form id='removeAll' action='cart.php' method='post'></form>";
 			$result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 			while ($row = mysqli_fetch_array($result)) {
-				$numRows++;
 				echo "<tr>
 										<td>
 											<form action='cart.php' method='post'>
@@ -133,7 +132,7 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 										<input type='hidden' form='update' name='itemNumbers[]' value='" . $row['RECORD_itemNumber'] . "'>
 										<input type='hidden' form='removeAll' name='removeAll[]' value='" . $row['RECORD_itemNumber'] . "'>
 							</tr>";
-									$itemIndex++;
+									$numRows++;
 									$subtotal += $row['PRICE'] * $row['quantityOrdered'];
 					}
 					echo "<tr>
