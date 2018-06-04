@@ -1,8 +1,9 @@
 <?php
+session_start();
 $currentpage = 'registration';
 $title = 'Registration';
-include ('header.php');
 include ('connection.php');
+include ('header.php');
 
 $USEREMAIL = mysqli_real_escape_string($link, $_REQUEST['USEREMAIL']);
 $firstName = mysqli_real_escape_string($link, $_REQUEST['firstName']);

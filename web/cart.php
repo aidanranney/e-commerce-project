@@ -1,8 +1,9 @@
 <?php
+session_start();
 $currentpage = 'cart';
 $title = "Your cart";
-include ('header.php');
 include ('connection.php');
+include ('header.php');
 ?>
 
 <!--

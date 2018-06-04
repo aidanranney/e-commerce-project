@@ -1,8 +1,10 @@
 <?php
+session_start();
 $currentpage = 'login';
 $title = "Login";
-include ('header.php');
 include ('connection.php');
+include ('header.php');
+
 $useremail = $_POST['useremail'];
 $password = $_POST['password'];
 $salted = "456y45rghtrhfgr23441ldk3".$password."32490ffsll33";

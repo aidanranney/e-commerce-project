@@ -1,15 +1,19 @@
 <?php
+session_start();
 $currentpage = 'registration';
 $title = 'Registration';
-include ('header.php');
 include ('connection.php');
+include ('header.php');
 ?>
 
+<<<<<<< HEAD
 <html>
   <head>
     <title>Register</title>
     <script type="text/javascript" src='JS/scripts.js'></script>
   </head>
+=======
+>>>>>>> changed code on index page to make cart number update properly
 <fieldset>
 <div class="container">
 <form class="well form-horizontal" action="register.php" method="POST" onsubmit="return registrationValidation()">
@@ -160,3 +164,115 @@ include ('connection.php');
 </form>
 </div>
 </fieldset>
+<<<<<<< HEAD
+=======
+
+<?php
+$flag = FALSE;
+
+if (isset($_POST['submit'])) {
+	$USEREMAIL = mysqli_real_escape_string($link, $_REQUEST['USEREMAIL']);
+	$firstName = mysqli_real_escape_string($link, $_REQUEST['firstName']);
+	$lastName = mysqli_real_escape_string($link, $_REQUEST['lastName']);
+	$DOB = $_POST['DOB'];
+	$password = mysqli_real_escape_string($link, $_REQUEST['password']);
+  $password2 = $_POST['password2'];
+	$address = mysqli_real_escape_string($link, $_REQUEST['address']);
+  $city = mysqli_real_escape_string($link, $_REQUEST['city']);
+  $province = mysqli_real_escape_string($link, $_REQUEST['province']);
+  $postal_code = mysqli_real_escape_string($link, $_REQUEST['postal_code']);
+	$phoneNumber = mysqli_real_escape_string($link, $_REQUEST['phoneNumber']);
+
+  if ($password == $password2){
+    $flag = TRUE;
+  }
+
+$salted = "456y45rghtrhfgr23441ldk3".$password."32490ffsll33";
+//created giberish values on either side of the password to further
+//secure the hashed password
+$hashed = hash('sha1', $salted);
+//password is hashed and salted for insertion into the database
+
+  if ($flag == TRUE) {
+    $emailQuery = "SELECT * FROM USER_ACCOUNT WHERE USEREMAIL='$USEREMAIL'" or die (mysqli_error());
+    $emailResult = mysqli_query($link, $emailQuery);
+    $email_count = $emailResult->num_rows;
+    if ($email_count == 0) {
+        $userQuery = "INSERT INTO USER_ACCOUNT (USEREMAIL, firstName, lastName, DOB, password, address, city, province, postal_code, phoneNumber) VALUES
+        ('$USEREMAIL', '$firstName', '$lastName', '$DOB', '$hashed', '$address', '$city', '$province', '$postal_code', '$phoneNumber')";
+
+          if(mysqli_query($link, $userQuery)){
+          echo "User account created.";
+          $_SESSION['useremail']=$USEREMAIL;
+
+          // if user tried to add a record before registering, add record and redirect to new cart.
+          if (isset($_POST['itemNumber'])) {
+            $item = $_POST['itemNumber'];
+            $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
+            VALUES (1, '$item', '$USEREMAIL')";
+              if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
+                echo "<p class='alert alert-success'>Record Added to your new cart!</p>";
+              } else {
+                echo "<p class='alert alert-danger'>Something went wrong" . mysqli_error($link) . "</p>";
+              }
+            echo "<script>setTimeout(function() {
+          		window.location='cart.php';
+          	  }, 2000)</script>";
+          } else {
+            echo "<script>setTimeout(function() {
+        		window.location='index.php';
+        	  }, 2000)</script>";
+          }
+
+    } else {
+      echo "Error: Could not execute $userQuery." . mysqli_error($link);
+    }
+} else {
+echo "That user account is already in use.";
+  }
+} else {
+  echo "Your passwords do not match!";
+}
+}
+?>
+
+<script>
+function validation() {
+
+// VALIDATION CODE HERE!
+
+if(document.getElementById('USEREMAIL').value =='') {
+  alert("You must include a valid Email Address");
+  return false;
+} if(document.getElementById('firstName').value ==''){
+  alert("Please include your first name");
+  return false;
+} if(document.getElementById('lastName').value ==''){
+	alert("Please include your first name");
+	return false;
+} if(document.getElementById('DOB').value < 1998-01-01){
+  alert("You must be at least 18 years old");
+  return false;
+} if(document.getElementById('password').value.length < 4){
+  alert("Password must have at least 4 characters");
+  return false;
+} if(document.getElementById('address').value ==''){
+	alert("Please include your address");
+	return false;
+} if(document.getElementById('city').value ==''){
+	alert("Please include your city");
+	return false;
+}if(document.getElementById('province').value ==''){
+	alert("Please include your province");
+	return false;
+}if(document.getElementById('postal_code').value ==''){
+  	alert("Please include your postal code");
+  	return false;
+  }
+}
+</script>
+
+<?php
+include ('footer.php');
+?>
+>>>>>>> changed code on index page to make cart number update properly
