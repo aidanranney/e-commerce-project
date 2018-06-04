@@ -6,14 +6,11 @@ include ('connection.php');
 include ('header.php');
 ?>
 
-<<<<<<< HEAD
 <html>
   <head>
     <title>Register</title>
     <script type="text/javascript" src='JS/scripts.js'></script>
   </head>
-=======
->>>>>>> changed code on index page to make cart number update properly
 <fieldset>
 <div class="container">
 <form class="well form-horizontal" action="register.php" method="POST" onsubmit="return registrationValidation()">
