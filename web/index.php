@@ -43,7 +43,7 @@ if (mysqli_num_rows($result) > 0) {
                   ";
                     echo "<a href='index.php?itemNumber=" . $row['itemNumber'] . "' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart'></span></a></div>";
-                      if (isset($_GET['itemNumber'])) {
+                      if (isset($_GET['itemNumber']) && $_GET['itemNumber'] == $row['itemNumber']) {
                         if (isset($_SESSION['useremail'])) {
                           $email = $_SESSION['useremail'];
                           $item = $_GET['itemNumber'];
@@ -56,6 +56,7 @@ if (mysqli_num_rows($result) > 0) {
 
                           //If no rows returned, insert into cart. if a row is returned, update quantity ordered
                           if ($row_cnt == 0) {
+                            echo "this statment";
                             $addItem = "INSERT INTO SHOPPING_CART (quantityOrdered, RECORD_itemNumber, USER_ACCOUNT_USEREMAIL)
                             VALUES (1, '$item', '$email')";
                             if ((mysqli_query($link, $addItem)) or die("Error: ".mysqli_error($link))) {
