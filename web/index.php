@@ -77,13 +77,16 @@ if (mysqli_num_rows($result) > 0) {
           <div class='col-xs-3'>
              <article class='col-item'>
               <div class='albumArtwork'>
-         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
-              <div class='item-buttons'>
+         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>¥
                 <div class='animated fadeInDown'>
+                <div class='item-button'>
                   <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
-                  <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a></button>
-                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>
+                  <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a>
+                  </div>
+                  <div class='add-cart-button'>
+                    <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
+                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a>
+                    </div>
                 </div>
               </div>
        		<div class='info'>
