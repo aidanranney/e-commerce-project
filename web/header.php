@@ -101,7 +101,7 @@ and open the template in the editor.
               <?php
               if(isset($_SESSION['useremail'])) {
                 echo "<li ";
-                if($currentpage == 'cart') {
+                if($currentpage == 'orderhistory') {
                   echo 'class="active"';
                 }
                 echo " ><a href='orderhistory.php'>Order History</a>";
