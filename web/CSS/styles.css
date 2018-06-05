@@ -17,15 +17,11 @@ body {
   transform: scale(1.15);
 }
 
-.info-button {
+.item-buttons {
   display: none;
 }
 
-.add-cart-button {
-  display: none;
-}
-
-.albumArtwork:hover .add-cart-button {
+.albumArtwork:hover .item-buttons {
   display:block;
   position:absolute;
   top: 15%;
