@@ -193,8 +193,8 @@ $hashed = hash('sha1', $salted);
     $emailResult = mysqli_query($link, $emailQuery);
     $email_count = $emailResult->num_rows;
     if ($email_count == 0) {
-        $userQuery = "INSERT INTO USER_ACCOUNT (USEREMAIL, firstName, lastName, DOB, password, address, city, province, postal_code, phoneNumber) VALUES
-        ('$USEREMAIL', '$firstName', '$lastName', '$DOB', '$hashed', '$address', '$city', '$province', '$postal_code', '$phoneNumber')";
+        $userQuery = "INSERT INTO USER_ACCOUNT (USEREMAIL, firstName, lastName, DOB, password, address, city, province, postal_code, phoneNumber, last_login) VALUES
+        ('$USEREMAIL', '$firstName', '$lastName', '$DOB', '$hashed', '$address', '$city', '$province', '$postal_code', '$phoneNumber', NOW())";
 
           if(mysqli_query($link, $userQuery)){
           echo "User account created.";
