@@ -17,6 +17,8 @@ $row = @mysqli_query($link, $query);
 $admin = @mysqli_query($link, $adminquery);
 //check the result
 if (mysqli_num_rows($row) == 1) {
+        $addLog = "UPDATE USER_ACCOUNT SET last_login = CURDATE() WHERE USEREMAIL = '$useremail'";
+		mysqli_query($link, $addLog);
 	echo "<p>You have logged in successfully</p>";
 	$_SESSION['useremail']=$useremail;
 	$r = mysqli_fetch_array($admin);
