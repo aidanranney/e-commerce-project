@@ -80,7 +80,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class='animated fadeInDown'>
                   <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description' style='display: none;'>
                   <span class='glyphicon glyphicon-plus'></span>Info</a>
-                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
+                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info'>
                     <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span> Add</a>
                     </div>
                 </div>
