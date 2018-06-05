@@ -97,6 +97,16 @@ and open the template in the editor.
               }
             ?>><a href="register.php"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 
+<!--Order history  button-->
+              <?php
+              if(isset($_SESSION['useremail'])) {
+                echo "<li ";
+                if($currentpage == 'cart') {
+                  echo 'class="active"';
+                }
+                echo " ><a href='orderhistory.php'>Order History</a>";
+              } ?>
+
 <!--Create shopping cart icon, and list the number of current items inside of it.-->
             <?php
               $numItems=0;
