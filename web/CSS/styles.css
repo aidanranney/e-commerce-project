@@ -1,3 +1,13 @@
+body {
+  padding: 10px;
+}
+
+@media (min-width: 992px) {
+  .col-sm-3 {
+    height: 325px;
+  }
+}
+
 .albumArtwork {
     transition: transform .2s;
     margin: 0 auto;
@@ -19,20 +29,12 @@
   display:block;
   position:absolute;
   top: 15%;
-  right: 40%;
+  right: 30%;
 }
 
 .jumbotron {
   padding: 20px;
 }
-
-/* .checkout-btn {
-  align:right;
-  margin-top:5px;
-  margin-right:-8px;
-  padding: 5px;
-  border-top: 1px solid white;
-} */
 
 .tableDataRight {
   text-align: right;
@@ -51,6 +53,10 @@
   float:right;
   position: relative;
   right: 100px;
+}
+
+#shoppingCart {
+  font-size: 13px;
 }
 
 #mynav {

@@ -40,7 +40,7 @@ if (isset($_GET['itemNumber'])) {
 include ('header.php');
 ?>
 
-<div class='container-fluid'>
+<div class='container'>
 <?php
 
 // Check for genre request
@@ -74,35 +74,30 @@ echo "<br>";
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
-          <div class='col-xs-3'>
-             <article class='col-item'>
+          <div class='col-sm-3'>
               <div class='albumArtwork'>
          			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>¥
                 <div class='animated fadeInDown'>
-                <div class='item-button'>
-                  <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
-                  <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a>
-                  </div>
-                  <div class='add-cart-button'>
-                    <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a>
+                  <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description' style='display: none;'>
+                  <span class='glyphicon glyphicon-plus'></span>Info</a>
+                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
+                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span> Add</a>
+                    </div>
+                </div>
+                <div class='info'>
+                    <div class='price-details col-md-10'>
+                      <div class='details'>"
+                        . $row['quality'] . "
+                      </div>
+                      <div style='font-size:16pt'>" . $row['albumTitle'] . "</div>
+                       <b>" . $row['artist'] . "</b>
+                       <br>
+                      <span class='price-new'>" . "$" . $row['PRICE'] . "</span>
+                       <br>
+                       <br>
                     </div>
                 </div>
               </div>
-       		<div class='info'>
-       				<div class='price-details col-xs-10'>
-       					<div class='details'>"
-       						. $row['quality'] . "
-       					</div>
-         					<div style='font-size:16pt'>" . $row['albumTitle'] . "</div>
-                   <b>" . $row['artist'] . "</b>
-                   <br>
-         					<span class='price-new'>" . "$" . $row['PRICE'] . "</span>
-                   <br>
-                   <br>
-         				  </div>
-       		      </div>
-         	    </article>
           </div>";
   }
 } else {
