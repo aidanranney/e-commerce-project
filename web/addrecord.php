@@ -7,25 +7,25 @@ include ('header.php');
 ?>
 
 <div class="container">
-	<form class="well form-horizontal" action="addrecord.php" method="POST" onsubmit="return validateRecord()">
+	<form class="well form-horizontal" action="addrecord.php" method="POST" enctype='multipart/form-data' onsubmit="return validateRecord()">
 
 	  <div class="form-group">
 	    <label class="col-md-4 control-label">Artist</label>
 	      <div class="col-md-4 inputGroupContainer">
 	      <div class="input-group">
 	          <span class="input-group-addon"><i class="glyphicon glyphicon-headphones"></i></span>
-	    <input name="artist" placeholder="Record Artist" class="form-control"  type="text" id="artist">
+	    			<input name="artist" placeholder="Record Artist" class="form-control"  type="text" id="artist">
 	      </div>
 	    </div>
 	  </div>
 
-      		<div class="form-group">
+    <div class="form-group">
 		 <label class="col-md-4 control-label">Album Title</label>
 			 <div class="col-md-4 inputGroupContainer">
 			 <div class="input-group">
 					 <span class="input-group-addon"><i class="glyphicon glyphicon-cd"></i></span>
-		 <input name="albumTitle" placeholder="Album Title" class="form-control"  type="text" id="albumTitle">
-			 </div>
+		 		 	 <input name="albumTitle" placeholder="Album Title" class="form-control"  type="text" id="albumTitle">
+			</div>
 		 </div>
 	 </div>
 
@@ -94,17 +94,6 @@ include ('header.php');
 											 </div>
 									 </div>
 
-                                     	<div class="form-group">
-				<label class="col-md-4 control-label">Edition Number</label>
-						<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-								 <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-								 	  <input name="EDITIONNUMBER" placeholder="Edition Number" class="form-control"  type="number" min='1'>
-					  </div>
-						</div>
-			</div>
-
-
             	<div class="form-group">
 				<label class="col-md-4 control-label">Image Upload</label>
 						<div class="col-md-4 inputGroupContainer">
@@ -145,8 +134,7 @@ if (isset($_POST['submit'])) {
 	$PRICE = $_POST['PRICE'];
 	$RELEASEDATE = $_POST['RELEASEDATE'];
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
-	$EDITIONNUMBER = $_POST['EDITIONNUMBER'];
-	$description = htmlspecialchars($_POST['description']);
+	$description = mysqli_real_escape_string($link, $_POST['description']);
 	//$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
 
 	$error_code = $_FILES['albumArtwork']['error'];
@@ -194,9 +182,9 @@ if (isset($_POST['submit'])) {
 						$albumResult = mysqli_query($link, $albumQuery);
 						$album_count = $albumResult->num_rows;
 						if ($album_count == 0) {
-						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, PRICE, RELEASEDATE, quality, EDITIONNUMBER, albumArtwork, description) VALUES
-						('$artist', '$albumTitle', '$PRICE', '$RELEASEDATE', '$quality', '$EDITIONNUMBER', '$uploadFile', '$description')" or die(mysqli_error());
-						if(mysqli_query($link, $albumInsert)) {
+						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, PRICE, RELEASEDATE, quality, albumArtwork, description) VALUES
+						('$artist', '$albumTitle', '$PRICE', '$RELEASEDATE', '$quality', '$uploadFile', '$description')";
+						if(mysqli_query($link, $albumInsert)  or die(mysqli_error($link))) {
 							echo "<p>Record added</p>";
 
 							//add data to RECORD_CATEGORY
