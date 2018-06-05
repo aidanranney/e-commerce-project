@@ -35,6 +35,11 @@ if (isset($_SESSION['useremail'])) {
 				ORDER BY i.invoiceID DESC";
 	$result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 	while ($row = mysqli_fetch_array($result)) {
+		if($row['quantity'] > 1){
+			$perEach = "($" . $row['price'] . " ea.)";
+		}else{
+			$perEach = "";
+		}
 		echo "<tr>";
 			if($currentOrder != $row['invoiceID']){//Display order # if start of new Order
 				$currentOrder = $row['invoiceID'];
@@ -57,6 +62,7 @@ if (isset($_SESSION['useremail'])) {
 				</td>
 				<td>
 					<p>$" . $row['price'] * $row['quantity'] . "</p>
+					<p>$perEach</p>
 				</td>
 				<td>
 					<p>" . $row['quantity'] . "</p>

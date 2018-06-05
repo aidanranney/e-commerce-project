@@ -98,8 +98,9 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 
 		$subtotal = 0;
 		$total = 0;
-		$ship = 5.00;
-		$tax = 0;
+		$shipCost = 5.00;
+		$pstTax = 0;
+		$hstTax = 0;
 		$items = 0;
 		if (isset($_SESSION['useremail'])) {
 			$numRows = 0;
@@ -112,6 +113,11 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 			echo "<form id='removeAll' action='cart.php' method='post'></form>";
 			$result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 			while ($row = mysqli_fetch_array($result)) {
+				if($row['quantityOrdered'] > 1){
+					$perEach = "($" . $row['PRICE'] . " ea.)";
+				}else{
+					$perEach = "";
+				}
 				echo "<tr>
 										<td>
 											<form action='cart.php' method='post'>
@@ -125,6 +131,7 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 										</td>
 										<td>
 										<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
+										<p>$perEach<p>
 										</td>
 										<td>
 												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' max='100' size='1'>
@@ -134,7 +141,8 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 							</tr>";
 									$numRows++;
 									$subtotal += $row['PRICE'] * $row['quantityOrdered'];
-					}
+									$shipCost += 0.07 * $row['quantityOrdered'];
+			}
 					echo "<tr>
 								<td>";
 									if ($numRows > 0) {
@@ -153,9 +161,12 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 								</table>
 				</div>";
 				// end of left side table
-
-				$tax = round($subtotal * 0.08, 2);
-				$total = $subtotal + $ship + $tax;
+				if($numRows == 0){
+					$shipCost = 0;
+				}
+				$pstTax = round($subtotal * 0.05, 2);
+				$hstTax = round($subtotal * 0.07, 2);
+				$total = $subtotal + $shipCost + $pstTax + $hstTax;
 		}
 
 ?>
@@ -170,11 +181,15 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 									</tr>
 									<tr>
 									<td style='border-top: none;'><strong>Est. Shipping:</strong></td>
-									<td style='text-align:right; border-top: none;'>$<?php echo $ship ?></td>
+									<td style='text-align:right; border-top: none;'>$<?php echo $shipCost ?></td>
 									</tr>
 									<tr>
-									<td style='border-top: none; padding-bottom: 20px'><strong>Taxes:</strong></td>
-									<td style='text-align:right; border-top: none; padding-bottom: 20px'>$<?php echo $tax ?></td>
+									<td style='border-top: none;'><strong>HST:</strong></td>
+									<td style='text-align:right; border-top: none;'>$<?php echo $hstTax ?></td>
+									</tr>
+									<tr>
+									<td style='border-top: none; padding-bottom: 20px'><strong>PST:</strong></td>
+									<td style='text-align:right; border-top: none; padding-bottom: 20px'>$<?php echo $pstTax ?></td>
 									</tr>
 									<tr>
 									<td style='border-top: 1px solid black;'><strong>Total:</strong></td>
