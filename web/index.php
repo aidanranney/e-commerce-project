@@ -33,6 +33,7 @@ if (isset($_GET['itemNumber'])) {
       }
     }
   } else {
+    $login = true;
     echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
   }
 }
@@ -48,15 +49,16 @@ if (isset($_GET['genre'])) {
   $query = "select * from RECORD where itemNumber IN
 	   (SELECT RECORD_itemNumber from RECORD_CATEGORY where GENRE_genreID IN
      (SELECT genreID from GENRE where genre = '$genre'))";
-  $result = mysqli_query($link, $query);
+  $result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 } else {
   $query = "select * from RECORD";
-  $result = mysqli_query($link, $query);
+  $result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 }
 
-if (isset($_GET['addtocart']) && !isset($cartError)) {
+if (isset($_GET['addtocart']) && !isset($cartError) && !isset($login)) {
   echo "<p class='alert alert-success'>Record Added!</p>";
-} elseif (isset($cartError)) {
+}
+elseif (isset($cartError)) {
   echo "<p class='alert alert-danger'>Something went wrong...</p>";
 }
 
@@ -74,8 +76,7 @@ if (mysqli_num_rows($result) > 0) {
           echo "
           <div class='col-sm-3'>
               <div class='albumArtwork'>
-         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
-              <div class='item-buttons'>
+         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>¥
                 <div class='animated fadeInDown'>
                   <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description' style='display: none;'>
                   <span class='glyphicon glyphicon-plus'></span>Info</a>

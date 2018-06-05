@@ -6,14 +6,11 @@ include ('connection.php');
 include ('header.php');
 ?>
 
-<<<<<<< HEAD
 <html>
   <head>
     <title>Register</title>
     <script type="text/javascript" src='JS/scripts.js'></script>
   </head>
-=======
->>>>>>> changed code on index page to make cart number update properly
 <fieldset>
 <div class="container">
 <form class="well form-horizontal" action="register.php" method="POST" onsubmit="return registrationValidation()">
@@ -118,8 +115,6 @@ include ('header.php');
       <option>Yukon</option>
       <option>Northwest Territories</option>
       <option>Nunavut</option>
-      <option>New Brunswick</option>
-      <option>Prince Edward Island</option>
     </select>
   </div>
 </div>
@@ -130,7 +125,7 @@ include ('header.php');
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="postal_code" placeholder="Postal Code" class="form-control"  type="text" id="postal_code">
+  <input name="postal_code" placeholder="Postal Code" class="form-control"  type="text" id="postal_code" pattern="^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$">
     </div>
   </div>
 </div>
@@ -140,7 +135,7 @@ include ('header.php');
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-    <input name="phoneNumber" placeholder="(250)555-5555" class="form-control" type="text">
+    <input name="phoneNumber" placeholder="(250)555-5555" class="form-control" type="text" pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$">
       </div>
     </div>
   </div>

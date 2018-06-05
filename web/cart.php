@@ -3,13 +3,6 @@ session_start();
 $currentpage = 'cart';
 $title = "Your cart";
 include ('connection.php');
-include ('header.php');
-?>
-
-<div class=container>
-<h1>Your Cart</h1>
-
-<?php
 if (isset($_SESSION['useremail'])) {
 	$email = $_SESSION['useremail'];
 
@@ -20,9 +13,8 @@ if (isset($_SESSION['useremail'])) {
 										WHERE RECORD_itemNumber = " .  $removedItem . "
 										AND USER_ACCOUNT_USEREMAIL = '$email'";
 		if(mysqli_query($link, $removeQuery) or die("Error: ".mysqli_error($link))){
-			echo "<p class='alert alert-danger'>Item removed from cart!</p>";
 		}else {
-			echo "<p class='alert alert-danger'>There was a problem removing your items!</p>";
+			$error = true;
 		}
 	}
 
@@ -38,11 +30,6 @@ if (isset($_SESSION['useremail'])) {
 				$error = true;
 			}
 		}
-		if (isset($error)) {
-			echo "<p class='alert alert-danger'>There was a problem removing your items</p>";
-		} else {
-			echo "<p class='alert alert-danger'>Items removed!</p>";
-		}
 	}
 
 	// Update item(s) code
@@ -56,6 +43,37 @@ if (isset($_SESSION['useremail'])) {
 				$error = true;
 			}
 		}
+	}
+}
+include ('header.php');
+?>
+
+<div class=container>
+<h1>Your Cart</h1>
+
+<?php
+if (isset($_SESSION['useremail'])) {// Display Alerts
+
+	// Display Remove single item
+	if (!empty($_POST['remove'])) {
+		if (isset($error)) {
+			echo "<p class='alert alert-danger'>There was a problem removing your items!</p>";
+		} else {
+			echo "<p class='alert alert-danger'>Item removed from cart!</p>";
+		}
+	}
+
+	// Display Remove all items
+	if(!empty($_POST['removeAll'])) {
+		if (isset($error)) {
+			echo "<p class='alert alert-danger'>There was a problem removing your items</p>";
+		} else {
+			echo "<p class='alert alert-danger'>Items removed!</p>";
+		}
+	}
+
+	// Display Update item(s)
+	if(!empty($_POST['quantities'])) {
 		if (isset($error)) {
 			echo "<p class='alert alert-danger'>There was a problem updating your items</p>";
 		} else {
@@ -92,9 +110,8 @@ if (isset($_SESSION['useremail'])) {
 					AND sc.USER_ACCOUNT_USEREMAIL = '$email'";
 			echo "<form id='update' action='cart.php' method='post'></form>";
 			echo "<form id='removeAll' action='cart.php' method='post'></form>";
-			$result = mysqli_query($link, $query);
+			$result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 			while ($row = mysqli_fetch_array($result)) {
-				$numRows++;
 				echo "<tr>
 										<td>
 											<form action='cart.php' method='post'>
@@ -110,12 +127,12 @@ if (isset($_SESSION['useremail'])) {
 										<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
 										</td>
 										<td>
-												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' size='1'>
+												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' max='100' size='1'>
 										</td>
 										<input type='hidden' form='update' name='itemNumbers[]' value='" . $row['RECORD_itemNumber'] . "'>
 										<input type='hidden' form='removeAll' name='removeAll[]' value='" . $row['RECORD_itemNumber'] . "'>
 							</tr>";
-									$itemIndex++;
+									$numRows++;
 									$subtotal += $row['PRICE'] * $row['quantityOrdered'];
 					}
 					echo "<tr>
@@ -165,7 +182,6 @@ if (isset($_SESSION['useremail'])) {
 									</tr>
 									<tr style='text-align:right;'>
 									<td style='border-top: none;'></td>
-									<!-- <td style='border-top: none; '><input type='submit' name='update' value='Update Cart' class='btn btn-info' onclick="getCartData()"></td></td> -->
 									<td style='border-top: none;'><a href='#'><input type='submit' name='checkout' value='Checkout' class='btn btn-success '></a></td>
 									</tr>
 							</table>
