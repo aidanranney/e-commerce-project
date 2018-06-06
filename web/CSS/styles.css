@@ -2,6 +2,10 @@ body {
   padding: 10px;
 }
 
+.nav-wrapper {
+  min-height:57px;
+}
+
 .albumArtwork {
     transition: transform .2s;
     margin: 0 auto;
