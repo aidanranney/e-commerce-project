@@ -89,8 +89,8 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 	<table class=table>
 	<tr>
 		<th class=col-sm-6 style="padding-bottom:10px"><h4>Item</h4></th>
-		<th class=col-sm-4 style="padding-bottom:10px"><h4>Price</h4></th>
-		<th class=col-sm-2 style="padding-bottom:10px"><h4>Quantity</h4></th>
+		<th class=col-sm-4 style="padding-bottom:10px"><h4>Quantity</h4></th>
+		<th class=col-sm-2 style="padding-bottom:10px"><h4>Price</h4></th>
 	</tr>
 
 <?php
@@ -130,11 +130,11 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 											<p style='font-size:14pt'>" . $row['artist'] . " - " . $row['albumTitle'] . "</p>
 										</td>
 										<td>
-										<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
-										<p>$perEach<p>
+											<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' max='100' size='1'>
 										</td>
 										<td>
-												<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' max='100' size='1'>
+											<p>$" . $row['PRICE'] * $row['quantityOrdered'] . "</p>
+											<p>$perEach<p>
 										</td>
 										<input type='hidden' form='update' name='itemNumbers[]' value='" . $row['RECORD_itemNumber'] . "'>
 										<input type='hidden' form='removeAll' name='removeAll[]' value='" . $row['RECORD_itemNumber'] . "'>
@@ -146,16 +146,16 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 					echo "<tr>
 								<td>";
 									if ($numRows > 0) {
-										echo "<input class='btn btn-danger remove-btn' type='submit' form='removeAll' value='Remove All' style='margin-right:100px;'>";
+										echo "<input class='btn btn-danger remove-btn' type='submit' form='removeAll' value='Remove All'>";
 									}
 					echo "</td>
-								<td>
-								</td>
-									<td>";
-									if ($numRows > 0) {
-										echo "<input class='btn btn-primary' form='update' type='submit' value='Update Order' style='float:right;'>";
-									}
-					echo "<p align='right'>   Subtotal: <strong>$$subtotal</strong></p>
+								<td>";
+								if ($numRows > 0) {
+									echo "<input class='btn btn-primary' form='update' type='submit' value='Update Order'>";
+								}
+					echo	"</td>
+									<td>
+									<p>Subtotal: <strong>$$subtotal</strong></p>
 								</td>
 								<tr>
 								</table>
