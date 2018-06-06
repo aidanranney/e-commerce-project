@@ -159,8 +159,6 @@ include ('header.php');
 </form>
 </div>
 </fieldset>
-<<<<<<< HEAD
-=======
 
 <?php
 $flag = FALSE;
@@ -270,4 +268,3 @@ if(document.getElementById('USEREMAIL').value =='') {
 <?php
 include ('footer.php');
 ?>
->>>>>>> changed code on index page to make cart number update properly

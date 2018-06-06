@@ -3,13 +3,11 @@ $(document).ready(function(){
 
     $(window).scroll(function () {
 
-    console.log($(window).scrollTop());
-
-    if ($(window).scrollTop() > 218) {
+    if ($(window).scrollTop() > $('#myheader').height()) {
       $('#mynav').addClass('navbar-fixed-top');
     }
 
-    if ($(window).scrollTop() < 219) {
+    if ($(window).scrollTop() < $('#myheader').height()) {
       $('#mynav').removeClass('navbar-fixed-top');
     }
     });
