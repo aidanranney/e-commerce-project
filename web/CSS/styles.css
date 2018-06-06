@@ -2,12 +2,6 @@ body {
   padding: 10px;
 }
 
-@media (min-width: 992px) {
-  .col-sm-3 {
-    height: 325px;
-  }
-}
-
 .albumArtwork {
     transition: transform .2s;
     margin: 0 auto;
@@ -57,10 +51,6 @@ body {
 
 #mynav {
   background: rgba(0,0,0,.85);
-}
-
-#mynav, .nav-wrapper {
-  height:52px;
 }
 
 #mynav, .nav-wrapper {
