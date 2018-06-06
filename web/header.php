@@ -20,10 +20,10 @@ and open the template in the editor.
         <script type="text/javascript" src='JS/scripts.js'></script>
     </head>
     <body>
-    <div class="container-fluid myheader">
+    <div class="container-fluid" id="myheader">
       <div class="jumbotron">
-        <h1>Mick's Licks</h1>
-        <p>Buy used and new records on the internet, from my garage.</p>
+        <img src="../images/logo.png" style="max-height:300px; max-width:300px;">
+        <p style="display: inline-block; font-size: 22pt;">Buy used and new records on the internet, from my garage.</p>
       </div>
     </div>
 

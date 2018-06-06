@@ -195,9 +195,20 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 									<td style='border-top: 1px solid black;'><strong>Total:</strong></td>
 									<td style='text-align:right; border-top: 1px solid black;'><strong>$<?php echo $total ?></strong></td>
 									</tr>
-									<tr style='text-align:right;'>
-									<td style='border-top: none;'></td>
-									<td style='border-top: none;'><a href='#'><input type='submit' name='checkout' value='Checkout' class='btn btn-success '></a></td>
+									<tr>
+									<td style='border-top: none;'>
+
+									<?php require_once('./config.php'); ?>
+
+									<form action="charge.php" method="post">
+										<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+														data-key="<?php echo $stripe['publishable_key']; ?>"
+														data-description="Access for a year"
+														data-image="../images/logo_small.png"
+														data-amount="5000"
+														data-locale="auto"></script>
+									</td>
+									</form>
 									</tr>
 							</table>
 						</div>
