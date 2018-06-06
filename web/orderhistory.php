@@ -32,7 +32,7 @@ if (isset($_SESSION['useremail'])) {
 				WHERE i.invoiceID=ip.INVOICE_invoiceID
 				AND ip.RECORD_itemNumber=r.itemNumber
 				AND i.USER_ACCOUNT_USEREMAIL = '$email'
-				ORDER BY i.invoiceID DESC";
+				ORDER BY i.invoiceID DESC, r.artist";
 	$result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 	while ($row = mysqli_fetch_array($result)) {
 		if($row['quantity'] > 1){
@@ -49,9 +49,9 @@ if (isset($_SESSION['useremail'])) {
 				<td><p>" . $row['orderStatus'] . "</p></td>";
 			}else{//Blank table cells for spacing of table
 				echo"
-				<td></td>
-				<td></td>
-				<td></td>";
+				<td style='border-color: white;'></td>
+				<td style='border-color: white;'></td>
+				<td style='border-color: white;'></td>";
 			}
 				echo"
 				<td>
