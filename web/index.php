@@ -44,10 +44,9 @@ include ('header.php');
 <?php
 if (isset($_SESSION['privacy'])) {
   if($_SESSION['privacy']=='N') {
-  echo $_SESSION['privacy'] . "
-<div class='container'>
-  <div class='row'>
-        <div class='modal'>
+    echo $_SESSION['privacy'] . "
+
+        <div class='modal' id='modal' style='display:block;'>
           <div class='modal-dialog'>
             <div class='modal-content'>
               <div class='modal-header'>
@@ -58,19 +57,33 @@ if (isset($_SESSION['privacy'])) {
               </div>
               <div class='modal-footer'>
                 <p>Questions or Concerns, Contact Us <a href='mailto:mick.lick.records@gmail.com?Subject=Terms%20And%20Contions'>Here</a></p>
-                <button type='submit' name='accept' value='accept' class='btn btn-primary' data-dismiss='modal'> Accept <span class='glyphicon glyphicon-ok-circle'></span></button>
-                <button type='submit' name='decline' value='decline' class='btn btn-default'> Decline <span class='glyphicon glyphicon-ban-circle'></span></button>
+                <form action='index.php' method='POST'>
+                <button type='submit' name='accept' value='accept' class='btn btn-primary'> Accept <span class='glyphicon glyphicon-ok-circle'></span></button>
+                <button type='submit' id='decline' name='decline' value='decline' class='btn btn-default' onclick='dismiss()'> Decline <span class='glyphicon glyphicon-ban-circle'></span></button>
+                </form>
               </div>
             </div>
           </div>
-        </div>
-  </div>
-</div>";
+        </div>";
 } else {
+  echo "Welcome!";
 }
+}
+
+if (isset($_POST['accept'])) {
+  if ($_POST['accept'] == "accept") {
+    $pQuery = "UPDATE USER_ACCOUNT SET privCheck = 'Y'
+                WHERE USEREMAIL = '$email'";
+    mysqli_query($link, $pQuery);
+  }
+}
+
+if (isset($_POST['decline'])) {
+  if ($_POST['decline'] == "decline") {
+    session_destroy();
+  }
 }
 ?>
-
 
 <div class='container-fluid'>
 <?php
@@ -106,20 +119,20 @@ echo "<br>";
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
-          <div class='col-xs-3'>
+          <div class='col-sm-3'>
              <article class='col-item'>
               <div class='albumArtwork'>
          			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
               <div class='item-buttons'>
                 <div class='animated fadeInDown'>
-                  <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
+                  <a href='#' id='itemDescription' class='btn btn-info' title='Click for album description'>
                   <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a></button>
-                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
+                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>
                 </div>
               </div>
        		<div class='info'>
-       				<div class='price-details col-xs-10'>
+       				<div class='price-details col-sm-10'>
        					<div class='details'>"
        						. $row['quality'] . "
        					</div>

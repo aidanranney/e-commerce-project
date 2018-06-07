@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    setTimeout(function(){
-      $('.alert-danger').fadeOut();
-      $('.alert-success').fadeOut();
-    }, 2000);
+
+  setTimeout(function(){
+    $('.alert-danger').fadeOut();
+    $('.alert-success').fadeOut();
+  }, 2000);
 });
 
 window.onscroll = function() {stickyNav()};
@@ -10,7 +11,7 @@ window.onscroll = function() {stickyNav()};
   var navbar = document.getElementById("nav");
   var sticky = nav.offsetTop;
 
-  function  stickyNav() {
+function  stickyNav() {
     if (window.pageYOffset >= sticky) {
       $('#nav').addClass('navbar-fixed-top');
     } else {
@@ -39,8 +40,6 @@ function validateRecord() {
 }
 
 function registrationValidation() {
-
-// VALIDATION CODE HERE!
 
 if(document.getElementById('USEREMAIL').value ==''){
   alert("You must include a valid Email Address");
@@ -74,4 +73,11 @@ if(document.getElementById('USEREMAIL').value ==''){
 
 function validateCart() {
 
+}
+
+function dismiss() {
+  var decline = document.getElementById('decline');
+  decline.onclick = function() {
+    document.getElementById('modal').style.display = "none";
+  }
 }
