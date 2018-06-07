@@ -42,9 +42,9 @@ include ('header.php');
 
 
 <?php
-if (isset($_SESSION['privCheck'])) {
-  if($_SESSION['privCheck']!='Y'){
-  echo"
+if (isset($_SESSION['privacy'])) {
+  if($_SESSION['privacy']=='N') {
+  echo $_SESSION['privacy'] . "
 <div class='container'>
   <div class='row'>
         <div class='modal'>
@@ -66,10 +66,8 @@ if (isset($_SESSION['privCheck'])) {
         </div>
   </div>
 </div>";
-}
 } else {
-  echo "Welcome";
-
+}
 }
 ?>
 
