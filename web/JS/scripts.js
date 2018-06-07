@@ -1,14 +1,13 @@
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
 
     $(window).scroll(function () {
 
     if ($(window).scrollTop() > $('#myheader').height()) {
-      $('#mynav').addClass('navbar-fixed-top');
+      $('#navbar-header').addClass('navbar-fixed-top');
     }
 
     if ($(window).scrollTop() < $('#myheader').height()) {
-      $('#mynav').removeClass('navbar-fixed-top');
+      $('#navbar-header').removeClass('navbar-fixed-top');
     }
     });
 

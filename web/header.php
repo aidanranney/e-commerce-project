@@ -27,15 +27,20 @@ and open the template in the editor.
       </div>
     </div>
 
-    <div class="nav-wrapper">
-        <nav class="navbar navbar-inverse" id="mynav" role="navigation">
-          <div class="container-fluid">
+        <nav class="navbar navbar-inverse" role="navigation" id="navbar">>
+          <div class='navbar-header'>
+            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#mynav'>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+            </button>
+          </div>
+          <div class='collapse navbar-collapse' id='mynav'>>
           <ul class="nav navbar-nav">
             <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genres
                   <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-
 <!--List record categories from database-->
                       <?php
                         $categories = mysqli_query($link,'select genre from GENRE') or die("Error: ".mysqli_error($link));
@@ -128,10 +133,9 @@ and open the template in the editor.
               }
             ?>
             </li>
-            </ul>
-            </div>
+          </ul>
+          </div>
         </nav>
-      </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 <br>
