@@ -22,7 +22,7 @@ and open the template in the editor.
     <body>
     <div class="container-fluid" id="myheader">
       <div class="jumbotron">
-        <img src="../images/logo.png" style="max-height:300px; max-width:300px;">
+        <img src="../images/logo.png" style="max-height:250px; max-width:250px;">
         <p style="display: inline-block; font-size: 22pt;">Buy used and new records on the internet, from my garage.</p>
       </div>
     </div>
