@@ -33,14 +33,46 @@ if (isset($_GET['itemNumber'])) {
       }
     }
   } else {
-    $loginRedirect = true;
+    $login = true;
     echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
   }
 }
 include ('header.php');
 ?>
 
+
+<?php
+if (isset($_SESSION['privacy'])) {
+  if($_SESSION['privacy']=='N') {
+  echo $_SESSION['privacy'] . "
 <div class='container'>
+  <div class='row'>
+        <div class='modal'>
+          <div class='modal-dialog'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <h4 class='modal-title'>Our Terms of Use Have Changed</h4>
+              </div>
+              <div class='modal-body'>
+                <p><embed src='https://termsfeed.com/terms-conditions/3fc9f955d476a5bf9ca69d4c91d23b6f' frameborder='100' width='100%' length='400px' height='500px'></p>
+              </div>
+              <div class='modal-footer'>
+                <p>Questions or Concerns, Contact Us <a href='mailto:mick.lick.records@gmail.com?Subject=Terms%20And%20Contions'>Here</a></p>
+                <button type='submit' name='accept' value='accept' class='btn btn-primary' data-dismiss='modal'> Accept <span class='glyphicon glyphicon-ok-circle'></span></button>
+                <button type='submit' name='decline' value='decline' class='btn btn-default'> Decline <span class='glyphicon glyphicon-ban-circle'></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>";
+} else {
+}
+}
+?>
+
+
+<div class='container-fluid'>
 <?php
 
 // Check for genre request
@@ -49,15 +81,16 @@ if (isset($_GET['genre'])) {
   $query = "select * from RECORD where itemNumber IN
 	   (SELECT RECORD_itemNumber from RECORD_CATEGORY where GENRE_genreID IN
      (SELECT genreID from GENRE where genre = '$genre'))";
-  $result = mysqli_query($link, $query);
+  $result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 } else {
   $query = "select * from RECORD";
-  $result = mysqli_query($link, $query);
+  $result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
 }
 
-if (isset($_GET['addtocart']) && !isset($cartError) && !isset($loginRedirect)) {
+if (isset($_GET['addtocart']) && !isset($cartError) && !isset($login)) {
   echo "<p class='alert alert-success'>Record Added!</p>";
-} elseif (isset($cartError)) {
+}
+elseif (isset($cartError)) {
   echo "<p class='alert alert-danger'>Something went wrong...</p>";
 }
 
@@ -73,31 +106,32 @@ echo "<br>";
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result)) {
           echo "
-          <div class='col-sm-3'>
+          <div class='col-xs-3'>
+             <article class='col-item'>
               <div class='albumArtwork'>
          			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
               <div class='item-buttons'>
                 <div class='animated fadeInDown'>
-                  <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description' style='display: none;'>
-                  <span class='glyphicon glyphicon-plus'></span>Info</a>
+                  <a href='#' id='itemDescription' class='btn btn-info' data-toggle='tooltip' title='Click for album description'>
+                  <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a></button>
                   <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' data-toggle='tooltip' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span> Add</a>
-                    </div>
-                </div>
-                <div class='info'>
-                    <div class='price-details col-md-10'>
-                      <div class='details'>"
-                        . $row['quality'] . "
-                      </div>
-                      <div style='font-size:16pt'>" . $row['albumTitle'] . "</div>
-                       <b>" . $row['artist'] . "</b>
-                       <br>
-                      <span class='price-new'>" . "$" . $row['PRICE'] . "</span>
-                       <br>
-                       <br>
-                    </div>
+                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>
                 </div>
               </div>
+       		<div class='info'>
+       				<div class='price-details col-xs-10'>
+       					<div class='details'>"
+       						. $row['quality'] . "
+       					</div>
+         					<div style='font-size:16pt'>" . $row['albumTitle'] . "</div>
+                   <b>" . $row['artist'] . "</b>
+                   <br>
+         					<span class='price-new'>" . "$" . $row['PRICE'] . "</span>
+                   <br>
+                   <br>
+         				  </div>
+       		      </div>
+         	    </article>
           </div>";
   }
 } else {
