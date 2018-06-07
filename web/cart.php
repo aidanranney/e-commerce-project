@@ -203,10 +203,11 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 									<form action="charge.php" method="post">
 										<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 														data-key="<?php echo $stripe['publishable_key']; ?>"
-														data-description="Access for a year"
+														data-description="<?php echo 'Payment Form'; ?>"
 														data-image="../images/logo_small.png"
-														data-amount="5000"
+														data-amount="<?php echo $total*100; ?>"
 														data-locale="auto"></script>
+										<input type="hidden" name="totalCart" value="<?php echo $total*100 ?>">
 									</td>
 									</form>
 									</tr>
