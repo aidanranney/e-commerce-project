@@ -6,36 +6,54 @@
   include ('header.php');
   require_once('./config.php');
 
-  $token  = $_POST['stripeToken'];
-  $email  = $_POST['stripeEmail'];
+if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
+	//Stripe data
+	$token  = $_POST['stripeToken'];
+	$email  = $_POST['stripeEmail'];
 
-  $totalCart = $_POST['totalCart'];
+	$totalCart = $_POST['totalCart'];
 
-  $customer = \Stripe\Customer::create(array(
+	$customer = \Stripe\Customer::create(array(
       'email' => $email,
       'source'  => $token
-  ));
+	));
 
-  $charge = \Stripe\Charge::create(array(
+	$charge = \Stripe\Charge::create(array(
       'customer' => $customer->id,
       'amount'   => $totalCart,
       'currency' => 'cad'
   ));
 
-  if (isset($_SESSION['useremail'])) {
-      $email = $_SESSION['useremail'];
-  // ToDo:
-    // -- ToDo: insert into invoice table the data from the shopping cart
+    $email = $_SESSION['useremail'];
+    // -- insert into invoice table the data from the shopping cart
+	$insertInvoice = "INSERT INTO INVOICE (purchaseDate, orderStatus, USER_ACCOUNT_USEREMAIL) 
+						VALUES (now(), 'processing', '$email');";
+	if(mysqli_query($link, $insertInvoice) or die("Error: ".mysqli_error($link))){
+	}else {
+			$error = true;
+	}
+	
+	$invoiceNum = mysqli_insert_id($link);//get last auto generated id
+	
+	$getCartQuery = "SELECT sc.RECORD_itemNumber, r.PRICE, sc.quantityOrdered
+					FROM SHOPPING_CART sc, RECORD r
+					WHERE sc.RECORD_itemNumber=r.itemNumber
+					AND USER_ACCOUNT_USEREMAIL = '$email';";
+	$result = mysqli_query($link, $getCartQuery) or die("Error: ".mysqli_error($link));
+    while ($row = mysqli_fetch_array($result)) {
+		$insertItems = "INSERT INTO INVOICE_PRODUCT (RECORD_itemNumber, INVOICE_invoiceID, price, quantity)
+											VALUES (" . $row['RECORD_itemNumber'] . ", $invoiceNum," . $row['PRICE'] . "," . $row['quantityOrdered'] . ")";
+		if(mysqli_query($link, $insertItems) or die("Error: ".mysqli_error($link))){
+		}else {
+				$error = true;
+		}
+    }
 
-    // -- ToDo: write to html page the data from the invoice table
-
-
-
+    // -- write to html page the data from the invoice table
           //get invoice id and purchase date
           $query = "SELECT * FROM INVOICE
                       WHERE USER_ACCOUNT_USEREMAIL = '$email'
-                      AND purchaseDate = (SELECT MAX(purchaseDate)
-                      FROM INVOICE WHERE USER_ACCOUNT_USEREMAIL = '$email')";
+                      AND invoiceID = $invoiceNum";
           $result = mysqli_query($link, $query) or die("Error: ".mysqli_error($link));
           while ($row = mysqli_fetch_array($result)) {
             $invoiceID = $row['invoiceID'];
@@ -70,7 +88,7 @@
         $total = 0;
         $totalQuantity = 0;
         $subtotal = 0;
-        $shipCost = 0;
+        $shipCost = 5;
         while ($row = mysqli_fetch_array($result)) {
           $items = $items . nl2br("\n" . $row['quantity'] . " x " . $row['albumTitle'] . " -- " . $row['artist']) . " ("
                   . $row['price'] . " each)";
@@ -112,11 +130,20 @@
       } else {
         echo "<h4>not saved to file</h4>";
       }
-    }
 
-    // -- ToDo: delete data from shopping cart
+	// -- delete data from shopping cart
+	$deleteQuery = "DELETE FROM SHOPPING_CART
+					WHERE USER_ACCOUNT_USEREMAIL = '$email';";
+	if(mysqli_query($link, $deleteQuery) or die("Error: ".mysqli_error($link))){
+	}else {
+			$error = true;
+	}
 
     $totalCart = number_format(($totalCart / 100), 2);
     echo '<h4>Successfully charged ' . $totalCart . '!</h4>';
     echo "<h4>Thanks for shopping at Mick's Licks</h4>";
+}else{
+	//redirect user to cart or orderHistoy page.
+	echo "";
+}
 ?>
