@@ -26,16 +26,16 @@ and open the template in the editor.
         <p style="display: inline-block; font-size: 22pt;">Buy used and new records on the internet, from my garage.</p>
       </div>
     </div>
-
-        <nav class="navbar navbar-inverse" role="navigation" id="navbar">>
-          <div class='navbar-header'>
+        <div id='nav'>
+          <nav class="navbar navbar-inverse" role="navigation">
+            <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#mynav'>
               <span class='icon-bar'></span>
               <span class='icon-bar'></span>
               <span class='icon-bar'></span>
             </button>
           </div>
-          <div class='collapse navbar-collapse' id='mynav'>>
+          <div class='collapse navbar-collapse' id='mynav'>
           <ul class="nav navbar-nav">
             <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genres
@@ -136,6 +136,6 @@ and open the template in the editor.
           </ul>
           </div>
         </nav>
-
+      </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
 <br>

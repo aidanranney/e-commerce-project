@@ -3,11 +3,11 @@ $(document).ready(function(){
     $(window).scroll(function () {
 
     if ($(window).scrollTop() > $('#myheader').height()) {
-      $('#navbar-header').addClass('navbar-fixed-top');
+      $('#nav').addClass('navbar-fixed-top');
     }
 
     if ($(window).scrollTop() < $('#myheader').height()) {
-      $('#navbar-header').removeClass('navbar-fixed-top');
+      $('#nav').removeClass('navbar-fixed-top');
     }
     });
 

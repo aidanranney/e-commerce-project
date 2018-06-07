@@ -45,12 +45,12 @@ body {
   right: 100px;
 }
 
-#shoppingCart {
-  font-size: 13px;
+.navbar-fixed-top {
+  padding: 10px;
 }
 
-#navbar, #mynav {
-  background: rgba(0,0,0,1);
+#shoppingCart {
+  font-size: 13px;
 }
 
 #cartTableLeftDiv {
@@ -71,6 +71,10 @@ body {
   text-align: right;
 }
 
+#nav {
+  min-height: 55px;
+}
+
 @media (min-width: 992px) {
   .col-sm-3 {
     height: 325px;
@@ -81,7 +85,7 @@ body {
   .col-sm-3 {
     transform: scale(0.8);
     width: 200px;
-    height: 200px;
+    height: 280px;
   }
 }
 
