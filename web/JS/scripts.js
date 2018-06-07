@@ -1,21 +1,22 @@
 $(document).ready(function(){
-
-    $(window).scroll(function () {
-
-    if ($(window).scrollTop() > $('#myheader').height()) {
-      $('#nav').addClass('navbar-fixed-top');
-    }
-
-    if ($(window).scrollTop() < $('#myheader').height()) {
-      $('#nav').removeClass('navbar-fixed-top');
-    }
-    });
-
     setTimeout(function(){
       $('.alert-danger').fadeOut();
       $('.alert-success').fadeOut();
     }, 2000);
 });
+
+window.onscroll = function() {stickyNav()};
+
+  var navbar = document.getElementById("nav");
+  var sticky = nav.offsetTop;
+
+  function  stickyNav() {
+    if (window.pageYOffset >= sticky) {
+      $('#nav').addClass('navbar-fixed-top');
+    } else {
+      $('#nav').removeClass('navbar-fixed-top');
+    }
+    });
 
 function validateRecord() {
   // VALIDATION CODE HERE!
