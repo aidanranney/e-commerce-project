@@ -33,6 +33,7 @@ if (isset($_GET['itemNumber'])) {
       }
     }
   } else {
+    $loginRedirect = true;
     echo "<meta http-equiv='refresh' content='0; url=login.php?itemNumber=" . $_GET['itemNumber'] . "'>";
   }
 }
@@ -54,7 +55,7 @@ if (isset($_GET['genre'])) {
   $result = mysqli_query($link, $query);
 }
 
-if (isset($_GET['addtocart']) && !isset($cartError)) {
+if (isset($_GET['addtocart']) && !isset($cartError) && !isset($loginRedirect)) {
   echo "<p class='alert alert-success'>Record Added!</p>";
 } elseif (isset($cartError)) {
   echo "<p class='alert alert-danger'>Something went wrong...</p>";

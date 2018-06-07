@@ -207,7 +207,7 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 														data-image="../images/logo_small.png"
 														data-amount="<?php echo $total*100; ?>"
 														data-locale="auto"></script>
-										<input type="hidden" name="totalCart" value="<?php echo $total*100 ?>">
+										<input type="hidden" name="totalCart" value="<?php echo $total*100; ?>">
 									</td>
 									</form>
 									</tr>
