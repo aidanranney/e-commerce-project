@@ -53,8 +53,8 @@ body {
   font-size: 13px;
 }
 
-#mynav {
-  background: rgba(0,0,0,.85);
+#navbar, #mynav {
+  background: rgba(0,0,0,1);
 }
 
 #cartTableLeftDiv {
@@ -73,4 +73,32 @@ body {
 #summaryTitle {
   padding: 10px 10px;
   text-align: right;
+}
+
+@media (min-width: 992px) {
+  .col-sm-3 {
+    height: 325px;
+  }
+}
+
+@media (max-width: 990px) {
+  .col-sm-3 {
+    transform: scale(0.8);
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .col-sm-3 {
+    transform: scale(0.75);
+    height: 260px;
+    }
+    .albumArtwork:hover .item-buttons {
+      display:block;
+      transform:scale(1.15);
+      position:absolute;
+      top: 10%;
+      right: 5%;
+    }
 }
