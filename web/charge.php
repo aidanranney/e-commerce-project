@@ -18,16 +18,16 @@
 
   $charge = \Stripe\Charge::create(array(
       'customer' => $customer->id,
-      'amount'   => 5000,
-      'currency' => 'usd'
+      'amount'   => $totalCart,
+      'currency' => 'cad'
   ));
 
   if (isset($_SESSION['useremail'])) {
       $email = $_SESSION['useremail'];
   // ToDo:
-    // -- insert into invoice table the data from the shopping cart
+    // -- ToDo: insert into invoice table the data from the shopping cart
 
-    // -- write to html page the data from the invoice table
+    // -- ToDo: write to html page the data from the invoice table
 
 
 
@@ -87,22 +87,22 @@
             <head>
               <title>Mick's Licks Invoice for " . $name . "</title>
             </head>
-            <body>
-            <h1>Hello, " . $name . "</h1>
-            <h4>Here is your album order from Mick's Licks:</h4>
-            <p>Invoice Number: " . $invoiceID ."</p>
-            <p>Purchase Date: " . $puchaseDate ."</p>
-            <p>Items: " . $items . "</p>
-            <p>Shipping Address:</p>
-            <div style='text-indent:50px;'>
-            <p>" . $address . "</p>
-            <p>" . $city . "</p>
-            <p>" . $province . "</p>
-            <p>" . $postalcode . "</p>
-            </div>
-            <p><strong>Total: " . $total . "</strong></p>
-            <p>Thanks for your business!</p>
-            </body>
+              <body>
+              <h1>Hello, " . $name . "</h1>
+                <h4>Here is your album order from Mick's Licks:</h4>
+                  <p>Invoice Number: " . $invoiceID ."</p>
+                  <p>Purchase Date: " . $puchaseDate ."</p>
+                  <p>Items: " . $items . "</p>
+                  <p>Shipping Address:</p>
+                    <div style='text-indent:50px;'>
+                    <p>" . $address . "</p>
+                    <p>" . $city . "</p>
+                    <p>" . $province . "</p>
+                    <p>" . $postalcode . "</p>
+                    </div>
+                  <p><strong>Total: " . $total . "</strong></p>
+                  <p>Thanks for your business!</p>
+              </body>
         </html>";
 
       $date = date("Y-m-d-H-i");
@@ -113,7 +113,9 @@
         echo "<h4>not saved to file</h4>";
       }
     }
-    // -- delete data from shopping cart
+
+    // -- ToDo: delete data from shopping cart
+
     $totalCart = number_format(($totalCart / 100), 2);
     echo '<h4>Successfully charged ' . $totalCart . '!</h4>';
     echo "<h4>Thanks for shopping at Mick's Licks</h4>";
