@@ -42,7 +42,7 @@ include ('header.php');
 
 
 <?php
-if(isset($_POST['accept'])) {
+if(isset($_POST['accept']) || isset($_POST['decline'])) {
   unset($_SESSION['privacy']);
 }
 
@@ -80,11 +80,11 @@ if (isset($_SESSION['privacy'])) {
   unset($_SESSION['privacy']);
   unset($_SESSION['accept']);
   echo "<script>javascript: alert('Thank you for agreeing to the terms!')</script>";
-  // echo "<script>javascript: if(!alert('Thank you for agreeing to the terms!')){window.location.reload();}</script>";
 }
 
 if (isset($_POST['decline'])) {
   session_destroy();
+  header("Refresh:0");
 }
 ?>
 
