@@ -197,6 +197,7 @@ $hashed = hash('sha1', $salted);
           if(mysqli_query($link, $userQuery)){
           echo "User account created.";
           $_SESSION['useremail']=$USEREMAIL;
+          $_SESSION['privacy']='N';
 
           // if user tried to add a record before registering, add record and redirect to new cart.
           if (isset($_POST['itemNumber'])) {

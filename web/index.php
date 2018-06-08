@@ -42,6 +42,10 @@ include ('header.php');
 
 
 <?php
+if(isset($_POST['accept'])) {
+  unset($_SESSION['privacy']);
+}
+
 if (isset($_SESSION['privacy'])) {
   if($_SESSION['privacy']=='N') {
     echo $_SESSION['privacy'] . "
@@ -70,19 +74,17 @@ if (isset($_SESSION['privacy'])) {
 }
 ?>
 <?php if (isset($_POST['accept'])) {
-  if ($_POST['accept'] == "accept") {
-    $pQuery = "UPDATE USER_ACCOUNT SET privCheck = 'Y'
-    WHERE USEREMAIL = '$email'";
-    mysqli_query($link, $pQuery) or die ("Error: ".mysqli_error($link));
-    session_destroy();
-    echo "<script>javascript: alert('Thank you for agreeing to our terms, please log back in.')</script>";
-  }
+  $pQuery = "UPDATE USER_ACCOUNT SET privCheck = 'Y'
+  WHERE USEREMAIL = '$email'";
+  mysqli_query($link, $pQuery) or die ("Error: ".mysqli_error($link));
+  unset($_SESSION['privacy']);
+  unset($_SESSION['accept']);
+  echo "<script>javascript: alert('Thank you for agreeing to the terms!')</script>";
+  // echo "<script>javascript: if(!alert('Thank you for agreeing to the terms!')){window.location.reload();}</script>";
 }
 
 if (isset($_POST['decline'])) {
-  if ($_POST['decline'] == "decline") {
-    session_destroy();
-  }
+  session_destroy();
 }
 ?>
 
