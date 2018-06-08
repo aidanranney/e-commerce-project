@@ -45,12 +45,12 @@ include ('header.php');
 if (isset($_SESSION['privacy'])) {
   if($_SESSION['privacy']=='N') {
     echo $_SESSION['privacy'] . "
-
-        <div class='modal' id='modal' style='display:block;'>
+        <body>
+        <div class='modal' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display:block;'>
           <div class='modal-dialog'>
             <div class='modal-content'>
               <div class='modal-header'>
-                <h4 class='modal-title'>Our Terms of Use Have Changed</h4>
+                <h4 class='modal-title' id='myModalLabel'>Our Terms of Use Have Changed</h4>
               </div>
               <div class='modal-body'>
                 <p><embed src='https://termsfeed.com/terms-conditions/3fc9f955d476a5bf9ca69d4c91d23b6f' frameborder='100' width='100%' length='400px' height='500px'></p>
@@ -58,23 +58,24 @@ if (isset($_SESSION['privacy'])) {
               <div class='modal-footer'>
                 <p>Questions or Concerns, Contact Us <a href='mailto:mick.lick.records@gmail.com?Subject=Terms%20And%20Contions'>Here</a></p>
                 <form action='index.php' method='POST'>
-                <button type='submit' name='accept' value='accept' class='btn btn-primary'> Accept <span class='glyphicon glyphicon-ok-circle'></span></button>
-                <button type='submit' id='decline' name='decline' value='decline' class='btn btn-default' onclick='dismiss()'> Decline <span class='glyphicon glyphicon-ban-circle'></span></button>
+                <button type='submit' name='accept' value='accept' class='btn btn-primary' data-dismiss='modal'> Accept <span class='glyphicon glyphicon-ok-circle'></span></button>
+                <button type='submit' id='decline' name='decline' value='decline' class='btn btn-default' data-dismiss='modal-body'> Decline <span class='glyphicon glyphicon-ban-circle'></span></button>
                 </form>
               </div>
             </div>
           </div>
-        </div>";
-} else {
-  echo "Welcome!";
+        </div>
+        </body>";
 }
 }
-
-if (isset($_POST['accept'])) {
+?>
+<?php if (isset($_POST['accept'])) {
   if ($_POST['accept'] == "accept") {
     $pQuery = "UPDATE USER_ACCOUNT SET privCheck = 'Y'
-                WHERE USEREMAIL = '$email'";
-    mysqli_query($link, $pQuery);
+    WHERE USEREMAIL = '$email'";
+    mysqli_query($link, $pQuery) or die ("Error: ".mysqli_error($link));
+    session_destroy();
+    echo "<script>javascript: alert('Thank you for agreeing to our terms, please log back in.')</script>";
   }
 }
 
