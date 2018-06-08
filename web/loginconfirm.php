@@ -23,17 +23,15 @@ $admin = @mysqli_query($link, $adminquery);
 if (mysqli_num_rows($row) == 1) {
 			$addLog = "UPDATE USER_ACCOUNT SET last_login = NOW() WHERE USEREMAIL = '$useremail'";
 			mysqli_query($link, $addLog);
-	echo "<p>You have logged in successfully</p>";
+			echo "<p>You have logged in successfully</p>";
 
-
-
-	$_SESSION['useremail']=$useremail;
-	$r = mysqli_fetch_array($admin);
-	$p = mysqli_fetch_array($privacy);
-	if($p['privCheck']==NULL){
-		$_SESSION['privacy']='N';
-	} else {
-	$_SESSION['privacy'] = $p['privCheck'];
+			$_SESSION['useremail']=$useremail;
+			$r = mysqli_fetch_array($admin);
+			$p = mysqli_fetch_array($privacy);
+			if($p['privCheck']==NULL){
+				$_SESSION['privacy']='N';
+			} else {
+			$_SESSION['privacy'] = $p['privCheck'];
 }
 	$_SESSION['admin'] = $r['admin'];
 
