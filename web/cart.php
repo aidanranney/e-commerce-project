@@ -88,7 +88,8 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 <div class='col-sm-6' id=cartTableLeftDiv>
 	<table class=table>
 	<tr>
-		<th class=col-sm-6 style="padding-bottom:10px"><h4>Item</h4></th>
+		<th class=col-sm-4 style="padding-bottom:10px"><h4>Item</h4></th>
+		<th class=col-sm-2 style="padding-bottom:10px"></th>
 		<th class=col-sm-4 style="padding-bottom:10px"><h4>Quantity</h4></th>
 		<th class=col-sm-2 style="padding-bottom:10px"><h4>Price</h4></th>
 	</tr>
@@ -120,14 +121,16 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 				}
 				echo "<tr>
 										<td>
-											<form action='cart.php' method='post'>
-											<input type='hidden' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
-											<input class='btn btn-danger remove-btn' type='submit' value='Remove Item'>
-											</form>
 											<div class='photo'>
 												<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=100 width=100>
 											</div>
 											<p style='font-size:14pt'>" . $row['artist'] . " - " . $row['albumTitle'] . "</p>
+											<td>
+											<form action='cart.php' method='post'>
+											<input type='hidden' name='remove' value='" . $row['RECORD_itemNumber'] . "'>
+											<input class='btn btn-danger remove-btn' type='submit' value='Remove Item'>
+											</form>
+											</td>
 										</td>
 										<td>
 											<input type='number' form='update' name='quantities[]' value='" . $row['quantityOrdered'] . "'min='1' max='100' size='1'>
@@ -145,10 +148,12 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 			}
 					echo "<tr>
 								<td>";
-									if ($numRows > 0) {
-										echo "<input class='btn btn-danger remove-btn' type='submit' form='removeAll' value='Remove All'>";
-									}
+								if ($numRows > 0) {
+									echo "<input class='btn btn-danger remove-btn' type='submit' form='removeAll' value='Remove All'>";
+								}
 					echo "</td>
+								<td>
+								</td>
 								<td>";
 								if ($numRows > 0) {
 									echo "<input class='btn btn-primary' form='update' type='submit' value='Update Order'>";
