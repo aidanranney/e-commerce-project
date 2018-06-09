@@ -6,7 +6,13 @@ include ('connection.php');
 include ('header.php');
 
 session_destroy();
-header("location:index.php");
+
+echo "<p>You are now logged out. Thanks for visiting.</p>";
+echo "<script>setTimeout(function() {
+  window.location='index.php';
+}, 2000)</script>";
+
+// header("location:index.php");
 
 include ('footer.php');
 ?>
