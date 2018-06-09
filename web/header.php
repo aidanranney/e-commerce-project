@@ -33,7 +33,7 @@ and open the template in the editor.
       			<div class='modal-body'>
               <span><strong>Release Date: </strong></span><p id='releaseDate'></p>
               <span><strong>Description: </strong></span><p id='description'></p>
-              <h4> Listen on Spotify:
+              <span><strong>Listen On Spotify: </strong></span>
       				<iframe id='link' src='' width='250' height='80' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>
       			</div>
       			<div class='modal-footer'>
