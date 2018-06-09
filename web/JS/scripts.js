@@ -4,20 +4,18 @@ $(document).ready(function(){
     $('.alert-danger').fadeOut();
     $('.alert-success').fadeOut();
   }, 2000);
-});
 
 window.onscroll = function() {stickyNav()};
 
-  var navbar = document.getElementById("nav");
-  var sticky = nav.offsetTop;
-
-function  stickyNav() {
-    if (window.pageYOffset >= sticky) {
-      $('#nav').addClass('navbar-fixed-top');
-    } else {
-      $('#nav').removeClass('navbar-fixed-top');
-    }
-    });
+$('.more-info').click(function(){
+  var record = $(this).attr('data-id');
+  var description = $(this).attr('description');
+  var titleArtist = $(this).attr('title');
+  titleArtist += " -- " + $(this).attr('artist');
+  $('#recordid').attr('src', record);
+  $('#description').html(description);
+  $('#titleArtist').html(titleArtist);
+});
 
 function validateRecord() {
   // VALIDATION CODE HERE!
@@ -81,3 +79,5 @@ function dismiss() {
     document.getElementById('modal').style.display = "none";
   }
 }
+
+});
