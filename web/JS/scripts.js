@@ -8,7 +8,8 @@ $(document).ready(function(){
 window.onscroll = function() {stickyNav()};
 
 $('.more-info').click(function(){
-  var record = $(this).attr('data-id');
+  var record = "https://embed.spotify.com/?uri=";
+  record += $(this).attr('data-id');
   var description = $(this).attr('description');
   var titleArtist = $(this).attr('title');
   titleArtist += " -- " + $(this).attr('artist');
