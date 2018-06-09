@@ -85,7 +85,9 @@ if (isset($_SESSION['privacy'])) {
 if (isset($_POST['decline'])) {
   session_destroy();
   echo "<script>javascript: alert('We will need to sign you out!')</script>";
-  header("Refresh:0");
+  echo "<script>setTimeout(function() {
+    window.location='index.php';
+  }, 2000)</script>";
 }
 ?>
 
