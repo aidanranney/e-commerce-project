@@ -50,7 +50,7 @@ if (isset($_SESSION['privacy'])) {
   if($_SESSION['privacy']=='N') {
     echo $_SESSION['privacy'] . "
         <body>
-        <div class='modal' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display:block;'>
+        <div class='modal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display:block;'>
           <div class='modal-dialog'>
             <div class='modal-content'>
               <div class='modal-header'>
@@ -84,6 +84,7 @@ if (isset($_SESSION['privacy'])) {
 
 if (isset($_POST['decline'])) {
   session_destroy();
+  echo "<script>javascript: alert('We will need to sign you out!')</script>";
   header("Refresh:0");
 }
 ?>
@@ -125,13 +126,15 @@ if (mysqli_num_rows($result) > 0) {
           <div class='col-sm-3'>
              <article class='col-item'>
               <div class='albumArtwork'>
-         			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
-              <div class='item-buttons'>
-                <div class='animated fadeInDown'>
-                  <a href='#' id='itemDescription' class='btn btn-info' title='Click for album description'>
-                  <span class='glyphicon glyphicon-plus'></span><p style='display:inline;'>Info</p></a></button>
-                  <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' title='Add to cart'>
-                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add to cart</p></a></div>
+           			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
+                <div class='item-buttons'>
+                  <div class='animated fadeInDown'>
+                    <button data-id='" . $row['spotifyLink'] . "' description='" . $row['description'] . "'
+                    title='" . $row['albumTitle'] . "' artist='" . $row['artist'] . "' class='more-info btn btn-info' data-toggle='modal' data-target='#myModal'>
+                    <span class='glyphicon glyphicon-headphones'></span><p style='display:inline;'>Info</p></button>
+                    <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' title='Add to cart'>
+                    <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add</p></a>
+                  </div>
                 </div>
               </div>
        		<div class='info'>
