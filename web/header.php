@@ -31,9 +31,10 @@ and open the template in the editor.
       				<h4 class='modal-title' id='titleArtist'>Info</h4>
       			</div>
       			<div class='modal-body'>
-              <p id='description'></p>
+              <span><strong>Release Date: </strong></span><p id='releaseDate'></p>
+              <span><strong>Description: </strong></span><p id='description'></p>
               <h4> Listen on Spotify:
-      				<iframe id='recordid' src='' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>
+      				<iframe id='link' src='' width='250' height='80' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>
       			</div>
       			<div class='modal-footer'>
       				<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>

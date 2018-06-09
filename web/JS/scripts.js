@@ -9,14 +9,22 @@ window.onscroll = function() {stickyNav()};
 
 $('.more-info').click(function(){
   var record = "https://embed.spotify.com/?uri=";
-  record += $(this).attr('data-id');
+  record += $(this).attr('link');
   var description = $(this).attr('description');
-  var titleArtist = $(this).attr('title');
-  titleArtist += " -- " + $(this).attr('artist');
-  $('#recordid').attr('src', record);
-  $('#description').html(description);
+  var title = $(this).attr('title');
+  var artist = $(this).attr('artist');
+  var titleArtist = title + " - " + artist;
+  var releaseDate = $(this).attr('releaseDate');
   $('#titleArtist').html(titleArtist);
+  $('#link').attr('src', record);
+  $('#description').html(description);
+  $('#releaseDate').html(releaseDate);
 });
+
+$('#myModal').on('hide.bs.modal', function () {
+  $('#link').removeAttr('src');
+   console.log($('#link').attr('src'));
+})
 
 function validateRecord() {
   // VALIDATION CODE HERE!
