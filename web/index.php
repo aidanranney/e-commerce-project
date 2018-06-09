@@ -1,7 +1,7 @@
 <?php
 session_start();
 $currentpage = 'home';
-$title = 'Home Page';
+$title = "Mick's Licks";
 include ('connection.php');
 
 if (isset($_GET['itemNumber'])) {
@@ -129,8 +129,8 @@ if (mysqli_num_rows($result) > 0) {
            			<img src='" . $row['albumArtwork'] . "' alt='Product Image' onerror=" . "this.onerror=null;this.src='../images/records.jpg';" . "height=200 width=200>
                 <div class='item-buttons'>
                   <div class='animated fadeInDown'>
-                    <button data-id='" . $row['spotifyLink'] . "' description='" . $row['description'] . "'
-                    title='" . $row['albumTitle'] . "' artist='" . $row['artist'] . "' class='more-info btn btn-info' data-toggle='modal' data-target='#myModal'>
+                    <button link='" . $row['spotifyLink'] . "' description='" . $row['description'] . "' releaseDate='" . $row['RELEASEDATE'] .
+                    "' title='" . htmlspecialchars(($row['albumTitle']), ENT_QUOTES) . "' artist='" . htmlspecialchars(($row['artist']), ENT_QUOTES) . "' class='more-info btn btn-info' data-toggle='modal' data-target='#myModal'>
                     <span class='glyphicon glyphicon-headphones'></span><p style='display:inline;'>Info</p></button>
                     <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add</p></a>
