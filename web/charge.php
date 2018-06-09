@@ -98,6 +98,7 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
         $shipCost += 0.07 * $totalQuantity;
         $pstTax = round($subtotal * 0.05, 2);
 				$hstTax = round($subtotal * 0.07, 2);
+        $taxes = $shipCost + $pstTax + $hstTax;
         $total = $subtotal + $shipCost + $pstTax + $hstTax;
 
       $data =
@@ -110,7 +111,6 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
                 <h4>Here is your album order from Mick's Licks:</h4>
                   <p>Invoice Number: " . $invoiceID ."</p>
                   <p>Purchase Date: " . $puchaseDate ."</p>
-                  <p>Items: " . $items . "</p>
                   <p>Shipping Address:</p>
                     <section style='text-indent:50px;'>
                       <p>" . $address . "</p>
@@ -118,7 +118,15 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
                       <p>" . $province . "</p>
                       <p>" . $postalcode . "</p>
                     </section>
-                  <p><strong style='background-color:#afcaff; '>Total: " . $total . "</strong></p>
+                  <hr style='float:left; width:200px;' />
+                  <br>
+                  <p>Items: " . $items . "</p>
+                  <br>
+                  <p>Subtotal: $" . $subtotal . "</p>
+                  <p>Taxes: $" . $taxes . "</p>
+                  <p><strong style='color:red; '>Total: " . $total . "</strong></p>
+                  <hr style='float:left; width:200px;' />
+                  <br>
                   <p>Thanks for your business!</p>
               </body>
         </html>";
@@ -128,7 +136,7 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
       if (file_put_contents($file, $data)) {
         echo "<a href='" . $file . "'>View your order</a></h4>";
       } else {
-        echo "<h4>not saved to file</h4>";
+        echo "<h4>Something went wrong with saving you order...</h4>";
       }
 
 	// -- delete data from shopping cart
