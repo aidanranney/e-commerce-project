@@ -4,11 +4,15 @@ $(document).ready(function(){
     $('.alert-danger').fadeOut();
     $('.alert-success').fadeOut();
   }, 2000);
+<<<<<<< HEAD
 
 });
+=======
+>>>>>>> 8c4a1b53d630ba164b1d817e6c96b3b44b0720a1
 
 window.onscroll = function() {
 
+<<<<<<< HEAD
   var navbar = document.getElementById("nav");
   var sticky = navbar.offsetTop;
 
@@ -19,6 +23,26 @@ window.onscroll = function() {
         $('#nav').removeClass('sticky');
       }
     };
+=======
+$('.more-info').click(function(){
+  var record = "https://embed.spotify.com/?uri=";
+  record += $(this).attr('link');
+  var description = $(this).attr('description');
+  var title = $(this).attr('title');
+  var artist = $(this).attr('artist');
+  var titleArtist = title + " - " + artist;
+  var releaseDate = $(this).attr('releaseDate');
+  $('#titleArtist').html(titleArtist);
+  $('#link').attr('src', record);
+  $('#description').html(description);
+  $('#releaseDate').html(releaseDate);
+});
+
+$('#myModal').on('hide.bs.modal', function () {
+  $('#link').removeAttr('src');
+   console.log($('#link').attr('src'));
+})
+>>>>>>> 8c4a1b53d630ba164b1d817e6c96b3b44b0720a1
 
 function validateRecord() {
   // VALIDATION CODE HERE!
@@ -82,3 +106,5 @@ function dismiss() {
     document.getElementById('modal').style.display = "none";
   }
 }
+
+});

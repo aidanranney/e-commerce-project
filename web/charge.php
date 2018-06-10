@@ -26,15 +26,15 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
 
     $email = $_SESSION['useremail'];
     // -- insert into invoice table the data from the shopping cart
-	$insertInvoice = "INSERT INTO INVOICE (purchaseDate, orderStatus, USER_ACCOUNT_USEREMAIL) 
+	$insertInvoice = "INSERT INTO INVOICE (purchaseDate, orderStatus, USER_ACCOUNT_USEREMAIL)
 						VALUES (now(), 'processing', '$email');";
 	if(mysqli_query($link, $insertInvoice) or die("Error: ".mysqli_error($link))){
 	}else {
 			$error = true;
 	}
-	
+
 	$invoiceNum = mysqli_insert_id($link);//get last auto generated id
-	
+
 	$getCartQuery = "SELECT sc.RECORD_itemNumber, r.PRICE, sc.quantityOrdered
 					FROM SHOPPING_CART sc, RECORD r
 					WHERE sc.RECORD_itemNumber=r.itemNumber
@@ -90,7 +90,7 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
         $subtotal = 0;
         $shipCost = 5;
         while ($row = mysqli_fetch_array($result)) {
-          $items = $items . nl2br("\n" . $row['quantity'] . " x " . $row['albumTitle'] . " -- " . $row['artist']) . " ("
+          $items = $items . nl2br("\n" . $row['quantity'] . " x " . $row['albumTitle'] . " - " . $row['artist']) . " ($"
                   . $row['price'] . " each)";
           $subtotal += $row['price'] * $row['quantity'];
           $totalQuantity += $row['quantity'];
@@ -98,6 +98,7 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
         $shipCost += 0.07 * $totalQuantity;
         $pstTax = round($subtotal * 0.05, 2);
 				$hstTax = round($subtotal * 0.07, 2);
+        $taxes = $shipCost + $pstTax + $hstTax;
         $total = $subtotal + $shipCost + $pstTax + $hstTax;
 
       $data =
@@ -110,15 +111,22 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
                 <h4>Here is your album order from Mick's Licks:</h4>
                   <p>Invoice Number: " . $invoiceID ."</p>
                   <p>Purchase Date: " . $puchaseDate ."</p>
-                  <p>Items: " . $items . "</p>
                   <p>Shipping Address:</p>
-                    <div style='text-indent:50px;'>
-                    <p>" . $address . "</p>
-                    <p>" . $city . "</p>
-                    <p>" . $province . "</p>
-                    <p>" . $postalcode . "</p>
-                    </div>
-                  <p><strong>Total: " . $total . "</strong></p>
+                    <section style='text-indent:50px;'>
+                      <p>" . $address . "</p>
+                      <p>" . $city . "</p>
+                      <p>" . $province . "</p>
+                      <p>" . $postalcode . "</p>
+                    </section>
+                  <hr style='float:left; width:200px;' />
+                  <br>
+                  <p>Items: " . $items . "</p>
+                  <br>
+                  <p>Subtotal: $" . $subtotal . "</p>
+                  <p>Taxes: $" . $taxes . "</p>
+                  <p><strong style='color:red; '>Total: " . $total . "</strong></p>
+                  <hr style='float:left; width:200px;' />
+                  <br>
                   <p>Thanks for your business!</p>
               </body>
         </html>";
@@ -126,9 +134,9 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
       $date = date("Y-m-d-H-i");
       $file = "../invoices/" . $nameForFile . $date . ".html";
       if (file_put_contents($file, $data)) {
-        echo "<h4>saved to file. <a href='" . $file . "'>View order email</a></h4>";
+        echo "<a href='" . $file . "'>View your order</a></h4>";
       } else {
-        echo "<h4>not saved to file</h4>";
+        echo "<h4>Something went wrong with saving you order...</h4>";
       }
 
 	// -- delete data from shopping cart
