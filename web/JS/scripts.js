@@ -4,20 +4,21 @@ $(document).ready(function(){
     $('.alert-danger').fadeOut();
     $('.alert-success').fadeOut();
   }, 2000);
+
 });
 
-window.onscroll = function() {stickyNav()};
+window.onscroll = function() {
 
   var navbar = document.getElementById("nav");
-  var sticky = nav.offsetTop;
+  var sticky = navbar.offsetTop;
 
-function  stickyNav() {
-    if (window.pageYOffset >= sticky) {
-      $('#nav').addClass('navbar-fixed-top');
-    } else {
-      $('#nav').removeClass('navbar-fixed-top');
-    }
-    });
+      if (window.pageYOffset > sticky) {
+        $('#nav').addClass('sticky');
+      }
+      if (window.pageYOffset < sticky) {
+        $('#nav').removeClass('sticky');
+      }
+    };
 
 function validateRecord() {
   // VALIDATION CODE HERE!
