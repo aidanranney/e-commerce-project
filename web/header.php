@@ -21,14 +21,14 @@ and open the template in the editor.
     </head>
     <body>
 
-
     <div class="container-fluid" id="myheader">
       <div class="jumbotron">
         <img src="../images/logo.png" style="max-height:250px; max-width:250px;">
         <p style="display: inline-block; font-size: 22pt;">Buy used and new records on the internet, from my garage.</p>
       </div>
     </div>
-        <div id='nav'>
+    <div id='nav-wrapper'>
+        <div id='nav' data-spy="affix" data-offset-top="268"  style="width: 98%;">
           <nav class="navbar navbar-inverse" role="navigation">
             <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#mynav'>
@@ -139,5 +139,6 @@ and open the template in the editor.
           </div>
         </nav>
       </div>
+    </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
 <br>

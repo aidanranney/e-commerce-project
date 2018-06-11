@@ -28,7 +28,7 @@ $(document).ready(function(){
   		window.location='index.php';
   	});
   }
-})
+});
 
 function validateRecord() {
   // VALIDATION CODE HERE!
@@ -80,10 +80,6 @@ if(document.getElementById('USEREMAIL').value ==''){
   	alert("Please include your postal code");
   	return false;
   }
-}
-
-function validateCart() {
-
 }
 
 function dismiss() {

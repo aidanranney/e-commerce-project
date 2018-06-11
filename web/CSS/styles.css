@@ -2,6 +2,10 @@ body {
   padding: 10px;
 }
 
+.affix {
+  top: 0%;
+}
+
 .albumArtwork {
     transition: transform .2s;
     margin: 0 auto;
@@ -39,6 +43,11 @@ body {
   padding: 10px;
 }
 
+#nav {
+  z-index: 99;
+  width: 98%;
+}
+
 #shoppingCart {
   font-size: 13px;
 }
@@ -61,13 +70,16 @@ body {
   text-align: right;
 }
 
-#nav {
+#nav-wrapper {
   min-height: 55px;
 }
 
 @media (min-width: 992px) {
   .col-sm-3 {
     height: 325px;
+  }
+  #nav-wrapper {
+    min-height: 55px;
   }
 }
 
@@ -76,6 +88,9 @@ body {
     transform: scale(0.8);
     width: 200px;
     height: 280px;
+  }
+  #nav-wrapper {
+    min-height: 55px;
   }
 }
 
@@ -90,5 +105,8 @@ body {
       position:absolute;
       top: 10%;
       right: 5%;
+    }
+    #nav-wrapper {
+      min-height: 55px;
     }
 }
