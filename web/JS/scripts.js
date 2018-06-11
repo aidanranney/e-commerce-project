@@ -4,26 +4,7 @@ $(document).ready(function(){
     $('.alert-danger').fadeOut();
     $('.alert-success').fadeOut();
   }, 2000);
-<<<<<<< HEAD
 
-});
-=======
->>>>>>> 8c4a1b53d630ba164b1d817e6c96b3b44b0720a1
-
-window.onscroll = function() {
-
-<<<<<<< HEAD
-  var navbar = document.getElementById("nav");
-  var sticky = navbar.offsetTop;
-
-      if (window.pageYOffset > sticky) {
-        $('#nav').addClass('sticky');
-      }
-      if (window.pageYOffset < sticky) {
-        $('#nav').removeClass('sticky');
-      }
-    };
-=======
 $('.more-info').click(function(){
   var record = "https://embed.spotify.com/?uri=";
   record += $(this).attr('link');
@@ -32,6 +13,7 @@ $('.more-info').click(function(){
   var artist = $(this).attr('artist');
   var titleArtist = title + " - " + artist;
   var releaseDate = $(this).attr('releaseDate');
+  console.log(releaseDate);
   $('#titleArtist').html(titleArtist);
   $('#link').attr('src', record);
   $('#description').html(description);
@@ -42,12 +24,11 @@ $('#myModal').on('hide.bs.modal', function () {
   f = navigator.userAgent.search("Firefox");
   if (f > -1) {
     console.log('Your browser is Firefox');
-    // setTimeout(function() {
-  	// 	window.location='index.php';
-  	// });
+    setTimeout(function() {
+  		window.location='index.php';
+  	});
   }
 })
->>>>>>> 8c4a1b53d630ba164b1d817e6c96b3b44b0720a1
 
 function validateRecord() {
   // VALIDATION CODE HERE!
