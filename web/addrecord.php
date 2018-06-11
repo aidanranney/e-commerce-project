@@ -108,14 +108,24 @@ if(isset($_SESSION['useremail']) && $_SESSION['admin']=='Y'){
 						</div>
 			</div>
 
-            	<div class="form-group">
+               	<div class="form-group">
   <label class="col-md-4 control-label">Record Description</label>
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
         	<textarea class="form-control" name="description" placeholder="Record Description" id="description" style="width:300px; height:100px"></textarea>
   	</div>
   	</div>
+	</div>
+
+		<div class="form-group">
+	<label class="col-md-4 control-label">Spotify Link</label>
+		<div class="col-md-4 inputGroupContainer">
+			<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
+						<textarea class="form-control" name="spotifyLink" placeholder="Spotify URI Link" id="spotifyLink" style="width:300px; height:40px"></textarea>
+					</div>
+				</div>
 	</div>
 
 
@@ -141,6 +151,7 @@ if (isset($_POST['submit'])) {
 	$RELEASEDATE = $_POST['RELEASEDATE'];
 	$quality = mysqli_real_escape_string($link, $_REQUEST['quality']);
 	$description = mysqli_real_escape_string($link, $_POST['description']);
+	$spotifyLink = mysqli_real_escape_string($link, $_POST['spotifyLink']);
 	//$description = mysqli_real_escape_string($link, $_REQUEST['comments']);
 
 	$error_code = $_FILES['albumArtwork']['error'];
@@ -188,8 +199,8 @@ if (isset($_POST['submit'])) {
 						$albumResult = mysqli_query($link, $albumQuery);
 						$album_count = $albumResult->num_rows;
 						if ($album_count == 0) {
-						$albumInsert = "INSERT INTO RECORD (artist, albumTitle, PRICE, RELEASEDATE, quality, albumArtwork, description) VALUES
-						('$artist', '$albumTitle', '$PRICE', '$RELEASEDATE', '$quality', '$uploadFile', '$description')";
+					$albumInsert = "INSERT INTO RECORD (artist, albumTitle, PRICE, RELEASEDATE, quality, albumArtwork, description, spotifyLink) VALUES
+						('$artist', '$albumTitle', '$PRICE', '$RELEASEDATE', '$quality', '$uploadFile', '$description', '$spotifyLink')";
 						if(mysqli_query($link, $albumInsert)  or die(mysqli_error($link))) {
 							echo "<p>Record added</p>";
 
