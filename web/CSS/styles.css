@@ -44,7 +44,7 @@ body {
 }
 
 .footer-section {
-  color: white;
+  color: gray;
   padding: 20px;
 }
 
@@ -84,7 +84,7 @@ body {
 }
 
 #right-footer {
-  text-align: right;
+  text-align: center;
 }
 
 @media (min-width: 992px) {
