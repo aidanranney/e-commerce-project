@@ -49,9 +49,15 @@ include ('header.php');
 ?>
 
 <div class=container>
+<?php 
+if(isset($_SESSION['useremail'])){//login check to view chart page
+?>
 <h1>Your Cart</h1>
 
+
 <?php
+
+
 if (isset($_SESSION['useremail'])) {// Display Alerts
 
 	// Display Remove single item
@@ -225,8 +231,12 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 						</div>
 
 <!--end of main container-->
+<?php 
+}else{
+	echo "Login to view your cart";
+}//end of the login to view cart statement
+?>
 </div>
-
 
 
 <?php

@@ -6,6 +6,10 @@ include ('connection.php');
 include ('header.php');
 ?>
 
+<?php 
+if(isset($_SESSION['useremail']) && $_SESSION['admin']=='Y'){
+?>
+
 <div class="container">
 	<form class="well form-horizontal" action="addrecord.php" method="POST" enctype='multipart/form-data' onsubmit="return validateRecord()">
 
@@ -126,6 +130,8 @@ include ('header.php');
 </div>
 
 <?php
+}//end render to page if logged in as an admin
+
 if (isset($_POST['submit'])) {
 	$artist = mysqli_real_escape_string($link, $_REQUEST['artist']);
 	$albumTitle = mysqli_real_escape_string($link, $_REQUEST['albumTitle']);
@@ -226,6 +232,7 @@ if (isset($_POST['submit'])) {
 		}
 	}//end of if submitted data
 }
+
 
 
 include ('footer.php');
