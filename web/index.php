@@ -162,6 +162,29 @@ if (mysqli_num_rows($result) > 0) {
 ?>
 </div>
 
+<!-- start of modal window -->
+<div class='modal fade' id='myModal'>
+<div class='modal-dialog'  style='max-width:400px;'>
+
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+        <h4 class='modal-title' id='titleArtist'>Info</h4>
+      </div>
+      <div class='modal-body'>
+        <span><strong>Release Date: </strong></span><p id='releaseDate'></p>
+        <span><strong>Description: </strong></span><p id='description'></p>
+        <span><strong>Listen On Spotify: </strong></span>
+        <iframe id='link' src='' width='250' height='80' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+      </div>
+    </div>
+
+</div>
+</div><!-- end of modal window -->
+
 <?php
  include ('footer.php');
 ?>
