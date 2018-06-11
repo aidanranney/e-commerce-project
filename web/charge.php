@@ -124,7 +124,7 @@ if (isset($_SESSION['useremail']) && isset($_POST['totalCart'])) {
                   <br>
                   <p>Subtotal: $" . $subtotal . "</p>
                   <p>Taxes: $" . $taxes . "</p>
-                  <p><strong style='color:red; '>Total: " . $total . "</strong></p>
+                  <p><strong style='color:red; '>Total: $" . $total . "</strong></p>
                   <hr style='float:left; width:200px;' />
                   <br>
                   <p>Thanks for your business!</p>

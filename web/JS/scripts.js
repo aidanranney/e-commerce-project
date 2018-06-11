@@ -22,8 +22,13 @@ $('.more-info').click(function(){
 });
 
 $('#myModal').on('hide.bs.modal', function () {
-  $('#link').removeAttr('src');
-   console.log($('#link').attr('src'));
+  f = navigator.userAgent.search("Firefox");
+  if (f > -1) {
+    console.log('Your browser is Firefox');
+    // setTimeout(function() {
+  	// 	window.location='index.php';
+  	// });
+  }
 })
 
 function validateRecord() {
