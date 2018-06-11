@@ -43,6 +43,11 @@ body {
   padding: 10px;
 }
 
+.footer-section {
+  color: white;
+  padding: 20px;
+}
+
 #nav {
   z-index: 99;
   width: 98%;
@@ -72,6 +77,14 @@ body {
 
 #nav-wrapper {
   min-height: 55px;
+}
+
+#mid-footer {
+  text-align: center;
+}
+
+#right-footer {
+  text-align: right;
 }
 
 @media (min-width: 992px) {
