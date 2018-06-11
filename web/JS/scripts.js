@@ -5,7 +5,7 @@ $(document).ready(function(){
     $('.alert-success').fadeOut();
   }, 2000);
 
-$('.more-info').click(function(){
+    $('.more-info').click(function(){
   var record = "https://embed.spotify.com/?uri=";
   record += $(this).attr('link');
   var description = $(this).attr('description');
@@ -20,7 +20,7 @@ $('.more-info').click(function(){
   $('#releaseDate').html(releaseDate);
 });
 
-$('#myModal').on('hide.bs.modal', function () {
+  $('#myModal').on('hide.bs.modal', function () {
   f = navigator.userAgent.search("Firefox");
   if (f > -1) {
     console.log('Your browser is Firefox');
