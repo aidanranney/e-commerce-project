@@ -203,17 +203,22 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 									<tr>
 									<td style='border-top: none;'>
 
-									<?php require_once('./config.php'); ?>
+									<?php require_once('./config.php'); 
+									if($numRows > 0){
+									echo "									
+									<form action='charge.php' method='post'>
+										<script src='https://checkout.stripe.com/checkout.js' class='stripe-button'
+														data-key='" . $stripe['publishable_key'] . "'
+														data-description='" . 'Payment Form' . "'
+														data-image='../images/logo_small.png'
+														data-amount='" . ($total*100) . "'
+														data-locale=' auto'></script>
+										<input type='hidden' name='totalCart' value='" . ($total*100) . "'>
+									</td>";
+									}
+									?>
+									
 
-									<form action="charge.php" method="post">
-										<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-														data-key="<?php echo $stripe['publishable_key']; ?>"
-														data-description="<?php echo 'Payment Form'; ?>"
-														data-image="../images/logo_small.png"
-														data-amount="<?php echo $total*100; ?>"
-														data-locale="auto"></script>
-										<input type="hidden" name="totalCart" value="<?php echo $total*100; ?>">
-									</td>
 									</form>
 									</tr>
 							</table>
