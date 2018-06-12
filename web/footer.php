@@ -29,10 +29,10 @@
        <li>Matthew Singleton</li>
      </ul>
    </div>
-   <div id='right-footer' class="col-sm-4 footer-section">
-     <p>Created for Camosun College ICS 199 Applied Computing Project, June 2018</p>
+   <div id='right-footer' class="col-sm-4 footer-section float-right">
+     <p>Created for Camosun College ICS 199 <br /> Applied Computing Project, June 2018</p>
      <br>
-     <p> Accessed: 
+     <p> Accessed:
      <?php
      date_default_timezone_set('America/Los_Angeles');
      print date('Y-m-d H:i:s');
