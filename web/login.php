@@ -5,7 +5,6 @@ $title = 'Login Page';
 include ('connection.php');
 include ('header.php');
 ?>
-<div class="container">
 <?php
 if (isset($_GET['itemNumber'])) {
   echo "<form class='well form-horizontal' id='myForm' action='loginconfirm.php?itemNumber=" . $_GET['itemNumber'] . "' method='POST'>";
