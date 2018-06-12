@@ -5,7 +5,7 @@ $(document).ready(function(){
     $('.alert-success').fadeOut();
   }, 2000);
 
-    $('.more-info').click(function(){
+$('.more-info').click(function(){
   var record = "https://embed.spotify.com/?uri=";
   record += $(this).attr('link');
   var description = $(this).attr('description');
@@ -13,7 +13,6 @@ $(document).ready(function(){
   var artist = $(this).attr('artist');
   var titleArtist = title + " - " + artist;
   var releaseDate = $(this).attr('releaseDate');
-  console.log(releaseDate);
   $('#titleArtist').html(titleArtist);
   $('#link').attr('src', record);
   $('#description').html(description);
