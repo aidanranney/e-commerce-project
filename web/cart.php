@@ -10,8 +10,8 @@ if (isset($_SESSION['useremail'])) {
 	if (!empty($_POST['remove'])) {
 		$removedItem = $_POST['remove'];
 		$removeQuery = "DELETE FROM SHOPPING_CART
-										WHERE RECORD_itemNumber = " .  $removedItem . "
-										AND USER_ACCOUNT_USEREMAIL = '$email'";
+						WHERE RECORD_itemNumber = " .  $removedItem . "
+						AND USER_ACCOUNT_USEREMAIL = '$email'";
 		if(mysqli_query($link, $removeQuery) or die("Error: ".mysqli_error($link))){
 		}else {
 			$error = true;
@@ -23,8 +23,8 @@ if (isset($_SESSION['useremail'])) {
 		$itemNumbers = $_POST['removeAll'];
 		foreach ($itemNumbers as $itemNumber) {
 			$removeQuery = "DELETE FROM SHOPPING_CART
-											WHERE RECORD_itemNumber = " .  $itemNumber . "
-											AND USER_ACCOUNT_USEREMAIL = '$email'";
+							WHERE RECORD_itemNumber = " .  $itemNumber . "
+							AND USER_ACCOUNT_USEREMAIL = '$email'";
 			if(mysqli_query($link, $removeQuery) or die("Error: ".mysqli_error($link))){
 			} else {
 				$error = true;
@@ -177,7 +177,7 @@ if (isset($_SESSION['useremail'])) {// Display Alerts
 				}
 				$pstTax = round($subtotal * 0.05, 2);
 				$hstTax = round($subtotal * 0.07, 2);
-				$total = $subtotal + $shipCost + $pstTax + $hstTax;
+				$total = round($subtotal + $shipCost + $pstTax + $hstTax, 2);
 		}
 
 ?>
