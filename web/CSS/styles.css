@@ -87,6 +87,10 @@ body {
   text-align: center;
 }
 
+#portrait {
+  -webkit-animation-duration: 3s;
+}
+
 @media (min-width: 992px) {
   .col-sm-3 {
     height: 325px;

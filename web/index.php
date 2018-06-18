@@ -132,7 +132,8 @@ if (mysqli_num_rows($result) > 0) {
                 <div class='item-buttons'>
                   <div class='animated fadeInDown'>
                     <button link='" . $row['spotifyLink'] . "' description='" . htmlspecialchars(($row['description']), ENT_QUOTES) . "' releaseDate='" . $row['RELEASEDATE'] .
-                    "' title='" . htmlspecialchars(($row['albumTitle']), ENT_QUOTES) . "' artist='" . htmlspecialchars(($row['artist']), ENT_QUOTES) . "' class='more-info btn btn-info' data-toggle='modal' data-target='#myModal'>
+                    "' title='" . htmlspecialchars(($row['albumTitle']), ENT_QUOTES) . "' artist='" . htmlspecialchars(($row['artist']), ENT_QUOTES) .
+                    "' class='more-info btn btn-info' data-toggle='modal' data-target='#myModal'>
                     <span class='glyphicon glyphicon-headphones'></span><p style='display:inline;'>Info</p></button>
                     <a href='index.php?itemNumber=" . $row['itemNumber'] . "&addtocart=true' id='shoppingCart' class='btn btn-info' title='Add to cart'>
                     <span class='glyphicon glyphicon-shopping-cart id='addtocart'></span><p style='display:inline;'>Add</p></a>
