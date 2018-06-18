@@ -42,6 +42,11 @@ include ('header.php');
 
 
 <?php
+
+if(isset($_GET['privacy'])){
+  $_SESSION['privacy']='N';
+}
+
 if(isset($_POST['accept']) || isset($_POST['decline'])) {
   unset($_SESSION['privacy']);
 }
@@ -83,6 +88,9 @@ if (isset($_SESSION['privacy'])) {
 }
 
 if (isset($_POST['decline'])) {
+  $pQuery = "UPDATE USER_ACCOUNT SET privCheck = NULL
+  WHERE USEREMAIL = '$email'";
+  mysqli_query($link, $pQuery) or die ("Error: ".mysqli_error($link));
   session_destroy();
   echo "<script>javascript: alert('We will need to sign you out!')</script>";
   echo "<script>setTimeout(function() {

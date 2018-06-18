@@ -19,6 +19,11 @@
          </div>
          <button type="submit" class="btn btn-info">Subscribe</button>
      </form>
+		<?php
+		if(isset($_SESSION['useremail'])){
+			echo "<a href='index.php?privacy=N' button type'submit' class='btn btn-info'>Change Terms of Use</a>";
+		}
+		?>
    </div>
    <div id='mid-footer' class="col-sm-4 footer-section">
      <ul style="list-style-type:none">
