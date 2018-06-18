@@ -109,6 +109,13 @@ body {
   #nav-wrapper {
     min-height: 55px;
   }
+  .albumArtwork:hover .item-buttons {
+    display:block;
+    transform:scale(1.15);
+    position:absolute;
+    top: 10%;
+    right: 5%;
+  }
 }
 
 @media (max-width: 600px) {
